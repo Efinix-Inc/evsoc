@@ -2,6 +2,8 @@
 
 Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framework targeted for Edge Vision applications, namely Edge Vision SoC (EVSoC) framework. This site provides the source codes, example designs, and supporting materials for the EVSoC framework.
 - [Key Features](#key-features)
+- [Image Signal Processing Example Design](#image-signal-processing-example-design)
+- [Documentation](#documentation)
 - [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Key Features
@@ -11,6 +13,65 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 - Highly **flexible HW/SW co-design** is feasible (RISC-V performs control & compute, HW accelerator for time-critical computations).
 - Enable **quick porting** of users' design for **Edge AI and Vision solutions**.
 
+## Image Signal Processing Example Design
+
+### Overview
+
+Image Signal Processing (ISP) example design is the first design available in the EVSoC framework. There are five main building blocks in the EVSoC framework, which facilitate ease of modification to suit for different system architecture requirements:
+- RISC-V SoC
+- DMA Controller
+- Camera
+- Display
+- Hardware Accelerator
+
+![](docs/isp_example_design_top_level.png "ISP Example Design Top-Level Block Diagram")
+
+The ISP example design illustrates a use case for the EVSoC framework, specifically, **hardware/software co-design for video processing**. Additionally, the design shows how user can **control the FPGA hardware using software**, that is, user can enable different hardware acceleration functions by changing firmware in the RISC-V processor.
+
+This example presents these concepts in the context of video filtering functions; however, user can use the same design with own hardware accelerator block instead of the
+provided filtering functions. The design helps user explore accelerating computationally intensive functions in hardware and using RISC-V software to control that acceleration as well as to perform computations that are inherently sequential or require flexibility.
+
+### Hardware & Software Setup
+
+The ISP example design is demonstrated on [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html).
+
+![](docs/isp_example_design_t120f324_hw_setup.png "Hardware Setup for ISP example design on T120F324 Development Kit")
+
+Efinity® IDE is required for project compilation and bitstream generation, whereas RISC-V SDK (includes Eclipse, OpenOCD Debugger, etc) is used to manage RISC-V software projects and for debugging purposes.
+
+Please refer to [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for more detail on the hardware and software setup.
+
+### Resource Utilization on Trion® T120 (640x480 Resolution)
+
+| Building Block          | LE | FF | ADD | LUT | Memory Block (M5K) | Multiplier |
+|-------------------------|:---:|:---:|:---:|:---:|:---:|:---:|
+| Edge Vision SoC (Total) | ?? |??|??|??|??|??|
+| RISC-V SoC              | - |??|??|??|??|??|
+| DMA Controller          | - |??|??|??|??|??|
+| Camera                  | - |??|??|??|??|??|
+| Display                 | - |??|??|??|??|??|
+| Hardware Accelerator    | - |??|??|??|??|??|
+
+### Resource Utilization on Trion® T120 (1280x720 Resolution)
+
+| Building Block          | LE | FF | ADD | LUT | Memory Block (M5K) | Multiplier |
+|-------------------------|:---:|:---:|:---:|:---:|:---:|:---:|
+| Edge Vision SoC (Total) | ?? |??|??|??|??|??|
+| RISC-V SoC              | - |??|??|??|??|??|
+| DMA Controller          | - |??|??|??|??|??|
+| Camera                  | - |??|??|??|??|??|
+| Display                 | - |??|??|??|??|??|
+| Hardware Accelerator    | - |??|??|??|??|??|
+
+### Software Tools Version
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.1.140
+- [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.1
+
+## Documentation
+- [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf)
+- [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf)
+- [Trion T120 BGA324 Development Kit Overview](https://www.efinixinc.com/docs/trion-t120f324-overview-v1.1.pdf)
+- [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/docs/trion120f324-devkit-ug-v2.1.pdf)
 
 ## Frequently Asked Questions
 1.	**Where are the HW/RTL and SW/firmware source files located?**
@@ -28,7 +89,7 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
     PiCam_SetBinningMode(1, 1);
     ```
     
-    2x vertical and 2x horizontal binning are performed. After the update, 2x taller and 2x wider frame view can be observed. Refer to [Raspberry Pi camera module v2 datasheet](docs/imx219_datasheet.pdf) for more detail about camera setting.
+    2x vertical and 2x horizontal binning are performed. After the update, 2x taller and 2x wider frame view can be observed. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
 
     For (b), please refer to the [reference design](https://www.efinixinc.com/support/ed/t120f324-hdmi-rpi.php) in Efinix support portal for integration of a scaler module.
 
@@ -50,7 +111,7 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
     ```
     PiCam_Output_Size(1920, 1080); 
     ```
-    Refer to [Raspberry Pi camera module v2 datasheet](docs/imx219_datasheet.pdf) for more detail about camera active output pixels, etc.
+    Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera active output pixels, etc.
 
 6.	**Why after enabling Sobel operation (either HW or SW mode) in the firmware, display shows only black with scatter white lines/dots?**
 
@@ -72,7 +133,7 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 
     User can adjust the camera shuttle speed to allow for longer exposure time. In camera SW driver (*PiCamDriver.c*) under *PiCam_init()* function, comment out the section for shorter exposure time and uncomment the section for longer exposure time. 
 
-    ***Note:*** Increasing camera exposure time would trade-off in lower frame rates. Refer to [Raspberry Pi camera module v2 datasheet](docs/imx219_datasheet.pdf) for more detail about camera setting.
+    ***Note:*** Increasing camera exposure time would trade-off in lower frame rates. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
 
 8.	**What is the mechanism used to configure and trigger an DMA transfer?**
 
@@ -138,4 +199,4 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 
 12. How to replace the example ISP hardware accelerator core with user custom accelerator?
 
-    Refer to *Using Your Own Hardware Acceleration* section in [EVSoC user guide](docs/evsoc_ug.pdf) for the detail. 
+    Refer to *Using Your Own Hardware Acceleration* section in [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail. 
