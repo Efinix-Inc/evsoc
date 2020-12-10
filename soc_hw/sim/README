@@ -1,0 +1,25 @@
+#Introduction
+-----------------------
+This is testbench template for Efinix SOC. Modelsim run script is provided. Modify run.sh or run.bat to change other simulator run script.
+
+#Installation
+-----------------------
+1.  Open run.bat or run.sh
+2.  Check for PATH variable, add directory path of your simulator to this PATH variable.
+
+#How to use
+-----------------------
+1.  Copy software user app binary file to "sim" folder. By default, evsoc_ispExample_sim.bin app is provided.
+2a. For Windows user, double click run.bat to start run the simulation.
+2b. For Linux user, execute './run.sh' to start run the simulation.
+
+#How to target user app
+-----------------------
+1.  Open run.bat or run.sh
+2.  Check for MyApp variable, modify it to your app's name.
+
+#Note
+-----------------------
+1.  Ruby SOC simulation bypass SPI flash offloading process, thus do not use *.bin in "sim" folder in real hardware implementation.
+2.  Ruby SOC simulation is using simple RAM model instead of DDR model.
+3.  If you are required to run simulation with item (1) and (2), please contact Efinix for support.

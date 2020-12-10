@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<efx:project name="edge_vision_soc" description="" last_change_date="Wed December 9 2020 15:10:03" location="C:/Users/yhlee/Desktop/compile_2020_2/soc_hw/efinity_project/T120F324_devkit_hdmi_640_480" sw_version="2020.2.299" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+    <efx:device_info>
+        <efx:family name="Trion"/>
+        <efx:device name="T120F324"/>
+        <efx:timing_model name="C4"/>
+    </efx:device_info>
+    <efx:design_info def_veri_version="verilog_2k" def_vhdl_version="vhdl_2008">
+        <efx:top_module name="edge_vision_soc"/>
+        <efx:design_file name="edge_vision_soc.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/true_dual_port_ram.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/ddr_reset_sequencer.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/soc/RubySoc.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/cam_dma_fifo.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/line_buffer.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/cam_pixel_remap_fifo.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/raw_to_rgb.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/rgb2gray.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/rgb_gain.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/cam_picam_v2.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/cam/apb3_cam.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/display/display_dma_fifo.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/display/display_lvds.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/dma/dma_socRuby.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/dma/dma2ddr_wrapper.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/bin2gray.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/efx_fifo_ctl_sm.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/efx_asyncfifo_ctl.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/pipe_reg.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/simple_dual_port_ram_fifo.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/efx_fifo_wrapper.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/efx_syncfifo_ctl.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/fifo/gray2bin.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/sobel_edge_detection.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/true_dual_port_ram2.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/dma_out_fifo.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/hw_accel_wrapper.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/binary_dilation.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/dma_in_fifo.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/line_buffer2.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/binary_erosion.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/hw_accel.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../source/hw_accel/axi4_hw_accel.v" version="verilog_2k" library="default"/>
+        <efx:top_vhdl_arch name="edge_vision_soc"/>
+    </efx:design_info>
+    <efx:constraint_info>
+        <efx:sdc_file name="edge_vision_soc.pt.sdc"/>
+        <efx:inter_file name=""/>
+    </efx:constraint_info>
+    <efx:sim_info/>
+    <efx:misc_info/>
+    <efx:ip_info/>
+    <efx:synthesis tool_name="efx_map">
+        <efx:param name="work_dir" value="work_syn" value_type="e_string"/>
+        <efx:param name="write_efx_verilog" value="on" value_type="e_bool"/>
+        <efx:param name="mode" value="speed" value_type="e_option"/>
+        <efx:param name="max_ram" value="-1" value_type="e_integer"/>
+        <efx:param name="max_mult" value="-1" value_type="e_integer"/>
+        <efx:param name="infer-clk-enable" value="3" value_type="e_option"/>
+        <efx:param name="infer-sync-set-reset" value="1" value_type="e_option"/>
+        <efx:param name="fanout-limit" value="0" value_type="e_integer"/>
+        <efx:param name="seq_opt" value="0" value_type="e_option"/>
+        <efx:param name="include" value="../../source/cam" value_type="e_string"/>
+        <efx:param name="include" value="../../source/soc" value_type="e_string"/>
+    </efx:synthesis>
+    <efx:place_and_route tool_name="efx_pnr">
+        <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
+        <efx:param name="verbose" value="off" value_type="e_bool"/>
+        <efx:param name="load_delaym" value="on" value_type="e_bool"/>
+        <efx:param name="optimization_level" value="TIMING_1" value_type="e_option"/>
+        <efx:param name="qp_options=anneal_random_seed=" value="1" value_type="e_integer"/>
+    </efx:place_and_route>
+    <efx:bitstream_generation tool_name="efx_pgm">
+        <efx:param name="mode" value="active" value_type="e_option"/>
+        <efx:param name="width" value="1" value_type="e_option"/>
+        <efx:param name="cold_boot" value="off" value_type="e_bool"/>
+        <efx:param name="cascade" value="off" value_type="e_option"/>
+        <efx:param name="enable_roms" value="on" value_type="e_option"/>
+        <efx:param name="spi_low_power_mode" value="on" value_type="e_bool"/>
+        <efx:param name="io_weak_pullup" value="on" value_type="e_bool"/>
+        <efx:param name="oscillator_clock_divider" value="DIV8" value_type="e_option"/>
+        <efx:param name="enable_crc_check" value="on" value_type="e_bool"/>
+    </efx:bitstream_generation>
+    <efx:debugger>
+        <efx:param name="work_dir" value="work_dbg" value_type="e_string"/>
+        <efx:param name="auto_instantiation" value="off" value_type="e_bool"/>
+        <efx:param name="profile" value="NONE" value_type="e_string"/>
+    </efx:debugger>
+</efx:project>
