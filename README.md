@@ -1,14 +1,14 @@
 # Edge Vision SoC Framework
 
-Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framework targeted for Edge Vision applications, namely Edge Vision SoC (EVSoC) framework. This site provides the source codes, example designs, and supporting materials for the EVSoC framework.
+Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framework targeted for Edge Vision applications, namely Edge Vision SoC (EVSoC) framework. This site provides source codes, example designs, and supporting materials of the EVSoC framework.
 - [Key Features](#key-features)
 - [Image Signal Processing Example Design](#image-signal-processing-example-design)
 - [Documentation](#documentation)
 - [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Key Features
-- **Modular building blocks** to facilitate different combinations of system design structure.
-- **Established data transfer flow** between main memory and different building blocks through DMA.
+- **Modular building blocks** to facilitate different combinations of system design architecture.
+- **Established data transfer flow** between main memory and different building blocks through Direct Memory Access (DMA).
 - **Ready-to-deploy** domain-specific **I/O peripherals and interfaces** (critical SW drivers, HW controllers, pre- and post-processing blocks are provided).
 - Highly **flexible HW/SW co-design** is feasible (RISC-V performs control & compute, HW accelerator for time-critical computations).
 - Enable **quick porting** of users' design for **Edge AI and Vision solutions**.
@@ -17,58 +17,39 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 
 ### Overview
 
-Image Signal Processing (ISP) example design is the first design available in the EVSoC framework. There are five main building blocks in the EVSoC framework, which facilitate ease of modification to suit for different system architecture requirements:
-- RISC-V SoC
-- DMA Controller
-- Camera
-- Display
-- Hardware Accelerator
+Image Signal Processing (ISP) example design is the first design available on the EVSoC framework. There are five main building blocks in the EVSoC framework, which facilitate ease of modification to suit for various system architecture requirements:
+- **Ruby Vision RISC-V SoC**
+- **DMA Controller**
+- **Camera**
+- **Display**
+- **Hardware Accelerator**
 
 ![](docs/isp_example_design_top_level.png "ISP Example Design Top-Level Block Diagram")
 
-The ISP example design illustrates a use case for the EVSoC framework, specifically, **hardware/software co-design for video processing**. Additionally, the design shows how user can **control the FPGA hardware using software**, that is, user can enable different hardware acceleration functions by changing firmware in the RISC-V processor.
+The ISP example design demonstrates a use case on the EVSoC framework, specifically, **hardware/software co-design for video processing**. Additionally, the design shows how user can **control the FPGA hardware using software**, that is, user can enable different hardware acceleration functions by changing firmware in the RISC-V processor.
 
-This example presents these concepts in the context of video filtering functions; however, user can use the same design with own hardware accelerator block instead of the
-provided filtering functions. The design helps user explore accelerating computationally intensive functions in hardware and using RISC-V software to control that acceleration as well as to perform computations that are inherently sequential or require flexibility.
+This example presents these concepts in the context of video filtering functions; however, user can use the same design with **own hardware accelerator block** instead of the
+provided filtering functions. The design helps user explore **accelerating computationally intensive functions** in **hardware** and using **RISC-V software** to **control that acceleration** as well as to **perform computations** that are **inherently sequential or require flexibility**.
 
 ### Hardware & Software Setup
 
-The ISP example design is demonstrated on [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html).
+The ISP example design is implemented on [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html).
 
 ![](docs/isp_example_design_t120f324_hw_setup.png "Hardware Setup for ISP example design on T120F324 Development Kit")
 
 Efinity® IDE is required for project compilation and bitstream generation, whereas RISC-V SDK (includes Eclipse, OpenOCD Debugger, etc) is used to manage RISC-V software projects and for debugging purposes.
 
-Please refer to [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for more detail on the hardware and software setup.
-
-### Resource Utilization on Trion® T120 (640x480 Resolution)
-
-| Building Block          | LE | FF | ADD | LUT | Memory Block (M5K) | Multiplier |
-|-------------------------|:---:|:---:|:---:|:---:|:---:|:---:|
-| Edge Vision SoC (Total) | ?? |??|??|??|??|??|
-| RISC-V SoC              | - |??|??|??|??|??|
-| DMA Controller          | - |??|??|??|??|??|
-| Camera                  | - |??|??|??|??|??|
-| Display                 | - |??|??|??|??|??|
-| Hardware Accelerator    | - |??|??|??|??|??|
-
-### Resource Utilization on Trion® T120 (1280x720 Resolution)
-
-| Building Block          | LE | FF | ADD | LUT | Memory Block (M5K) | Multiplier |
-|-------------------------|:---:|:---:|:---:|:---:|:---:|:---:|
-| Edge Vision SoC (Total) | ?? |??|??|??|??|??|
-| RISC-V SoC              | - |??|??|??|??|??|
-| DMA Controller          | - |??|??|??|??|??|
-| Camera                  | - |??|??|??|??|??|
-| Display                 | - |??|??|??|??|??|
-| Hardware Accelerator    | - |??|??|??|??|??|
+Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for more detail on the hardware and software setup.
 
 ### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.1.140
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.2.299
 - [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.1
 
+***Note:*** Kindly refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to get started.
+
 ## Documentation
-- [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf)
+- [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf)
+- [Ruby Vision RISC-V SoC Datasheet](docs/riscv-ruby-vision-ds-v1.0.pdf)
 - [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf)
 - [Trion T120 BGA324 Development Kit Overview](https://www.efinixinc.com/docs/trion-t120f324-overview-v1.1.pdf)
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/docs/trion120f324-devkit-ug-v2.1.pdf)
@@ -77,6 +58,48 @@ Please refer to [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_des
 1.	**Where are the HW/RTL and SW/firmware source files located?**
 
     The top-level RTL file is named *edge_vision_soc.v*, which is located in respective project folder in *soc_hw/efinity_project* directory. The rest of the RTL files are placed in *soc_hw/source* directory, which are organized according to respective building block. On the other hand, the main firmware file is named *main.c*, which is in *soc_sw/software/evsoc_ispExample\*/src* directory, where other related drivers are provided in the same folder as well.
+    
+    Below depicts the directory structure of EVSoC framework:
+    
+    ```
+    evsoc
+    |-- docs
+    |-- soc_hw
+    |   |-- efinity_project
+    |   |   |-- T120F324_devkit_hdmi_1280_720
+    |   |   `-- T120F324_devkit_hdmi_640_480
+    |   |-- sim
+    |   `-- source
+    |       |-- cam
+    |       |-- display
+    |       |-- dma
+    |       |-- fifo
+    |       |-- hw_accel
+    |       `-- soc
+    `-- soc_sw
+        |-- bsp
+        |   `-- efinix
+        |       `-- EfxRubySoc
+        |           |-- app
+        |           |-- include
+        |           |-- linker
+        |           `-- openocd
+        |-- config
+        |-- config_linux
+        `-- software
+            |-- common
+            |-- driver
+            |-- evsoc_ispExample
+            |   `-- src
+            |-- evsoc_ispExample_demo
+            |   `-- src
+            |-- evsoc_ispExample_demo2
+            |   `-- src
+            |-- evsoc_ispExample_sim
+            |   `-- src
+            `-- evsoc_ispExample_timestamp
+                `-- src
+    ```
 
 2.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
 
@@ -197,6 +220,34 @@ Please refer to [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_des
 
     No. Configuration for DMA controller should not be altered by modifying the RTL. ***Please contact Efinix Support to request for a different DMA controller configuration if required.***
 
-12. How to replace the example ISP hardware accelerator core with user custom accelerator?
+12. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
 
-    Refer to *Using Your Own Hardware Acceleration* section in [EVSoC ISP Example Design User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail. 
+    Refer to *Using Your Own Hardware Acceleration* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
+
+13. **How much is the resource consumption of the EVSoC framework?**
+
+    Below are the resource utilization tables of ISP example design on EVSoC framework, compiled for Efinix Trion® T120F324 device using Efinity® IDE v2020.2.
+    
+    **Resource Utilization for 640x480 Resolution:**
+    | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | DSP (MULT) |
+    |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----------:|
+    | Edge Vision SoC (Total) | 22349 | 12401 | 3847 | 13025 | 150       | 4          |
+    | RISC-V SoC              |   -   | 6158  | 1263 | 6798  | 77        | 4          |
+    | DMA Controller          |   -   | 4715  | 1031 | 4858  | 31        | 0          |
+    | Camera                  |   -   | 639   | 966  | 641   | 18        | 0          |
+    | Display                 |   -   | 180   | 117  | 127   | 10        | 0          |
+    | Hardware Accelerator    |   -   | 619   | 444  | 437   | 14        | 0          |
+    
+    **Resource Utilization for 1280x720 Resolution:**
+    | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | DSP (MULT) |
+    |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----------:|
+    | Edge Vision SoC (Total) | 22182 | 12422 | 3868 | 12838 | 166       | 4          |
+    | RISC-V SoC              |   -   | 6158  | 1263 | 6668  | 77        | 4          |
+    | DMA Controller          |   -   | 4715  | 1031 | 4826  | 31        | 0          |
+    | Camera                  |   -   | 646   | 973  | 629   | 22        | 0          |
+    | Display                 |   -   | 181   | 118  | 131   | 10        | 0          |
+    | Hardware Accelerator    |   -   | 632   | 457  | 420   | 26        | 0          |
+    
+    ***Note:*** Resource numbers may vary from compile-to-compile due to PnR and updates in design, the presented tables are served as reference purposes.
+
+
