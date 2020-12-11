@@ -55,7 +55,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/docs/trion120f324-devkit-ug-v2.1.pdf)
 
 ## Frequently Asked Questions
-1.	**Where are the HW/RTL and SW/firmware source files located?**
+1.  **Where are the HW/RTL and SW/firmware source files located?**
 
     The top-level RTL file is named *edge_vision_soc.v*, which is located in respective project folder in *soc_hw/efinity_project* directory. The rest of the RTL files are placed in *soc_hw/source* directory, which are organized according to respective building block. On the other hand, the main firmware file is named *main.c*, which is in *soc_sw/software/evsoc_ispExample\*/src* directory, where other related drivers are provided in the same folder as well.
     
@@ -100,31 +100,43 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
             `-- evsoc_ispExample_timestamp
                 `-- src
     ```
+2.  **How much is the resource consumption of EVSoC framework?**
 
-2.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
-
-    This is due to the default setup performs cropping on the incoming 1920x1080 resolution MIPI camera frames to a smaller size eg., 640x480 resolution, prior to further processing. There are two ways to improve the overall captured view for small resolution: (a) Adjust camera binning mode setting in SW; (b) Insert scaler module in HW.
-
-    For (a), user can modify the binning mode setting in camera SW driver (*PiCamDriver.c*). By making the following modifications:
-
-    ```
-    //PiCam_SetBinningMode(0, 0);
-    PiCam_SetBinningMode(1, 1);
-    ```
+    Below are the resource utilization tables of ISP example design on EVSoC framework, compiled for Efinix Trion® T120F324 device using Efinity® IDE v2020.2.
     
-    2x vertical and 2x horizontal binning are performed. After the update, 2x taller and 2x wider frame view can be observed. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
+    **Resource Utilization for 640x480 Resolution:**
+    | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | DSP (MULT) |
+    |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----------:|
+    | Edge Vision SoC (Total) | 22349 | 12401 | 3847 | 13025 | 150       | 4          |
+    | RISC-V SoC              |   -   | 6158  | 1263 | 6798  | 77        | 4          |
+    | DMA Controller          |   -   | 4715  | 1031 | 4858  | 31        | 0          |
+    | Camera                  |   -   | 639   | 966  | 641   | 18        | 0          |
+    | Display                 |   -   | 180   | 117  | 127   | 10        | 0          |
+    | Hardware Accelerator    |   -   | 619   | 444  | 437   | 14        | 0          |
+    
+    **Resource Utilization for 1280x720 Resolution:**
+    | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | DSP (MULT) |
+    |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----------:|
+    | Edge Vision SoC (Total) | 22182 | 12422 | 3868 | 12838 | 166       | 4          |
+    | RISC-V SoC              |   -   | 6158  | 1263 | 6668  | 77        | 4          |
+    | DMA Controller          |   -   | 4715  | 1031 | 4826  | 31        | 0          |
+    | Camera                  |   -   | 646   | 973  | 629   | 22        | 0          |
+    | Display                 |   -   | 181   | 118  | 131   | 10        | 0          |
+    | Hardware Accelerator    |   -   | 632   | 457  | 420   | 26        | 0          |
+    
+    ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are served as reference purposes.
 
-    For (b), please refer to the [reference design](https://www.efinixinc.com/support/ed/t120f324-hdmi-rpi.php) in Efinix support portal for integration of a scaler module.
-
-3.	**Why are captured frames not of central view of the camera?**
-
-    This is due to the default setup for cropping is with X- and Y-offsets *(0,0)*. To adjust the cropping offsets, modify the *CROPPED_X_OFFSET* and *CROPPED_Y_OFFSET* parameter values that are passed to *cam_picam_v2* instance at *edge_vision_soc.v*. 
-
-    ***Note:*** Make sure parameter values for *(CAM_CROP_X_OFFSET+CROPPED_FRAME_WIDTH)* is less than or equal to *MIPI_FRAME_WIDTH*, and *(CAM_CROP_Y_OFFSET+CROPPED_FRAME_HEIGHT)* is less than or equal to *MIPI_FRAME_HEIGHT*.
+3.  **How to check if the hardware and software setup for ISP example design is done correctly?**
+    
+    After setting up the hardware and software accordingly (refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail), user is to program the hardware bitstream (using Efinity Programmer) and software binary (using Eclipse software) to the targeted developement kit. 
+    
+    User is expected to see colour bar on HDMI display, which lasts for 5 seconds. This indicates the HDMI display, RISC-V, and DMA are running correctly. If evsoc_ispExample or evsoc_ispExample_demo* software apps is used, user is expected to see video streaming of camera captured output (default mode) on display after the colour bar. This shows the camera is setup correctly too.
+    
+    In the case of the above expected outputs are not observed, user is to check on the board, camera, display, software setup, etc., with reference to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf).
 
 4.	**Are the software apps provided in the ISP example design can be used for a different resolution setting?**
 
-    Yes. User is required to update *FRAME_WIDTH* and *FRAME_HEIGHT* parameter values in firmware (*main.c*) accordingly. 
+    Yes. User is required to update *FRAME_WIDTH* and *FRAME_HEIGHT* parameter values in firmware (*main.c*) accordingly. Default values are set for 1280x720 resolution.
 
     ***Note:*** Make sure the parameter values assigned in SW (*main.c*) match with the parameter values (*FRAME_WIDTH* and *FRAME_HEIGHT*) set for HW (*edge_vision_soc.v*).
 
@@ -136,7 +148,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
     ```
     Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera active output pixels, etc.
 
-6.	**Why after enabling Sobel operation (either HW or SW mode) in the firmware, display shows only black with scatter white lines/dots?**
+6.	**Why is after enabling Sobel operation (either HW or SW mode) in the firmware, display shows only black with scatter white lines/dots?**
 
     There are several potential factors that contribute to this, please try out the following adjustments:
 
@@ -158,15 +170,37 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
 
     ***Note:*** Increasing camera exposure time would trade-off in lower frame rates. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
 
-8.	**What is the mechanism used to configure and trigger an DMA transfer?**
+8.	**How to obtain processing frame rate of a specific scenario in the ISP example design?**
+    Software app *evsoc_ispExample_timestamp* is provided in *soc_sw/software* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c* as well. 
+
+9.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
+
+    This is due to the default setup performs cropping on the incoming 1920x1080 resolution MIPI camera frames to a smaller size eg., 640x480 resolution, prior to further processing. There are two ways to improve the overall captured view for small resolution: (a) Adjust camera binning mode setting in SW; (b) Insert scaler module in HW.
+
+    For (a), user can modify the binning mode setting in camera SW driver (*PiCamDriver.c*). By making the following modifications:
+
+    ```
+    //PiCam_SetBinningMode(0, 0);
+    PiCam_SetBinningMode(1, 1);
+    ```
+    
+    2x vertical and 2x horizontal binning are performed. After the update, 2x taller and 2x wider frame view can be observed. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
+
+    For (b), please refer to the [reference design](https://www.efinixinc.com/support/ed/t120f324-hdmi-rpi.php) in Efinix support portal for integration of a scaler module.
+
+10.	**Why are captured frames not of central view of the camera?**
+
+    This is due to the default setup for cropping is with X- and Y-offsets *(0,0)*. To adjust the cropping offsets, modify the *CROPPED_X_OFFSET* and *CROPPED_Y_OFFSET* parameter values that are passed to *cam_picam_v2* instance at *edge_vision_soc.v*. 
+
+    ***Note:*** Make sure parameter values for *(CAM_CROP_X_OFFSET+CROPPED_FRAME_WIDTH)* is less than or equal to *MIPI_FRAME_WIDTH*, and *(CAM_CROP_Y_OFFSET+CROPPED_FRAME_HEIGHT)* is less than or equal to *MIPI_FRAME_HEIGHT*.
+
+11.	**What is the mechanism used to configure and trigger an DMA transfer?**
 
     RISC-V firmware is used to configure the DMA controller through APB3 slave port. SW driver for DMA controller (*dmasg.h*) is in *soc_sw/software/driver* directory.
 
-9.	**What operating modes does the DMA controller support?**
+12.	**What operating modes does the DMA controller support?**
 
-    The DMA controller supports for both Direct and Scatter-Gather (SG) modes. In the ISP example design, Direct mode DMA transfer is demonstrated in the firmware (*main.c*). Example design on SG mode DMA to be provided upon request, ***please go to Efinix Support portal for request submission??***.
-
-    In addition, user can make use of polling or interrupt mode in RISC-V firmware to detect the completion of an DMA transfer. In the ISP example design, DMA completion checking with polling mode is demonstrated in the firmware (*main.c*).
+    User can make use of polling or interrupt mode in RISC-V firmware to detect the completion of an DMA transfer. In the ISP example design, DMA completion checking with polling mode is demonstrated in the firmware (*main.c*).
 
     The following presents an example for converting the default self-restart display DMA channel to make use of interrupt mode to indicate DMA transfer completion of single video frame. In *main.c*, make these changes to the Trigger Display section:
 
@@ -212,42 +246,10 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
     }
     ```
 
-10. **Can the provided RISC-V RubySoC be modified for a different configuration (I/O ports, slave/master ports, etc) by altering the RTL code (*RubySoc.v*)?**
+13. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
 
-    No. Configuration for RubySoC should not be altered by modifying the RTL. ***Please contact Efinix Support to request for a different SoC configuration if required.***
+    Please refer to *Using Your Own Hardware Acceleration* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
 
-11. **Can the provided DMA controller be modified for a different configuration (number of DMA channels, channel data width, etc.) by altering the RTL code (*dma_socRuby.v*)?**
 
-    No. Configuration for DMA controller should not be altered by modifying the RTL. ***Please contact Efinix Support to request for a different DMA controller configuration if required.***
-
-12. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
-
-    Refer to *Using Your Own Hardware Acceleration* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
-
-13. **How much is the resource consumption of the EVSoC framework?**
-
-    Below are the resource utilization tables of ISP example design on EVSoC framework, compiled for Efinix Trion® T120F324 device using Efinity® IDE v2020.2.
-    
-    **Resource Utilization for 640x480 Resolution:**
-    | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | DSP (MULT) |
-    |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----------:|
-    | Edge Vision SoC (Total) | 22349 | 12401 | 3847 | 13025 | 150       | 4          |
-    | RISC-V SoC              |   -   | 6158  | 1263 | 6798  | 77        | 4          |
-    | DMA Controller          |   -   | 4715  | 1031 | 4858  | 31        | 0          |
-    | Camera                  |   -   | 639   | 966  | 641   | 18        | 0          |
-    | Display                 |   -   | 180   | 117  | 127   | 10        | 0          |
-    | Hardware Accelerator    |   -   | 619   | 444  | 437   | 14        | 0          |
-    
-    **Resource Utilization for 1280x720 Resolution:**
-    | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | DSP (MULT) |
-    |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----------:|
-    | Edge Vision SoC (Total) | 22182 | 12422 | 3868 | 12838 | 166       | 4          |
-    | RISC-V SoC              |   -   | 6158  | 1263 | 6668  | 77        | 4          |
-    | DMA Controller          |   -   | 4715  | 1031 | 4826  | 31        | 0          |
-    | Camera                  |   -   | 646   | 973  | 629   | 22        | 0          |
-    | Display                 |   -   | 181   | 118  | 131   | 10        | 0          |
-    | Hardware Accelerator    |   -   | 632   | 457  | 420   | 26        | 0          |
-    
-    ***Note:*** Resource numbers may vary from compile-to-compile due to PnR and updates in design, the presented tables are served as reference purposes.
 
 
