@@ -18,7 +18,7 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 ### Overview
 
 Image Signal Processing (ISP) example design is the first design available on the EVSoC framework. There are five main building blocks in the EVSoC framework, which facilitate ease of modification to suit for various system architecture requirements:
-- **Ruby Vision RISC-V SoC**
+- **RISC-V SoC**
 - **DMA Controller**
 - **Camera**
 - **Display**
@@ -39,13 +39,11 @@ The ISP example design is implemented on [Trion® T120 BGA324 Development Kit](h
 
 Efinity® IDE is required for project compilation and bitstream generation, whereas RISC-V SDK (includes Eclipse, OpenOCD Debugger, etc) is used to manage RISC-V software projects and for debugging purposes.
 
-Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for more detail on the hardware and software setup.
+Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to get started.
 
 ### Software Tools Version
 - [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.2.299
 - [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.1
-
-***Note:*** Kindly refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to get started.
 
 ## Documentation
 - [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf)
@@ -67,7 +65,19 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
     |-- soc_hw
     |   |-- efinity_project
     |   |   |-- T120F324_devkit_hdmi_1280_720
+    |   |   |   `-- ip
+    |   |   |       |-- cam_dma_fifo
+    |   |   |       |-- cam_pixel_remap_fifo
+    |   |   |       |-- display_dma_fifo
+    |   |   |       |-- hw_accel_dma_in_fifo
+    |   |   |       `-- hw_accel_dma_out_fifo
     |   |   `-- T120F324_devkit_hdmi_640_480
+    |   |       `-- ip
+    |   |           |-- cam_dma_fifo
+    |   |           |-- cam_pixel_remap_fifo
+    |   |           |-- display_dma_fifo
+    |   |           |-- hw_accel_dma_in_fifo
+    |   |           `-- hw_accel_dma_out_fifo
     |   |-- sim
     |   `-- source
     |       |-- cam
@@ -100,6 +110,9 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
             `-- evsoc_ispExample_timestamp
                 `-- src
     ```
+    
+    ***Note:*** Source files for Efinity IP(s) to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder.
+    
 2.  **How much is the resource consumption of EVSoC framework?**
 
     Below are the resource utilization tables of ISP example design on EVSoC framework, compiled for Efinix Trion® T120F324 device using Efinity® IDE v2020.2.
@@ -152,7 +165,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
 
     There are several potential factors that contribute to this, please try out the following adjustments:
 
-    (a) Place an object with high contrast such as calendar, brochure, name card, etc., in front of the camera and observe the detected edge outlines. 
+    (a) Place an object with high colour contrast such as calendar, brochure, name card, etc., in front of the camera and observe the detected edge outlines. 
 
     (b) Modify the Sobel threshold value by changing the line:
 
@@ -170,10 +183,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
 
     ***Note:*** Increasing camera exposure time would trade-off in lower frame rates. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
 
-8.	**How to obtain processing frame rate of a specific scenario in the ISP example design?**
-    Software app *evsoc_ispExample_timestamp* is provided in *soc_sw/software* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c* as well. 
-
-9.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
+8.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
 
     This is due to the default setup performs cropping on the incoming 1920x1080 resolution MIPI camera frames to a smaller size eg., 640x480 resolution, prior to further processing. There are two ways to improve the overall captured view for small resolution: (a) Adjust camera binning mode setting in SW; (b) Insert scaler module in HW.
 
@@ -188,21 +198,21 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
 
     For (b), please refer to the [reference design](https://www.efinixinc.com/support/ed/t120f324-hdmi-rpi.php) in Efinix support portal for integration of a scaler module.
 
-10.	**Why are captured frames not of central view of the camera?**
+9.	**Why are captured frames not of central view of the camera?**
 
     This is due to the default setup for cropping is with X- and Y-offsets *(0,0)*. To adjust the cropping offsets, modify the *CROPPED_X_OFFSET* and *CROPPED_Y_OFFSET* parameter values that are passed to *cam_picam_v2* instance at *edge_vision_soc.v*. 
 
     ***Note:*** Make sure parameter values for *(CAM_CROP_X_OFFSET+CROPPED_FRAME_WIDTH)* is less than or equal to *MIPI_FRAME_WIDTH*, and *(CAM_CROP_Y_OFFSET+CROPPED_FRAME_HEIGHT)* is less than or equal to *MIPI_FRAME_HEIGHT*.
 
-11.	**What is the mechanism used to configure and trigger an DMA transfer?**
+10.	**What is the mechanism used to configure and trigger an DMA transfer?**
 
-    RISC-V firmware is used to configure the DMA controller through APB3 slave port. SW driver for DMA controller (*dmasg.h*) is in *soc_sw/software/driver* directory.
+    RISC-V firmware is used to configure DMA controller through APB3 slave port. SW driver for DMA controller (*dmasg.h*) is in *soc_sw/software/driver* directory.
 
-12.	**What operating modes does the DMA controller support?**
+11.	**How does RISC-V detect completion of a triggered DMA transfer?**
 
     User can make use of polling or interrupt mode in RISC-V firmware to detect the completion of an DMA transfer. In the ISP example design, DMA completion checking with polling mode is demonstrated in the firmware (*main.c*).
 
-    The following presents an example for converting the default self-restart display DMA channel to make use of interrupt mode to indicate DMA transfer completion of single video frame. In *main.c*, make these changes to the Trigger Display section:
+    The following presents an example for converting the default self-restart display DMA channel to make use of interrupt mode to indicate DMA transfer completion of single video frame. In *main.c*, make these changes to the *Trigger Display* section:
 
     ```
     //SELECT start address of to be displayed data accordingly.
@@ -246,10 +256,14 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) fo
     }
     ```
 
+12. **How to customize RISC-V firmware for different HW/SW scenarios available in the ISP example design?**
+
+    Please refer to *Customizing the Firmware* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
+
 13. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
 
     Please refer to *Using Your Own Hardware Acceleration* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
 
-
-
-
+14.	**How to obtain processing frame rate of a specific scenario in the ISP example design?**
+    
+    Software app *evsoc_ispExample_timestamp* is provided in *soc_sw/software* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c*. 
