@@ -216,7 +216,7 @@ module hw_accel_wrapper
    //DMA read/input fifo
    assign dma_in_fifo_re = ~dma_in_fifo_empty && ~dma_out_fifo_prog_full;
 
-   dma_in_fifo u_dma_in_fifo (
+   hw_accel_dma_in_fifo u_dma_in_fifo (
       .almost_full_o  (),
       .prog_full_o    (dma_in_fifo_prog_full),
       .full_o         (),
@@ -224,14 +224,20 @@ module hw_accel_wrapper
       .wr_ack_o       (),
       .empty_o        (dma_in_fifo_empty),
       .almost_empty_o (),
+      .prog_empty_o   (),
       .underflow_o    (dma_in_fifo_underflow),
       .rd_valid_o     (dma_in_fifo_rvalid),
       .rdata          (dma_in_fifo_rdata),
       .clk_i          (clk),
+      .wr_clk_i       (),
+      .rd_clk_i       (),
       .wr_en_i        (dma_in_fifo_we),
       .rd_en_i        (dma_in_fifo_re),
       .a_rst_i        (rst_hw_accel),
-      .wdata          (dma_in_fifo_wdata)
+      .wdata          (dma_in_fifo_wdata),
+      .datacount_o    (),
+      .wr_datacount_o (),
+      .rd_datacount_o ()
    );
    
    //DMA write/output fifo - FWFT mode
@@ -241,7 +247,7 @@ module hw_accel_wrapper
    assign dma_wlast       = dma_wvalid && (dma_wr_words_count==DMA_TRANSFER_LENGTH-1);
    assign dma_wdata       = {{INT_DATA_WIDTH{1'b0}}, dma_out_fifo_rdata, dma_out_fifo_rdata, dma_out_fifo_rdata}; //Assume DATA_WIDTH = 4*INT_DATA_WIDTH
    
-   dma_out_fifo u_dma_out_fifo (
+   hw_accel_dma_out_fifo u_dma_out_fifo (
       .almost_full_o  (),
       .prog_full_o    (dma_out_fifo_prog_full),
       .full_o         (),
@@ -249,14 +255,20 @@ module hw_accel_wrapper
       .wr_ack_o       (),
       .empty_o        (dma_out_fifo_empty),
       .almost_empty_o (),
+      .prog_empty_o   (),
       .underflow_o    (dma_out_fifo_underflow),
       .rd_valid_o     (dma_out_fifo_rvalid),
       .rdata          (dma_out_fifo_rdata),
       .clk_i          (clk),
+      .wr_clk_i       (),
+      .rd_clk_i       (),
       .wr_en_i        (dma_out_fifo_we),
       .rd_en_i        (dma_out_fifo_re),
       .a_rst_i        (rst_hw_accel),
-      .wdata          (dma_out_fifo_wdata)
+      .wdata          (dma_out_fifo_wdata),
+      .datacount_o    (),
+      .wr_datacount_o (),
+      .rd_datacount_o ()
    );
 
    //Hardware accelerator

@@ -10,8 +10,9 @@ This is testbench template for Efinix SOC. Modelsim run script is provided. Modi
 #How to use
 -----------------------
 1.  Copy software user app binary file to "sim" folder. By default, evsoc_ispExample_sim.bin app is provided.
-2a. For Windows user, double click run.bat to start run the simulation.
-2b. For Linux user, execute './run.sh' to start run the simulation.
+2.  Generate required Efinix IP(s) using Efinity IP Manager prior simulation.
+3a. For Windows user, double click run.bat to start run the simulation.
+3b. For Linux user, execute './run.sh' to start run the simulation.
 
 #How to target user app
 -----------------------

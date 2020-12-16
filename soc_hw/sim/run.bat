@@ -31,17 +31,22 @@ xcopy ..\source\cam\*.v %stamp%
 xcopy ..\source\cam\*.vh %stamp%
 xcopy ..\source\display\*.v %stamp%
 xcopy ..\source\dma\*.v %stamp%
-xcopy ..\source\fifo\*.v %stamp%
-xcopy ..\source\fifo\*.vh %stamp%
 xcopy ..\source\hw_accel\*.v %stamp%
-xcopy ..\source\soc\*.v /exclude:excludefileslist.txt %stamp% 
-xcopy ..\efinity_project\T120F324_devkit_hdmi_640_480\*.v %stamp% 
+xcopy ..\source\soc\*.v %stamp% 
+xcopy ..\efinity_project\T120F324_devkit_hdmi_640_480\*.v %stamp%
+xcopy ..\efinity_project\T120F324_devkit_hdmi_640_480\ip\cam_dma_fifo\*.v %stamp%
+xcopy ..\efinity_project\T120F324_devkit_hdmi_640_480\ip\cam_pixel_remap_fifo\*.v %stamp%
+xcopy ..\efinity_project\T120F324_devkit_hdmi_640_480\ip\display_dma_fifo\*.v %stamp%
+xcopy ..\efinity_project\T120F324_devkit_hdmi_640_480\ip\hw_accel_dma_in_fifo\*.v %stamp%
+xcopy ..\efinity_project\T120F324_devkit_hdmi_640_480\ip\hw_accel_dma_out_fifo\*.v %stamp%
 xcopy *.bin %stamp%
 xcopy *.do %stamp%
 xcopy *.v %stamp%
 xcopy *.vh %stamp%
 xcopy *.TXT %stamp%
 cd %stamp%
+del *_softTap.v
+del *_tmpl.v
 vsim.exe -do sim.do
 
 goto :eof

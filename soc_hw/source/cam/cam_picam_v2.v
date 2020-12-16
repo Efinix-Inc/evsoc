@@ -278,17 +278,27 @@ assign cam_pixel_remap_2ppc_valid  = cam_pixel_remap_fifo_rvalid || cam_pixel_re
 assign cam_pixel_remap_2ppc_data   = (cam_pixel_remap_fifo_rvalid) ? cam_pixel_remap_fifo_rdata [15:0] : cam_pixel_remap_fifo_rdata_r;
 
 cam_pixel_remap_fifo u_cam_pixel_remap_fifo (
-   .full_o      (),
-   .overflow_o  (cam_pixel_remap_fifo_overflow),
-   .empty_o     (cam_pixel_remap_fifo_empty),
-   .underflow_o (cam_pixel_remap_fifo_underflow),
-   .rd_valid_o  (cam_pixel_remap_fifo_rvalid),
-   .rdata       (cam_pixel_remap_fifo_rdata),
-   .clk_i       (mipi_pclk),
-   .wr_en_i     (cam_pixel_remap_fifo_wvalid),
-   .rd_en_i     (cam_pixel_remap_fifo_re),
-   .a_rst_i     (~rst_n),
-   .wdata       (cam_pixel_remap_fifo_wdata)
+   .almost_full_o  (),
+   .prog_full_o    (),
+   .full_o         (),
+   .overflow_o     (cam_pixel_remap_fifo_overflow),
+   .wr_ack_o       (),
+   .empty_o        (cam_pixel_remap_fifo_empty),
+   .almost_empty_o (),
+   .prog_empty_o   (),
+   .underflow_o    (cam_pixel_remap_fifo_underflow),
+   .rd_valid_o     (cam_pixel_remap_fifo_rvalid),
+   .rdata          (cam_pixel_remap_fifo_rdata),
+   .clk_i          (mipi_pclk),
+   .wr_clk_i       (),
+   .rd_clk_i       (),
+   .wr_en_i        (cam_pixel_remap_fifo_wvalid),
+   .rd_en_i        (cam_pixel_remap_fifo_re),
+   .a_rst_i        (~rst_n),
+   .wdata          (cam_pixel_remap_fifo_wdata),
+   .datacount_o    (),
+   .wr_datacount_o (),
+   .rd_datacount_o ()
 );
 
 //Adjusted vsync signal for 2PPC outputs
@@ -431,19 +441,26 @@ end
 
 cam_dma_fifo u_cam_dma_fifo (
    .almost_full_o  (),
+   .prog_full_o    (),
    .full_o         (),
    .overflow_o     (cam_dma_fifo_overflow),
    .wr_ack_o       (),
    .empty_o        (cam_dma_fifo_empty),
    .almost_empty_o (),
+   .prog_empty_o   (),
    .underflow_o    (cam_dma_fifo_underflow),
    .rd_valid_o     (cam_dma_fifo_rvalid),
    .rdata          (cam_dma_fifo_rdata),
    .clk_i          (mipi_pclk),
+   .wr_clk_i       (),
+   .rd_clk_i       (),
    .wr_en_i        (cam_dma_fifo_wvalid),
    .rd_en_i        (cam_dma_fifo_re),
    .a_rst_i        (~rst_n),
-   .wdata          (cam_dma_fifo_wdata)
+   .wdata          (cam_dma_fifo_wdata),
+   .datacount_o    (),
+   .wr_datacount_o (),
+   .rd_datacount_o ()
 );
 
 reg [31:0] timer_count;

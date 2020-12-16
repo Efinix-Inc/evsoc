@@ -1,0 +1,40 @@
+{
+    "args": [
+        "-o",
+        "cam_dma_fifo",
+        "--base_path",
+        "C:\\Users\\yhlee\\Desktop\\v1_2\\compile_2020_2\\using_ipm\\soc_hw\\efinity_project\\T120F324_devkit_hdmi_1280_720\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "version": "2.3",
+            "name": "efx_fifo_wrapper"
+        }
+    ],
+    "conf": {
+        "DATA_WIDTH": "48",
+        "MODE": "1",
+        "SYNC_CLK": "1",
+        "PROG_FULL_ASSERT": "512",
+        "PROGRAMMABLE_FULL": "0",
+        "OPTIONAL_FLAGS": "1",
+        "DEPTH": "10",
+        "PROG_EMPTY_ASSERT": "0",
+        "OUTPUT_REG": "0",
+        "PROG_EMPTY_NEGATE": "0",
+        "PROG_FULL_NEGATE": "512",
+        "PIPELINE_REG": "0",
+        "PROGRAMMABLE_EMPTY": "0"
+    },
+    "output": {
+        "external_source": [
+            "cam_dma_fifo.v",
+            "cam_dma_fifo_define.vh",
+            "cam_dma_fifo_tmpl.v",
+            "cam_dma_fifo_tmpl.vhd"
+        ]
+    },
+    "sw_version": "2020.2.299",
+    "generated_date": "2020-12-16T02:37:03.707564"
+}

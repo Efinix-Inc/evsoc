@@ -143,7 +143,7 @@ parameter Vde_end       = (DISPLAY_MODE == "640x480_60Hz")  ? 11'd507 :
                                                               11'd1121;
 
 localparam FIFO_READ_LATENCY = 2+1;    //Include one reg latency after readout
-localparam DISP_FIFO_DEPTH   = 1024;   //Power of 2
+localparam DISP_FIFO_DEPTH   = 1024;   //Power of 2 - Make sure the same value is set for FIFO IP
 localparam FIFO_COUNT_BIT    = $clog2(DISP_FIFO_DEPTH);
 localparam HCOUNT_BIT        = $clog2(LinePeriod+1);
 localparam VCOUNT_BIT        = $clog2(FramePeriod+1);
@@ -209,23 +209,28 @@ assign display_dma_fifo_wdata  = {display_dma_blue, display_dma_green, display_d
 assign display_dma_fifo_wvalid = display_dma_rvalid && (&display_dma_rkeep) && display_dma_rready; //Advanced DMA behavior
 assign display_dma_fifo_re     = display_hde_ahead && display_valid_frames;
 
-display_dma_fifo #(
-   .FIFO_DEPTH(DISP_FIFO_DEPTH)
-) u_display_dma_fifo (
+display_dma_fifo u_display_dma_fifo (
    .almost_full_o  (),
+   .prog_full_o    (),
    .full_o         (),
    .overflow_o     (display_dma_fifo_overflow),
+   .wr_ack_o       (),
    .empty_o        (),
    .almost_empty_o (),
+   .prog_empty_o   (),
    .underflow_o    (display_dma_fifo_underflow),
-   .datacount_o    (display_dma_fifo_dcount),
    .rd_valid_o     (display_dma_fifo_rvalid),
    .rdata          (display_dma_fifo_rdata),
    .clk_i          (lvds_slowclk),
+   .wr_clk_i       (),
+   .rd_clk_i       (),
    .wr_en_i        (display_dma_fifo_wvalid),
    .rd_en_i        (display_dma_fifo_re),
    .a_rst_i        (~rst_n),
-   .wdata          (display_dma_fifo_wdata)
+   .wdata          (display_dma_fifo_wdata),
+   .datacount_o    (display_dma_fifo_dcount),
+   .wr_datacount_o (),
+   .rd_datacount_o ()
 );
 
 //Facilitate readout valid frames from fifo (once start, should not stop for valid hde, cautious on potential fifo underflow)
