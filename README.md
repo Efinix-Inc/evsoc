@@ -28,6 +28,12 @@ Image Signal Processing (ISP) example design is the first design available on th
 
 The ISP example design demonstrates a use case on the EVSoC framework, specifically, **hardware/software co-design for video processing**. Additionally, the design shows how user can **control the FPGA hardware using software**, that is, user can enable different hardware acceleration functions by changing firmware in the RISC-V processor.
 
+List of implemented ISP algorithms (available for both SW functions and HW modules):
+- **RGB to grayscale conversion**
+- **Sobel edge detection**
+- **Binary dilation**
+- **Binary erosion**
+
 This example presents these concepts in the context of video filtering functions; however, user can use the same design with **own hardware accelerator block** instead of the
 provided filtering functions. The design helps user explore **accelerating computationally intensive functions** in **hardware** and using **RISC-V software** to **control that acceleration** as well as to **perform computations** that are **inherently sequential or require flexibility**.
 
@@ -48,7 +54,6 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 ## Documentation
 - [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf)
 - [Ruby Vision RISC-V SoC Datasheet](docs/riscv-ruby-vision-ds-v1.0.pdf)
-- [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf)
 - [Trion T120 BGA324 Development Kit Overview](https://www.efinixinc.com/docs/trion-t120f324-overview-v1.1.pdf)
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/docs/trion120f324-devkit-ug-v2.1.pdf)
 
@@ -64,20 +69,21 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
     |-- docs
     |-- soc_hw
     |   |-- efinity_project
-    |   |   |-- T120F324_devkit_hdmi_1280_720
-    |   |   |   `-- ip
-    |   |   |       |-- cam_dma_fifo
-    |   |   |       |-- cam_pixel_remap_fifo
-    |   |   |       |-- display_dma_fifo
-    |   |   |       |-- hw_accel_dma_in_fifo
-    |   |   |       `-- hw_accel_dma_out_fifo
-    |   |   `-- T120F324_devkit_hdmi_640_480
-    |   |       `-- ip
-    |   |           |-- cam_dma_fifo
-    |   |           |-- cam_pixel_remap_fifo
-    |   |           |-- display_dma_fifo
-    |   |           |-- hw_accel_dma_in_fifo
-    |   |           `-- hw_accel_dma_out_fifo
+    |   |   `-- isp_example_design
+    |   |       |-- T120F324_devkit_hdmi_1280_720
+    |   |       |   `-- ip
+    |   |       |       |-- cam_dma_fifo
+    |   |       |       |-- cam_pixel_remap_fifo
+    |   |       |       |-- display_dma_fifo
+    |   |       |       |-- hw_accel_dma_in_fifo
+    |   |       |       `-- hw_accel_dma_out_fifo
+    |   |       `-- T120F324_devkit_hdmi_640_480
+    |   |           `-- ip
+    |   |               |-- cam_dma_fifo
+    |   |               |-- cam_pixel_remap_fifo
+    |   |               |-- display_dma_fifo
+    |   |               |-- hw_accel_dma_in_fifo
+    |   |               `-- hw_accel_dma_out_fifo    
     |   |-- sim
     |   `-- source
     |       |-- cam
@@ -111,7 +117,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
                 `-- src
     ```
     
-    ***Note:*** Source files for Efinix soft-IP(s) are to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder.
+    ***Note:*** Source files for Efinix soft-IP(s) are to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder. Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for more detail.
     
 2.  **How much is the resource consumption for EVSoC framework?**
 
@@ -151,7 +157,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
     Yes. User is required to update *FRAME_WIDTH* and *FRAME_HEIGHT* parameter values in firmware (*main.c*) accordingly. Default values are set for 1280x720 resolution.
 
-    ***Note:*** Make sure the parameter values assigned in SW (*main.c*) match with the parameter values (*FRAME_WIDTH* and *FRAME_HEIGHT*) set for HW (*edge_vision_soc.v*).
+    ***Note:*** Please make sure the parameter values assigned in SW (*main.c*) match with the parameter values (*FRAME_WIDTH* and *FRAME_HEIGHT*) set for HW (*edge_vision_soc.v*).
 
 5.	**How to modify camera input resolution from MIPI interface?**
 
@@ -159,7 +165,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
     ```
     PiCam_Output_Size(1920, 1080); 
     ```
-    Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
+    Refer to *Raspberry Pi Camera Module v2 Datasheet* for more detail about camera setting.
 
 6.	**Why is after enabling Sobel operation (either HW or SW mode) in the firmware, display shows only black with scatter white lines/dots?**
 
@@ -181,7 +187,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
     User can adjust the camera shuttle speed to allow for longer exposure time. In camera SW driver (*PiCamDriver.c*) under *PiCam_init()* function, comment out the section for shorter exposure time and uncomment the section for longer exposure time. 
 
-    ***Note:*** Increasing camera exposure time would trade-off in lower frame rates. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
+    ***Note:*** Increasing camera exposure time would trade-off in lower frame rates. Refer to *Raspberry Pi Camera Module v2 Datasheet* for more detail about camera setting.
 
 8.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
 
@@ -194,7 +200,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
     PiCam_SetBinningMode(1, 1);
     ```
     
-    2x vertical and 2x horizontal binning are performed. After the update, 2x taller and 2x wider frame view can be observed. Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
+    2x vertical and 2x horizontal binning are performed. After the update, 2x taller and 2x wider frame view can be observed. Refer to *Raspberry Pi Camera Module v2 Datasheet* for more detail about camera setting.
 
     For (b), please refer to the [reference design](https://www.efinixinc.com/support/ed/t120f324-hdmi-rpi.php) in Efinix support portal for integration of a scaler module.
 
