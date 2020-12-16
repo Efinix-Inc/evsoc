@@ -29,10 +29,10 @@ Image Signal Processing (ISP) example design is the first design available on th
 The ISP example design demonstrates a use case on the EVSoC framework, specifically, **hardware/software co-design for video processing**. Additionally, the design shows how user can **control the FPGA hardware using software**, that is, user can enable different hardware acceleration functions by changing firmware in the RISC-V processor.
 
 List of implemented ISP algorithms (available for both SW functions and HW modules):
-- **RGB to grayscale conversion**
-- **Sobel edge detection**
-- **Binary dilation**
-- **Binary erosion**
+- RGB to grayscale conversion
+- Sobel edge detection
+- Binary dilation
+- Binary erosion
 
 This example presents these concepts in the context of video filtering functions; however, user can use the same design with **own hardware accelerator block** instead of the
 provided filtering functions. The design helps user explore **accelerating computationally intensive functions** in **hardware** and using **RISC-V software** to **control that acceleration** as well as to **perform computations** that are **inherently sequential or require flexibility**.
