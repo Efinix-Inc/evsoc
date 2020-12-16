@@ -111,9 +111,9 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
                 `-- src
     ```
     
-    ***Note:*** Source files for Efinity IP(s) to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder.
+    ***Note:*** Source files for Efinix soft-IP(s) are to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder.
     
-2.  **How much is the resource consumption of EVSoC framework?**
+2.  **How much is the resource consumption for EVSoC framework?**
 
     Below are the resource utilization tables of ISP example design on EVSoC framework, compiled for Efinix Trion® T120F324 device using Efinity® IDE v2020.2.
     
@@ -141,7 +141,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
 3.  **How to check if the hardware and software setup for ISP example design is done correctly?**
     
-    After setting up the hardware and software accordingly (refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail), user is to program the hardware bitstream (using Efinity Programmer) and software binary (using Eclipse software) to the targeted developement kit. 
+    After setting up the hardware and software accordingly (refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail), user is to program the hardware bitstream (using Efinity Programmer) and software binary (using Eclipse software) to the targeted development kit. 
     
     User is expected to see colour bar on HDMI display, which lasts for 5 seconds. This indicates the HDMI display, RISC-V, and DMA are running correctly. If evsoc_ispExample or evsoc_ispExample_demo* software apps is used, user is expected to see video streaming of camera captured output (default mode) on display after the colour bar. This shows the camera is setup correctly too.
     
@@ -159,7 +159,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
     ```
     PiCam_Output_Size(1920, 1080); 
     ```
-    Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera active output pixels, etc.
+    Refer to [Raspberry Pi Camera Module v2 Datasheet](docs/imx219_camera_datasheet.pdf) for more detail about camera setting.
 
 6.	**Why is after enabling Sobel operation (either HW or SW mode) in the firmware, display shows only black with scatter white lines/dots?**
 
@@ -187,7 +187,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
     This is due to the default setup performs cropping on the incoming 1920x1080 resolution MIPI camera frames to a smaller size eg., 640x480 resolution, prior to further processing. There are two ways to improve the overall captured view for small resolution: (a) Adjust camera binning mode setting in SW; (b) Insert scaler module in HW.
 
-    For (a), user can modify the binning mode setting in camera SW driver (*PiCamDriver.c*). By making the following modifications:
+    For (a), user can modify the binning mode setting in camera SW driver (*PiCamDriver.c*) under *PiCam_init()* function. By making the following modifications:
 
     ```
     //PiCam_SetBinningMode(0, 0);
@@ -202,7 +202,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
     This is due to the default setup for cropping is with X- and Y-offsets *(0,0)*. To adjust the cropping offsets, modify the *CROPPED_X_OFFSET* and *CROPPED_Y_OFFSET* parameter values that are passed to *cam_picam_v2* instance at *edge_vision_soc.v*. 
 
-    ***Note:*** Make sure parameter values for *(CAM_CROP_X_OFFSET+CROPPED_FRAME_WIDTH)* is less than or equal to *MIPI_FRAME_WIDTH*, and *(CAM_CROP_Y_OFFSET+CROPPED_FRAME_HEIGHT)* is less than or equal to *MIPI_FRAME_HEIGHT*.
+    ***Note:*** Please make sure parameter values for *(CAM_CROP_X_OFFSET+CROPPED_FRAME_WIDTH)* is less than or equal to *MIPI_FRAME_WIDTH*, and *(CAM_CROP_Y_OFFSET+CROPPED_FRAME_HEIGHT)* is less than or equal to *MIPI_FRAME_HEIGHT*.
 
 10.	**What is the mechanism used to configure and trigger an DMA transfer?**
 
@@ -262,7 +262,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
 13. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
 
-    Please refer to *Using Your Own Hardware Acceleration* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
+    Please refer to *Using Your Own Hardware Accelerator* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
 
 14.	**How to obtain processing frame rate of a specific scenario in the ISP example design?**
     
