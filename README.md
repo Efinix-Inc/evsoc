@@ -45,15 +45,15 @@ The ISP example design is implemented on [Trion® T120 BGA324 Development Kit](h
 
 Efinity® IDE is required for project compilation and bitstream generation, whereas RISC-V SDK (includes Eclipse, OpenOCD Debugger, etc) is used to manage RISC-V software projects and for debugging purposes.
 
-Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to get started.
+Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
 ### Software Tools Version
 - [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.2.299
 - [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.1
 
 ## Documentation
-- [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf)
-- [Ruby Vision RISC-V SoC Datasheet](docs/riscv-ruby-vision-ds-v1.0.pdf)
+- [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC)
+- [Ruby Vision RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=DS-RUBYV)
 - [Trion T120 BGA324 Development Kit Overview](https://www.efinixinc.com/docs/trion-t120f324-overview-v1.1.pdf)
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/docs/trion120f324-devkit-ug-v2.1.pdf)
 
@@ -117,7 +117,7 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
                 `-- src
     ```
     
-    ***Note:*** Source files for Efinix soft-IP(s) are to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder. Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for more detail.
+    ***Note:*** Source files for Efinix soft-IP(s) are to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder. Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for more detail.
     
 2.  **How much is the resource consumption for EVSoC framework?**
 
@@ -147,11 +147,11 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
 3.  **How to check if the hardware and software setup for ISP example design is done correctly?**
     
-    After setting up the hardware and software accordingly (refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail), user is to program the hardware bitstream (using Efinity Programmer) and software binary (using Eclipse software) to the targeted development kit. 
+    After setting up the hardware and software accordingly (refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for the detail), user is to program the hardware bitstream (using Efinity Programmer) and software binary (using Eclipse software) to the targeted development kit. 
     
     User is expected to see colour bar on HDMI display, which lasts for 5 seconds. This indicates the HDMI display, RISC-V, and DMA are running correctly. If evsoc_ispExample or evsoc_ispExample_demo* software apps is used, user is expected to see video streaming of camera captured output (default mode) on display after the colour bar. This shows the camera is setup correctly too.
     
-    In the case of the above expected outputs are not observed, user is to check on the board, camera, display, software setup, etc., with reference to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf).
+    In the case of the above expected outputs are not observed, user is to check on the board, camera, display, software setup, etc., with reference to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC).
 
 4.	**Are the software apps provided in the ISP example design can be used for a different resolution setting?**
 
@@ -264,11 +264,11 @@ Please refer to [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) to
 
 12. **How to customize RISC-V firmware for different HW/SW scenarios available in the ISP example design?**
 
-    Please refer to *Customizing the Firmware* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
+    Please refer to *Customizing the Firmware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for the detail.
 
 13. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
 
-    Please refer to *Using Your Own Hardware Accelerator* section in [EVSoC User Guide](docs/evsoc_isp_example_design_ug-v1.1.pdf) for the detail.
+    Please refer to *Using Your Own Hardware Accelerator* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for the detail.
 
 14.	**How to obtain processing frame rate of a specific scenario in the ISP example design?**
     
