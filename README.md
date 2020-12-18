@@ -9,7 +9,7 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 ## Key Features
 - **Modular building blocks** to facilitate different combinations of system design architecture.
 - **Established data transfer flow** between main memory and different building blocks through Direct Memory Access (DMA).
-- **Ready-to-deploy** domain-specific **I/O peripherals and interfaces** (critical SW drivers, HW controllers, pre- and post-processing blocks are provided).
+- **Ready-to-deploy** domain-specific **I/O peripherals and interfaces** (SW drivers, HW controllers, pre- and post-processing blocks are provided).
 - Highly **flexible HW/SW co-design** is feasible (RISC-V performs control & compute, HW accelerator for time-critical computations).
 - Enable **quick porting** of users' design for **Edge AI and Vision solutions**.
 
