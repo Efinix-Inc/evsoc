@@ -48,7 +48,7 @@ Efinity® IDE is required for project compilation and bitstream generation, wher
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
 ### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.2.299
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.2.299.2.6
 - [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.1
 
 ## Documentation
@@ -56,6 +56,12 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [Ruby Vision RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=DS-RUBYV)
 - [Trion T120 BGA324 Development Kit Overview](https://www.efinixinc.com/docs/trion-t120f324-overview-v1.1.pdf)
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/docs/trion120f324-devkit-ug-v2.1.pdf)
+
+## Videos
+- [Edge Vision SoC Solution](https://vimeo.com/492359014)
+- [ISP Example Design Tutorial - Demonstration](https://vimeo.com/500651950)
+- [ISP Example Design Tutorial - Firmware](https://vimeo.com/500660740)
+- [ISP Example Design Tutorial - RTL Design](https://vimeo.com/500664581)
 
 ## Frequently Asked Questions
 1.  **Where are the HW/RTL and SW/firmware source files located?**
