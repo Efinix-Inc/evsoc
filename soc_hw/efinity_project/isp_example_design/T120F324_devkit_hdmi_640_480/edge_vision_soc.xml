@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change_date="Wed December 16 2020 08:48:12" location="C:/Users/yhlee/Desktop/v1_2/compile_2020_2/using_ipm/soc_hw_mit_header_checking/efinity_project/T120F324_devkit_hdmi_640_480" sw_version="2020.2.299.1.3" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change_date="Wed February 10 2021 12:41:59" location="C:/Users/yhlee/Desktop/dual_camera/evsoc/soc_hw/efinity_project/isp_example_design/T120F324_devkit_hdmi_640_480" sw_version="2020.2.299.3.4" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Trion"/>
         <efx:device name="T120F324"/>
