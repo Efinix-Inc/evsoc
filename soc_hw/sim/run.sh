@@ -51,5 +51,8 @@ cp *.TXT $stamp
 cd $stamp
 rm -R *_softTap.v
 rm -R *_tmpl.v
+rm -R dma_socRuby_dual_cam.v
+rm -R dma2ddr_wrapper_dual_cam.v
+
 vsim -do sim.do
 

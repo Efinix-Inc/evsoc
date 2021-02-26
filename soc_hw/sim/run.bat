@@ -47,6 +47,8 @@ xcopy *.TXT %stamp%
 cd %stamp%
 del *_softTap.v
 del *_tmpl.v
+del dma_socRuby_dual_cam.v
+del dma2ddr_wrapper_dual_cam.v
 vsim.exe -do sim.do
 
 goto :eof
