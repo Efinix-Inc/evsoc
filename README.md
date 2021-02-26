@@ -6,6 +6,7 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 - [Dual-Camera Example Design](#dual-camera-example-design)
 - [Hardware and Software Setup](#hardware-and-software-setup)
 - [Documentation](#documentation)
+- [Videos](#videos)
 - [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Overview
@@ -15,7 +16,8 @@ Key features:
 - **Established data transfer flow** between main memory and different building blocks through Direct Memory Access (DMA)
 - **Ready-to-deploy** domain-specific **I/O peripherals and interfaces** (SW drivers, HW controllers, pre- and post-processing blocks are provided)
 - Highly **flexible HW/SW co-design** is feasible (RISC-V performs control & compute, HW accelerator for time-critical computations)
-- Enable **quick porting** of users' design for **edge AI and vision solutions**
+- Enable **quick porting** of users' design for **edge AI and vision solutions**  
+<br />
 
 Building blocks to facilitate ease of modification to suit for various system architecture requirements:
 - **RISC-V SoC**
@@ -45,6 +47,7 @@ Multi-camera vision systems are vital for a wide-range of applications such as v
 - Resolve occlusion problem
 - Provide wider area coverage
 - Produce more accurate geometric understanding
+<br />
 
 Here presents a dual-camera example design that provides a flexible hardware accelerator socket for processing frame data from multiple camera sources based on the targeted applications.
 
@@ -53,6 +56,7 @@ Here presents a dual-camera example design that provides a flexible hardware acc
 List of implemented HW accelerator mode - Merging:
 - Merge two horizontally half cropped frame from two camera sources by left and right
 - Merge a downscaled overlay from one camera source on top of the frame data from another camera source
+<br />
 
 List of implemented HW accelerator mode - Processing:
 - Cam source 1 – Passthrough (RGB or Grayscale); Cam source 2 – Passthrough (RGB or Grayscale)
