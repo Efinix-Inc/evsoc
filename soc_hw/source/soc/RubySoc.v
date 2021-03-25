@@ -23,6 +23,7 @@
 // Generator : SpinalHDL v1.4.1    git head : 3079d6d3b7f0ebb76dcca97a9e41053566258576
 // Component : RubySoc
 
+
 `define UartStopType_defaultEncoding_type [0:0]
 `define UartStopType_defaultEncoding_ONE 1'b0
 `define UartStopType_defaultEncoding_TWO 1'b1
@@ -7510,7 +7511,7 @@ module BmbDecoder_2 (
   assign io_outputs_2_cmd_payload_fragment_data = io_input_cmd_payload_fragment_data;
   assign io_outputs_2_cmd_payload_fragment_mask = io_input_cmd_payload_fragment_mask;
   assign io_outputs_2_cmd_payload_fragment_context = io_input_cmd_payload_fragment_context;
-  assign logic_hits_3 = ((io_input_cmd_payload_fragment_address & (~ 32'h000fffff)) == 32'hfa000000);
+  assign logic_hits_3 = ((io_input_cmd_payload_fragment_address & (~ 32'h00ffffff)) == 32'hfa000000);
   always @ (*) begin
     io_outputs_3_cmd_valid = (io_input_cmd_valid && logic_hits_3);
     if(logic_cmdWait)begin
@@ -15023,7 +15024,7 @@ module VexRiscv (
   assign IBusCachedPlugin_mmuBus_rsp_allowRead = 1'b1;
   assign IBusCachedPlugin_mmuBus_rsp_allowWrite = 1'b1;
   assign IBusCachedPlugin_mmuBus_rsp_allowExecute = 1'b1;
-  assign IBusCachedPlugin_mmuBus_rsp_isIoAccess = (((IBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h00ffffff)) == 32'hf8000000) || ((IBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h000fffff)) == 32'hfa000000));
+  assign IBusCachedPlugin_mmuBus_rsp_isIoAccess = (((IBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h00ffffff)) == 32'hf8000000) || ((IBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h00ffffff)) == 32'hfa000000));
   assign IBusCachedPlugin_mmuBus_rsp_exception = 1'b0;
   assign IBusCachedPlugin_mmuBus_rsp_refilling = 1'b0;
   assign IBusCachedPlugin_mmuBus_busy = 1'b0;
@@ -15031,7 +15032,7 @@ module VexRiscv (
   assign DBusCachedPlugin_mmuBus_rsp_allowRead = 1'b1;
   assign DBusCachedPlugin_mmuBus_rsp_allowWrite = 1'b1;
   assign DBusCachedPlugin_mmuBus_rsp_allowExecute = 1'b1;
-  assign DBusCachedPlugin_mmuBus_rsp_isIoAccess = (((DBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h00ffffff)) == 32'hf8000000) || ((DBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h000fffff)) == 32'hfa000000));
+  assign DBusCachedPlugin_mmuBus_rsp_isIoAccess = (((DBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h00ffffff)) == 32'hf8000000) || ((DBusCachedPlugin_mmuBus_rsp_physicalAddress & (~ 32'h00ffffff)) == 32'hfa000000));
   assign DBusCachedPlugin_mmuBus_rsp_exception = 1'b0;
   assign DBusCachedPlugin_mmuBus_rsp_refilling = 1'b0;
   assign DBusCachedPlugin_mmuBus_busy = 1'b0;
