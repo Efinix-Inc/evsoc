@@ -74,6 +74,12 @@ Efinity® IDE is required for project compilation and bitstream generation, wher
 
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
+Below are required hardware setup for ISP and dual-camera example designs:
+- Trion® T120 BGA324 Development Kit
+![](docs/t120f324_hw_setup.png "Hardware setup for T120 BGA324 development kit")
+- Trion® T120 BGA576 Development Kit
+![](docs/t120f576_hw_setup.png "Hardware setup for T120 BGA324 development kit")
+
 Note: In *soc_sw/bsp/efinix/EFXRubySoC/openocd/ftdi.cfg* file, *ftdi_device_desc* may need to be updated to match with the targeted board name, which can be identified from the listed USB target in Efinity Programmer. Default *ftdi_device_desc* is set to *Trion T120F324 Development Board*.
 
 ### Software Tools Version
