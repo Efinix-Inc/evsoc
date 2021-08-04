@@ -66,21 +66,25 @@ List of implemented HW accelerator mode - Processing:
 
 ## Hardware and Software Setup
 
-The ISP and dual-camera example designs are implemented on [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html).
+The ISP and dual-camera example designs are implemented on:
+- [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html).
+- [Trion® T120 BGA576 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga576.html).
 
 Efinity® IDE is required for project compilation and bitstream generation, whereas RISC-V SDK (includes Eclipse, OpenOCD Debugger, etc) is used to manage RISC-V software projects and for debugging purposes.
 
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
+Note: In *soc_sw/bsp/efinix/EFXRubySoC/openocd/ftdi.cfg* file, *ftdi_device_desc* may need to be updated to match with the targeted board name, which can be identified from the listed USB target in Efinity Programmer. Default *ftdi_device_desc* is set to *Trion T120F324 Development Board*.
+
 ### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2020.2.299.4.5
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2021.1.165.1.6
 - [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.1
 
 ## Documentation
 - [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC)
 - [Ruby Vision RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=DS-RUBYV)
-- [Trion T120 BGA324 Development Kit Overview](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F324-DK-OVERVIEW)
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F324-DK-UG)
+- [Trion T120 BGA576 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F576-DK-UG)
 
 ## Videos
 - [Edge Vision SoC Solution](https://vimeo.com/492359014)
@@ -102,12 +106,18 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     |-- soc_hw
     |   |-- efinity_project
     |   |   |-- dual_cam_design
-    |   |   |   `-- T120F324_devkit_hdmi_1280_720
+    |   |   |   |-- T120F324_devkit_hdmi_1280_720
+    |   |   |   |   `-- ip
+    |   |   |   `-- T120F576_devkit_hdmi_1280_720
     |   |   |       `-- ip
     |   |   `-- isp_example_design
     |   |       |-- T120F324_devkit_hdmi_1280_720
     |   |       |   `-- ip
-    |   |       `-- T120F324_devkit_hdmi_640_480
+    |   |       |-- T120F324_devkit_hdmi_640_480
+    |   |       |   `-- ip
+    |   |       |-- T120F576_devkit_hdmi_1280_720
+    |   |       |   `-- ip
+    |   |       `-- T120F576_devkit_hdmi_640_480
     |   |           `-- ip
     |   |-- sim
     |   `-- source
