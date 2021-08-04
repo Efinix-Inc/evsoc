@@ -1,0 +1,40 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dma_in_fifo",
+        "--base_path",
+        "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F576_devkit_hdmi_640_480\\ip",
+        "--vlnv",
+        {
+            "version": "2.5",
+            "name": "efx_fifo_wrapper",
+            "library": "memory",
+            "vendor": "efinixinc.com"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "DEPTH": "5",
+        "DATA_WIDTH": "8",
+        "MODE": "0",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "20",
+        "PROGRAMMABLE_FULL": "1",
+        "PROG_FULL_NEGATE": "20",
+        "PROG_EMPTY_ASSERT": "0",
+        "PROG_EMPTY_NEGATE": "0",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F576_devkit_hdmi_640_480\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F576_devkit_hdmi_640_480\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_define.vh",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F576_devkit_hdmi_640_480\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F576_devkit_hdmi_640_480\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.vhd"
+        ]
+    },
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-07-29T06:29:32.551593"
+}

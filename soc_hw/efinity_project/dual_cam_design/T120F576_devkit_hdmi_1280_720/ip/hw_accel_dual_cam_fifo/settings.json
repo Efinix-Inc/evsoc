@@ -1,0 +1,40 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dual_cam_fifo",
+        "--base_path",
+        "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\dual_cam_design\\T120F576_devkit_hdmi_1280_720\\ip",
+        "--vlnv",
+        {
+            "version": "2.5",
+            "name": "efx_fifo_wrapper",
+            "library": "memory",
+            "vendor": "efinixinc.com"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "DEPTH": "9",
+        "DATA_WIDTH": "24",
+        "MODE": "0",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "500",
+        "PROGRAMMABLE_FULL": "1",
+        "PROG_FULL_NEGATE": "500",
+        "PROG_EMPTY_ASSERT": "0",
+        "PROG_EMPTY_NEGATE": "0",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\dual_cam_design\\T120F576_devkit_hdmi_1280_720\\ip\\hw_accel_dual_cam_fifo\\hw_accel_dual_cam_fifo.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\dual_cam_design\\T120F576_devkit_hdmi_1280_720\\ip\\hw_accel_dual_cam_fifo\\hw_accel_dual_cam_fifo_define.vh",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\dual_cam_design\\T120F576_devkit_hdmi_1280_720\\ip\\hw_accel_dual_cam_fifo\\hw_accel_dual_cam_fifo_tmpl.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\dual_cam_design\\T120F576_devkit_hdmi_1280_720\\ip\\hw_accel_dual_cam_fifo\\hw_accel_dual_cam_fifo_tmpl.vhd"
+        ]
+    },
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-07-29T06:50:47.742452"
+}
