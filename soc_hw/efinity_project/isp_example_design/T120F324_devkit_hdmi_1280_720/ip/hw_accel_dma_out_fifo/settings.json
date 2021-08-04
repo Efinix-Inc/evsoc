@@ -3,38 +3,38 @@
         "-o",
         "hw_accel_dma_out_fifo",
         "--base_path",
-        "C:\\Users\\yhlee\\Desktop\\v1_2\\compile_2020_2\\using_ipm\\soc_hw\\efinity_project\\T120F324_devkit_hdmi_1280_720\\ip",
+        "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip",
         "--vlnv",
         {
-            "library": "memory",
+            "version": "2.5",
             "name": "efx_fifo_wrapper",
-            "vendor": "efinixinc.com",
-            "version": "2.3"
+            "library": "memory",
+            "vendor": "efinixinc.com"
         }
     ],
     "conf": {
-        "DATA_WIDTH": "8",
-        "OUTPUT_REG": "0",
-        "PROGRAMMABLE_FULL": "1",
         "SYNC_CLK": "1",
-        "PROG_FULL_NEGATE": "40",
-        "OPTIONAL_FLAGS": "1",
-        "PROG_EMPTY_NEGATE": "0",
         "DEPTH": "6",
-        "PROGRAMMABLE_EMPTY": "0",
-        "PROG_EMPTY_ASSERT": "0",
+        "DATA_WIDTH": "8",
         "MODE": "1",
+        "OUTPUT_REG": "0",
         "PROG_FULL_ASSERT": "40",
+        "PROGRAMMABLE_FULL": "1",
+        "PROG_FULL_NEGATE": "40",
+        "PROG_EMPTY_ASSERT": "0",
+        "PROG_EMPTY_NEGATE": "0",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0"
     },
     "output": {
         "external_source": [
-            "hw_accel_dma_out_fifo.v",
-            "hw_accel_dma_out_fifo_define.vh",
-            "hw_accel_dma_out_fifo_tmpl.v",
-            "hw_accel_dma_out_fifo_tmpl.vhd"
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_define.vh",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_tmpl.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_tmpl.vhd"
         ]
     },
-    "sw_version": "2020.2.299",
-    "generated_date": "2020-12-16T02:39:00.639680"
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-07-29T07:41:06.079277"
 }

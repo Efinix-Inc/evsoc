@@ -3,38 +3,38 @@
         "-o",
         "cam_pixel_remap_fifo",
         "--base_path",
-        "C:\\Users\\yhlee\\Desktop\\v1_2\\compile_2020_2\\using_ipm\\soc_hw\\efinity_project\\T120F324_devkit_hdmi_1280_720\\ip",
+        "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip",
         "--vlnv",
         {
-            "vendor": "efinixinc.com",
-            "library": "memory",
+            "version": "2.5",
             "name": "efx_fifo_wrapper",
-            "version": "2.3"
+            "library": "memory",
+            "vendor": "efinixinc.com"
         }
     ],
     "conf": {
-        "PROG_EMPTY_ASSERT": "0",
-        "OUTPUT_REG": "1",
-        "DEPTH": "9",
-        "OPTIONAL_FLAGS": "1",
-        "MODE": "0",
-        "PROG_FULL_ASSERT": "512",
         "SYNC_CLK": "1",
+        "DEPTH": "9",
         "DATA_WIDTH": "32",
-        "PROG_EMPTY_NEGATE": "0",
-        "PIPELINE_REG": "0",
+        "MODE": "0",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "512",
         "PROGRAMMABLE_FULL": "0",
+        "PROG_FULL_NEGATE": "512",
+        "PROG_EMPTY_ASSERT": "0",
+        "PROG_EMPTY_NEGATE": "0",
         "PROGRAMMABLE_EMPTY": "0",
-        "PROG_FULL_NEGATE": "512"
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0"
     },
     "output": {
         "external_source": [
-            "cam_pixel_remap_fifo.v",
-            "cam_pixel_remap_fifo_define.vh",
-            "cam_pixel_remap_fifo_tmpl.v",
-            "cam_pixel_remap_fifo_tmpl.vhd"
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo_define.vh",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo_tmpl.v",
+            "C:\\efx_evsoc-v1.3\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_1280_720\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo_tmpl.vhd"
         ]
     },
-    "sw_version": "2020.2.299",
-    "generated_date": "2020-12-16T02:37:25.216706"
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-07-29T07:40:50.086699"
 }
