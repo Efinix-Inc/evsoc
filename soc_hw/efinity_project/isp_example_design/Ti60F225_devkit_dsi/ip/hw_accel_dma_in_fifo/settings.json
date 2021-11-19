@@ -1,0 +1,40 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dma_in_fifo",
+        "--base_path",
+        "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v6_dsi_risc_v_dma_cam_hw_accel\\efinity_project\\ip",
+        "--vlnv",
+        {
+            "library": "memory",
+            "vendor": "efinixinc.com",
+            "version": "2.5",
+            "name": "efx_fifo_wrapper"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "DEPTH": "5",
+        "DATA_WIDTH": "8",
+        "MODE": "0",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "20",
+        "PROGRAMMABLE_FULL": "1",
+        "PROG_FULL_NEGATE": "20",
+        "PROG_EMPTY_ASSERT": "0",
+        "PROG_EMPTY_NEGATE": "0",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v6_dsi_risc_v_dma_cam_hw_accel\\efinity_project\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo.v",
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v6_dsi_risc_v_dma_cam_hw_accel\\efinity_project\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v6_dsi_risc_v_dma_cam_hw_accel\\efinity_project\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.v",
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v6_dsi_risc_v_dma_cam_hw_accel\\efinity_project\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.vhd"
+        ]
+    },
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-10-01T07:14:27.773081"
+}

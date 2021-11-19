@@ -1,0 +1,40 @@
+{
+    "args": [
+        "-o",
+        "cam_dma_fifo",
+        "--base_path",
+        "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v5_dsi_risc_v_dma_cam\\efinity_project\\ip",
+        "--vlnv",
+        {
+            "name": "efx_fifo_wrapper",
+            "library": "memory",
+            "version": "2.5",
+            "vendor": "efinixinc.com"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "DEPTH": "10",
+        "DATA_WIDTH": "48",
+        "MODE": "1",
+        "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "512",
+        "PROGRAMMABLE_FULL": "0",
+        "PROG_FULL_NEGATE": "512",
+        "PROG_EMPTY_ASSERT": "0",
+        "PROG_EMPTY_NEGATE": "0",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v5_dsi_risc_v_dma_cam\\efinity_project\\ip\\cam_dma_fifo\\cam_dma_fifo.v",
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v5_dsi_risc_v_dma_cam\\efinity_project\\ip\\cam_dma_fifo\\cam_dma_fifo_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v5_dsi_risc_v_dma_cam\\efinity_project\\ip\\cam_dma_fifo\\cam_dma_fifo_tmpl.v",
+            "C:\\Users\\yhlee\\Desktop\\ti60_prodkit\\dut\\v5_dsi_risc_v_dma_cam\\efinity_project\\ip\\cam_dma_fifo\\cam_dma_fifo_tmpl.vhd"
+        ]
+    },
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-09-30T06:39:07.329032"
+}

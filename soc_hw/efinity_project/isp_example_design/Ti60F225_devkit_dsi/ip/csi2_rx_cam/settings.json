@@ -1,0 +1,63 @@
+{
+    "args": [
+        "-o",
+        "csi2_rx_cam",
+        "--base_path",
+        "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "mipi",
+            "name": "efx_csi2_rx",
+            "version": "2.0"
+        }
+    ],
+    "conf": {
+        "tLPX_NS": "50",
+        "tINIT_NS": "100000",
+        "tCLK_TERM_EN_NS": "38",
+        "tD_TERM_EN_NS": "35",
+        "tHS_SETTLE_NS": "85",
+        "tHS_PREPARE_ZERO_NS": "145",
+        "NUM_DATA_LANE": "2",
+        "HS_BYTECLK_MHZ": "113",
+        "CLOCK_FREQ_MHZ(mhz)": "100",
+        "DPHY_CLOCK_MODE": "1",
+        "PIXEL_FIFO_DEPTH": "2048",
+        "AREGISTER": "8",
+        "ENABLE_USER_DESKEWCAL": "0",
+        "Pack_40": "1",
+        "Pack_48": "1",
+        "Pack_56": "1",
+        "Pack_64": "1",
+        "FRAME_MODE": "0",
+        "ENABLE_VCX": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\csi2_rx_cam.sv",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\csi2_rx_cam_define.vh",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\csi2_rx_cam_tmpl.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\csi2_rx_cam_tmpl.vhd"
+        ],
+        "external_example": [
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\data_unpack.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\datatype_gen.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\dual_clock_fifo.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\pattern_gen.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\shift_reg.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\simple_dual_port_ram.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\vga_gen.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\reset.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\top.sv",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\efx_csi2_tx.sv",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\mipi.sdc",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\top.xml",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\top.peri.xml",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\csi2_rx_cam.sv",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\csi2_rx_cam\\Ti60F225_devkit\\csi2_rx_cam_define.vh"
+        ]
+    },
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-09-17T08:39:06.316168"
+}

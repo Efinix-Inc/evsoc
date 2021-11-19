@@ -1,0 +1,58 @@
+{
+    "args": [
+        "-o",
+        "hbram",
+        "--base_path",
+        "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "name": "efx_hyper_ram",
+            "library": "memory_controller",
+            "version": "1.0"
+        }
+    ],
+    "conf": {
+        "RAM_DBW": "16",
+        "RAM_ABW": "25",
+        "CR0_DPD": "1",
+        "CR0_ILC": "2",
+        "CR0_ODS": "0",
+        "CR0_HBE": "1",
+        "CR0_WBL": "3",
+        "CR1_MCT": "1",
+        "CR1_PAR": "0",
+        "CR1_HSE": "0",
+        "AXI_DBW": "128",
+        "DDIN_MODE": "0",
+        "AXI_AWR_DEPTH": "16",
+        "AXI_R_DEPTH": "256",
+        "AXI_W_DEPTH": "256",
+        "CAL_CLK_CH": "4",
+        "CAL_MODE": "2",
+        "MHZ": "200"
+    },
+    "output": {
+        "external_source": [
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram_define.vh",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram_tmpl.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram_tmpl.vhd"
+        ],
+        "external_example_fpga_soft": [
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\constraints.sdc",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram_ti60.peri.xml",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\efx_pnr_settings.ini",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram_ti60.xml",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\memory_checker.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\memory_checker_start.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\top.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\soft_logic_cal_example.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\soft_logic_cal_example_define.vh",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram.v",
+            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram_define.vh"
+        ]
+    },
+    "sw_version": "2021.1.165",
+    "generated_date": "2021-09-15T09:35:13.185843"
+}

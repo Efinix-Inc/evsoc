@@ -1,0 +1,26 @@
+#Introduction
+-----------------------
+This is testbench template for Efinix SOC. Modelsim run script is provided. Modify run.sh or run.bat to change other simulator run script.
+
+#Installation
+-----------------------
+1.  Open run.bat or run.sh
+2.  Check for PATH variable, add directory path of your simulator to this PATH variable.
+
+#How to use
+-----------------------
+1.  Copy software user app binary file to "sim_ti60" folder. By default, evsoc_ispExample_sim.bin app is provided.
+2.  Generate required Efinix IP(s) using Efinity IP Manager prior simulation.
+3a. For Windows user, double click run.bat to start run the simulation.
+3b. For Linux user, execute './run.sh' to start run the simulation.
+
+#How to target user app
+-----------------------
+1.  Open run.bat or run.sh
+2.  Check for MyApp variable, modify it to your app's name.
+
+#Note
+-----------------------
+1.  Ruby SOC simulation bypass SPI flash offloading process, thus do not use *.bin in "sim_ti60" folder in real hardware implementation.
+2.  Simulation models of MIPI CSI-2 Rx controller and MIPI DSI Tx controller are placed in ./model folder. IPM generated version of stated
+    IPs is not compatible for Modelsim simulation until planned update is available in Efinity 2021.2.
