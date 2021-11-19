@@ -24,19 +24,14 @@ module cam_picam_v2 #(
    //Input resolution from camera MIPI interface
    parameter MIPI_FRAME_WIDTH     = 11'd1920,  
    parameter MIPI_FRAME_HEIGHT    = 11'd1080,
-   //Output resolution to DDR - Pre-processed & Cropped
-   parameter CROPPED_FRAME_WIDTH  = 11'd640,
-   parameter CROPPED_FRAME_HEIGHT = 11'd480,
-   //Make sure (CAM_CROP_X_OFFSET+CROPPED_FRAME_WIDTH)  less than or equal to MIPI_FRAME_WIDTH
-   //Multiple of 4 - For 4PPC packed pixels.
-   parameter CROPPED_X_OFFSET     = 0,
-   //Make sure (CAM_CROP_Y_OFFSET+CROPPED_FRAME_HEIGHT) less than or equal to MIPI_FRAME_HEIGHT
-   //Multiple of 2 - To ensure bayer pixels sequence preservation for raw2rgb conversion
-   parameter CROPPED_Y_OFFSET     = 0,
+   //Output resolution to DDR - Pre-processed & Scale/Cropped
+   parameter FRAME_WIDTH          = 11'd640,
+   parameter FRAME_HEIGHT         = 11'd480,
    //Should match with firmware DMA transfer length
    parameter DMA_TRANSFER_LENGTH  = 1920,
    //Should match with mipi_pclk clock rate
-   parameter MIPI_PCLK_CLK_RATE   = 75000000
+   parameter MIPI_PCLK_CLK_RATE   = 75000000,
+   parameter SCALING_EN           = 1
 ) (
    input  wire        mipi_pclk,
    input  wire        rst_n,
@@ -79,6 +74,8 @@ module cam_picam_v2 #(
    output reg         debug_cam_pixel_remap_fifo_underflow,
    output reg         debug_cam_dma_fifo_overflow,
    output reg         debug_cam_dma_fifo_underflow,
+   output reg         debug_cam_scaler_fifo_overflow,
+   output reg         debug_cam_scaler_fifo_underflow,
    output reg  [31:0] debug_cam_dma_fifo_rcount,
    output reg  [31:0] debug_cam_dma_fifo_wcount,
    output wire [31:0] debug_cam_dma_status
@@ -136,6 +133,9 @@ wire                        line_buffer_pixel_out_valid;
 wire [15:0]                 rgb_pixel_r_out;
 wire [15:0]                 rgb_pixel_g_out;
 wire [15:0]                 rgb_pixel_b_out;
+wire [15:0]                 rgb_pixel_r_out_m;
+wire [15:0]                 rgb_pixel_g_out_m;
+wire [15:0]                 rgb_pixel_b_out_m;
 wire                        rgb_pixel_out_valid;
 wire [15:0]                 gray_pixel_out;
 
@@ -144,7 +144,6 @@ reg                         trigger_capture_frame_r2;
 reg                         trigger_capture_frame_r3;
 reg                         trigger_capture_frame_hold;
 reg                         capture_frame;
-reg                         capture_frame_r;
 reg                         rgb_gray_r;
 reg                         rgb_gray_synced;
 wire                        cam_dma_fifo_wvalid;
@@ -155,6 +154,8 @@ wire [47:0]                 cam_dma_fifo_rdata;
 wire                        cam_dma_fifo_empty;
 wire                        cam_dma_fifo_overflow;
 wire                        cam_dma_fifo_underflow;
+wire                        cam_scaler_fifo_overflow;
+wire                        cam_scaler_fifo_underflow;
 reg [CAM_DMA_COUNT_BIT-1:0] cam_dma_count;
 reg                         cam_dma_init_done_r1;
 reg                         cam_dma_init_done_r2;
@@ -248,30 +249,7 @@ begin
    end
 end
 
-generate
-   if ((MIPI_FRAME_WIDTH == CROPPED_FRAME_WIDTH) && (MIPI_FRAME_HEIGHT == CROPPED_FRAME_HEIGHT)) begin
-      assign cam_pixel_remap_fifo_wvalid = capture_frame && rgb_gain_data_valid;
-   end else begin  
-      always @(posedge mipi_pclk)
-      begin
-         if (~rst_n)
-         begin
-            cam_x_count <= {CAM_X_COUNT_BIT{1'b0}};
-            cam_y_count <= {CAM_Y_COUNT_BIT{1'b0}};
-         end else begin
-         //Incoming frame data 4PPC
-         cam_x_count <= (cam_vs_fall_edge || cam_hs_fall_edge) ? {CAM_X_COUNT_BIT{1'b0}} :
-                        (cam_valid)                            ? cam_x_count + 1'b1      : cam_x_count;
-         cam_y_count <= (cam_vs_fall_edge)                     ? {CAM_Y_COUNT_BIT{1'b0}} :
-                        (cam_hs_fall_edge)                     ? cam_y_count + 1'b1      : cam_y_count;  
-         end
-      end
-      
-      assign cam_pixel_remap_fifo_wvalid = capture_frame && rgb_gain_data_valid && (cam_x_count >= (CROPPED_X_OFFSET/4)) && (cam_x_count < ((CROPPED_X_OFFSET+CROPPED_FRAME_WIDTH)/4)) 
-                                           && (cam_y_count >= CROPPED_Y_OFFSET) && (cam_y_count < (CROPPED_Y_OFFSET+CROPPED_FRAME_HEIGHT));
-   end
-endgenerate
-
+assign cam_pixel_remap_fifo_wvalid = capture_frame && rgb_gain_data_valid;
 assign cam_pixel_remap_fifo_wdata  = rgb_gain_data;
 assign cam_pixel_remap_fifo_re     = (~cam_pixel_remap_fifo_empty) && cam_alternate_clock;
 assign cam_pixel_remap_2ppc_valid  = cam_pixel_remap_fifo_rvalid || cam_pixel_remap_fifo_rvalid_r;
@@ -298,9 +276,9 @@ cam_pixel_remap_fifo u_cam_pixel_remap_fifo (
 );
 
 //Adjusted vsync signal for 2PPC outputs
-localparam CROPPED_FRAME_PIX_COUNT_2PPC = CROPPED_FRAME_HEIGHT*(CROPPED_FRAME_WIDTH/2);
+localparam MIPI_FRAME_PIX_COUNT_2PPC    = MIPI_FRAME_HEIGHT*(MIPI_FRAME_WIDTH/2);
 localparam DELAY_VSYNC_2PPC             = 20;
-localparam PIX_COUNT_2PPC_BIT           = $clog2(CROPPED_FRAME_PIX_COUNT_2PPC);
+localparam PIX_COUNT_2PPC_BIT           = $clog2(MIPI_FRAME_PIX_COUNT_2PPC);
 localparam VSYNC_2PPC_COUNT_BIT         = $clog2(DELAY_VSYNC_2PPC);
 
 reg [PIX_COUNT_2PPC_BIT-1:0]   count_2PPC;
@@ -320,9 +298,9 @@ begin
       delay_count_en <= 1'b0;
       delay_count    <= {VSYNC_2PPC_COUNT_BIT{1'b0}};
    end else begin
-      count_2PPC     <= (cam_pixel_remap_2ppc_valid && (count_2PPC == CROPPED_FRAME_PIX_COUNT_2PPC-1)) ? {PIX_COUNT_2PPC_BIT{1'b0}} :
+      count_2PPC     <= (cam_pixel_remap_2ppc_valid && (count_2PPC == MIPI_FRAME_PIX_COUNT_2PPC-1)) ? {PIX_COUNT_2PPC_BIT{1'b0}} :
                         (cam_pixel_remap_2ppc_valid) ? count_2PPC + 1'b1 : count_2PPC;
-      vsync_2PPC_pre <= cam_pixel_remap_2ppc_valid && (count_2PPC == CROPPED_FRAME_PIX_COUNT_2PPC-1);
+      vsync_2PPC_pre <= cam_pixel_remap_2ppc_valid && (count_2PPC == MIPI_FRAME_PIX_COUNT_2PPC-1);
       delay_count_en <= (cam_vs_2PPC) ? 1'b0                         : (vsync_2PPC_pre) ? 1'b1               : delay_count_en;
       delay_count    <= (cam_vs_2PPC) ? {VSYNC_2PPC_COUNT_BIT{1'b0}} : (delay_count_en) ? delay_count + 1'b1 : delay_count;
    end
@@ -330,7 +308,7 @@ end
 
 line_buffer #(
    .P_DEPTH     (8),
-   .FRAME_WIDTH (CROPPED_FRAME_WIDTH)
+   .FRAME_WIDTH (MIPI_FRAME_WIDTH)
 ) u_raw_to_rgb_line_buffer (
    .i_arstn (rst_n),
    .i_pclk  (mipi_pclk),   
@@ -340,17 +318,17 @@ line_buffer #(
    .o_vsync (),
    .o_valid (line_buffer_pixel_out_valid),
    .o_p_11  (line_buffer_pixel_out_11),
-   .o_p_00  (line_buffer_pixel_out_00),	
+   .o_p_00  (line_buffer_pixel_out_00),
    .o_p_01  (line_buffer_pixel_out_01)
 );
 
 raw_to_rgb #(
    .P_DEPTH      (8),
-   .FRAME_WIDTH  (CROPPED_FRAME_WIDTH),
-   .FRAME_HEIGHT (CROPPED_FRAME_HEIGHT)
-) u_raw_to_rgb (                                                                    
-   .i_arstn (rst_n	),                                           
-   .i_pclk  (mipi_pclk),	
+   .FRAME_WIDTH  (MIPI_FRAME_WIDTH),
+   .FRAME_HEIGHT (MIPI_FRAME_HEIGHT)
+) u_raw_to_rgb (
+   .i_arstn (rst_n),
+   .i_pclk  (mipi_pclk),
    .i_vsync (cam_vs_2PPC),
    .i_valid (line_buffer_pixel_out_valid),
    .i_p_11  (line_buffer_pixel_out_11),
@@ -358,10 +336,198 @@ raw_to_rgb #(
    .i_p_01  (line_buffer_pixel_out_01),
    .o_vsync (),
    .o_valid (rgb_pixel_out_valid),
-   .o_r     (rgb_pixel_r_out),
-   .o_g     (rgb_pixel_g_out),	
-   .o_b     (rgb_pixel_b_out)              	
+   .o_r     (rgb_pixel_r_out_m),
+   .o_g     (rgb_pixel_g_out_m),
+   .o_b     (rgb_pixel_b_out_m)
 );
+
+// declare a new counter x & y for scaling/cropping.  
+reg [31:0] mipi_x_count;
+reg [31:0] mipi_y_count;
+                                                                                                               
+      always @(posedge mipi_pclk)
+      begin
+         if (~rst_n)
+         begin
+           mipi_x_count <= 32'd0;
+           mipi_y_count <= 32'd0;
+         end else begin
+         //Incoming frame data 2PPC
+        mipi_x_count <= (rgb_pixel_out_valid && (mipi_x_count == MIPI_FRAME_WIDTH/2-1)) ? 32'd0 :
+             (rgb_pixel_out_valid)                                                               ? mipi_x_count + 1'b1      : mipi_x_count;
+        mipi_y_count <= (rgb_pixel_out_valid && (mipi_y_count == MIPI_FRAME_HEIGHT-1) && (mipi_x_count == MIPI_FRAME_WIDTH/2-1)) ? 32'd0 :
+             (rgb_pixel_out_valid && (mipi_x_count == MIPI_FRAME_WIDTH/2-1))                     ? mipi_y_count + 1'b1      : mipi_y_count;
+         end
+      end
+
+//Pass to cam DMA fifo
+//------------------scaling-----------------------
+generate
+   if (SCALING_EN == 1) begin
+/* Scaler for MSB RED data */ 
+scaling #(  
+   .P_DEPTH    (8),
+   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+   .X_SCALE    (FRAME_WIDTH/2),
+   .Y_SCALE    (FRAME_HEIGHT)
+) scaling_in_r01 (
+   .in_pclk       (mipi_pclk),   
+   .in_arstn      (rst_n),    
+   .in_x          (mipi_x_count),   
+   .in_y          (mipi_y_count),   
+   .in_valid      (rgb_pixel_out_valid),
+   .in_data       (rgb_pixel_r_out_m[15:8]),
+
+   .out_x         (),   
+   .out_y         (),   
+   .out_valid     (cam_dma_fifo_wvalid),
+   .out_data      (rgb_pixel_r_out[15:8]),
+   .overflow_o    (cam_scaler_fifo_overflow),
+   .underflow_o   (cam_scaler_fifo_underflow)
+);
+
+/* Scaler for LSB RED data */ 
+scaling #(  
+   .P_DEPTH    (8),
+   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+   .X_SCALE    (FRAME_WIDTH/2),
+   .Y_SCALE    (FRAME_HEIGHT)
+) scaling_in_r00 (
+   .in_pclk       (mipi_pclk),    //d  
+   .in_arstn      (rst_n  ),  
+   .in_x          (mipi_x_count),   
+   .in_y          (mipi_y_count),   
+   .in_valid      (rgb_pixel_out_valid),  
+   .in_data       (rgb_pixel_r_out_m[7:0]),
+   .out_x         (),   
+   .out_y         (),   
+   .out_valid     (),   
+   .out_data      (rgb_pixel_r_out[7:0]),
+   .overflow_o    (),
+   .underflow_o   ()
+);
+
+/* Scaler for MSB GREEN data */ 
+scaling #(  
+   .P_DEPTH    (8),
+   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+   .X_SCALE    (FRAME_WIDTH/2),
+   .Y_SCALE    (FRAME_HEIGHT)
+) scaling_in_g01 (
+   .in_pclk       (mipi_pclk),      
+   .in_arstn      (rst_n),    
+   .in_x          (mipi_x_count),   
+   .in_y          (mipi_y_count),   
+   .in_valid      (rgb_pixel_out_valid),  
+   .in_data       (rgb_pixel_g_out_m[15:8]),
+   .out_x         (),   
+   .out_y         (),   
+   .out_valid     (),   
+   .out_data      (rgb_pixel_g_out[15:8]),
+   .overflow_o    (),
+   .underflow_o   ()
+);
+
+/* Scaler for LSB GREEN data */ 
+scaling #(  
+   .P_DEPTH    (8),
+   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+   .X_SCALE    (FRAME_WIDTH/2),
+   .Y_SCALE    (FRAME_HEIGHT)
+) scaling_in_g00 (
+   .in_pclk       (mipi_pclk),      
+   .in_arstn      (rst_n),    
+   .in_x          (mipi_x_count),   
+   .in_y          (mipi_y_count),   
+   .in_valid      (rgb_pixel_out_valid),  
+   .in_data       (rgb_pixel_g_out_m[7:0]),
+   .out_x         (),   
+   .out_y         (),   
+   .out_valid     (),   
+   .out_data      (rgb_pixel_g_out[7:0]),
+   .overflow_o    (),
+   .underflow_o   ()
+);
+
+/* Scaler for MSB BLUE data */ 
+scaling #(  
+   .P_DEPTH    (8),
+   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+   .X_SCALE    (FRAME_WIDTH/2),
+   .Y_SCALE    (FRAME_HEIGHT)
+) scaling_in_b01 (
+   .in_pclk       (mipi_pclk),      
+   .in_arstn      (rst_n),    
+   .in_x          (mipi_x_count),   
+   .in_y          (mipi_y_count),   
+   .in_valid      (rgb_pixel_out_valid),  
+   .in_data       (rgb_pixel_b_out_m[15:8]),
+   .out_x         (),   
+   .out_y         (),   
+   .out_valid     (),
+   .out_data      (rgb_pixel_b_out[15:8]),
+   .overflow_o    (),
+   .underflow_o   ()
+);
+
+/* Scaler for LSB BLUE data */ 
+scaling #(  
+   .P_DEPTH    (8),
+   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+   .X_SCALE    (FRAME_WIDTH/2),
+   .Y_SCALE    (FRAME_HEIGHT)
+) scaling_in_b00 (
+   .in_pclk       (mipi_pclk),      
+   .in_arstn      (rst_n),    
+   .in_x          (mipi_x_count),   
+   .in_y          (mipi_y_count),   
+   .in_valid      (rgb_pixel_out_valid),  
+   .in_data       (rgb_pixel_b_out_m[7:0]),
+   .out_x         (),   
+   .out_y         (),   
+   .out_valid     (),   
+   .out_data      (rgb_pixel_b_out[7:0]),
+   .overflow_o    (),
+   .underflow_o   ()
+);
+
+end else begin
+//----------------------cropping----------------------
+/* 2 pixels per clk */
+crop #(  
+   .P_DEPTH    (16),
+   .X_START    (0),
+   .Y_START    (0),
+   .X_WIN      (FRAME_WIDTH/2),
+   .Y_WIN      (FRAME_HEIGHT)
+) crop_inst (
+   .in_pclk       (mipi_pclk),      
+   .in_arstn      (rst_n),    
+
+   .in_x          (mipi_x_count),   
+   .in_y          (mipi_y_count),   
+   .in_valid      (rgb_pixel_out_valid),
+   .in_data_00    (rgb_pixel_r_out_m[15:0]), 
+   .in_data_01    (rgb_pixel_g_out_m[15:0]), 
+   .in_data_10    (rgb_pixel_b_out_m[15:0]), 
+
+   .out_x         (),   
+   .out_y         (),   
+   .out_valid     (cam_dma_fifo_wvalid),  
+   .out_hs        (),   
+   .out_data_00   (rgb_pixel_r_out[15:0]),   
+   .out_data_01   (rgb_pixel_g_out[15:0]),   
+   .out_data_10   (rgb_pixel_b_out[15:0])
+);  
+
+   end
+endgenerate
 
 rgb2gray #(
    .DATA_WIDTH (8),
@@ -373,8 +539,6 @@ rgb2gray #(
    .out_gray (gray_pixel_out)
 );
 
-//Pass to cam DMA fifo
-assign cam_dma_fifo_wvalid = rgb_pixel_out_valid;
 //Select RGB or grayscale output
 assign cam_dma_fifo_wdata  = (rgb_gray_synced) ? {gray_pixel_out[15:8],  gray_pixel_out[15:8],  gray_pixel_out[15:8],  gray_pixel_out[7:0],  gray_pixel_out[7:0],  gray_pixel_out[7:0]} :
                                                  {rgb_pixel_b_out[15:8], rgb_pixel_g_out[15:8], rgb_pixel_r_out[15:8], rgb_pixel_b_out[7:0], rgb_pixel_g_out[7:0], rgb_pixel_r_out[7:0]};
@@ -415,7 +579,6 @@ begin
       trigger_capture_frame_r3   <= 1'b0;
       trigger_capture_frame_hold <= 1'b0;
       capture_frame              <= 1'b0;
-      capture_frame_r            <= 1'b0;
       rgb_gray_r                 <= 1'b0;
       rgb_gray_synced            <= 1'b0;
    end else begin
@@ -424,7 +587,6 @@ begin
       trigger_capture_frame_r3   <= trigger_capture_frame_r2;
       trigger_capture_frame_hold <= (~trigger_capture_frame_r3 && trigger_capture_frame_r2) ? 1'b1 : (cam_dma_fifo_wvalid)               ? 1'b0 : trigger_capture_frame_hold;
       capture_frame              <= (trigger_capture_frame_hold && cam_vs_fall_edge)        ? 1'b1 : (capture_frame && cam_vs_fall_edge) ? 1'b0 : capture_frame;
-      capture_frame_r            <= capture_frame;
       rgb_gray_r                 <= rgb_gray;
       rgb_gray_synced            <= rgb_gray_r;
    end
@@ -470,6 +632,8 @@ begin
       debug_cam_pixel_remap_fifo_underflow <= 1'b0;
       debug_cam_dma_fifo_overflow          <= 1'b0;
       debug_cam_dma_fifo_underflow         <= 1'b0;
+      debug_cam_scaler_fifo_overflow       <= 1'b0;
+      debug_cam_scaler_fifo_underflow      <= 1'b0;
       debug_cam_dma_fifo_rcount            <= 32'd0;
       debug_cam_dma_fifo_wcount            <= 32'd0;
       timer_count                          <= 32'd0;
@@ -487,12 +651,14 @@ begin
                                               (cam_dma_wvalid)                                           ? cam_dma_count + {{CAM_DMA_COUNT_BIT-1{1'b0}}, 1'b1} : cam_dma_count;
       
       //Debug registers
-      debug_cam_pixel_remap_fifo_overflow  <= (cam_pixel_remap_fifo_overflow)  ? 1'b1 : debug_cam_pixel_remap_fifo_overflow;
+      debug_cam_pixel_remap_fifo_overflow  <= (cam_pixel_remap_fifo_overflow)   ? 1'b1 : debug_cam_pixel_remap_fifo_overflow;
       debug_cam_pixel_remap_fifo_underflow <= (cam_pixel_remap_fifo_underflow)  ? 1'b1 : debug_cam_pixel_remap_fifo_underflow;
-      debug_cam_dma_fifo_overflow          <= (cam_dma_fifo_overflow)  ? 1'b1 : debug_cam_dma_fifo_overflow;
-      debug_cam_dma_fifo_underflow         <= (cam_dma_fifo_underflow) ? 1'b1 : debug_cam_dma_fifo_underflow;
-      debug_cam_dma_fifo_rcount            <= (cam_dma_wvalid)         ? debug_cam_dma_fifo_rcount + 1'b1 : debug_cam_dma_fifo_rcount;
-      debug_cam_dma_fifo_wcount            <= (cam_dma_fifo_wvalid)    ? debug_cam_dma_fifo_wcount + 1'b1 : debug_cam_dma_fifo_wcount;
+      debug_cam_dma_fifo_overflow          <= (cam_dma_fifo_overflow)           ? 1'b1 : debug_cam_dma_fifo_overflow;
+      debug_cam_dma_fifo_underflow         <= (cam_dma_fifo_underflow)          ? 1'b1 : debug_cam_dma_fifo_underflow;
+      debug_cam_scaler_fifo_overflow       <= (cam_scaler_fifo_overflow)        ? 1'b1 : debug_cam_scaler_fifo_overflow;
+      debug_cam_scaler_fifo_underflow      <= (cam_scaler_fifo_underflow)       ? 1'b1 : debug_cam_scaler_fifo_underflow;
+      debug_cam_dma_fifo_rcount            <= (cam_dma_wvalid)                  ? debug_cam_dma_fifo_rcount + 1'b1 : debug_cam_dma_fifo_rcount;
+      debug_cam_dma_fifo_wcount            <= (cam_dma_fifo_wvalid)             ? debug_cam_dma_fifo_wcount + 1'b1 : debug_cam_dma_fifo_wcount;
 
       //Frame counter - Assume frame rate > 1 FPS
       timer_count                          <= (timer_count == MIPI_PCLK_CLK_RATE) ? 32'd0 : timer_count + 1'b1;

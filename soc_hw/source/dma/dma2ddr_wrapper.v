@@ -25,8 +25,8 @@
 module dma2ddr_wrapper #(
    parameter DW = 256
 ) (
-   input               	dma_clk,
-   input               	dma_reset,
+   input                dma_clk,
+   input                dma_reset,
 
    //APB3 slave and interrupt
    input                ctrl_clk,
@@ -148,79 +148,79 @@ wire [1:0]   write_bresp;
 
 //request state machine
 localparam [1:0] REQ_IDLE   = 'h0,
-		 REQ_PRE_WR = 'h1,
-		 REQ_PRE_RD = 'h2,
-		 REQ_DONE   = 'h3;
+                 REQ_PRE_WR = 'h1,
+                 REQ_PRE_RD = 'h2,
+                 REQ_DONE   = 'h3;
 
 
 reg [1:0] req_st,
-	  req_nx;
+          req_nx;
 
-wire	  req_wr;
-wire	  req_rd;
+wire    req_wr;
+wire    req_rd;
 
 always@ (posedge dma_clk or posedge dma_reset)
 begin
-	if(dma_reset)
-		req_st <= REQ_IDLE;
-	else
-		req_st <= req_nx;
+   if(dma_reset)
+      req_st <= REQ_IDLE;
+   else
+      req_st <= req_nx;
 end 
 //sm assignment
 always @(*)
 begin
-	req_nx = req_st;
-	case(req_st)
-	REQ_IDLE:
-	begin
-		if(write_awvalid)
-			req_nx = REQ_PRE_WR;
-		else if (read_arvalid)
-			req_nx = REQ_PRE_RD;
-		else
-			req_nx = REQ_IDLE;
-	end
-	REQ_PRE_WR:
-	begin
-		if(write_awready)
-			req_nx = REQ_DONE;
-		else
-			req_nx = REQ_PRE_WR;
-	end
-	REQ_PRE_RD:
-	begin
-		if(read_arready)
-			req_nx = REQ_DONE;
-		else
-			req_nx = REQ_PRE_RD;
-	end
-	REQ_DONE: req_nx = REQ_IDLE;
-	default: req_nx = REQ_IDLE;
-	endcase
+   req_nx = req_st;
+   case(req_st)
+      REQ_IDLE:
+      begin
+         if(write_awvalid)
+            req_nx = REQ_PRE_WR;
+         else if (read_arvalid)
+            req_nx = REQ_PRE_RD;
+         else
+            req_nx = REQ_IDLE;
+      end
+      REQ_PRE_WR:
+      begin
+         if(write_awready)
+            req_nx = REQ_DONE;
+         else
+            req_nx = REQ_PRE_WR;
+      end
+      REQ_PRE_RD:
+      begin
+         if(read_arready)
+            req_nx = REQ_DONE;
+         else
+            req_nx = REQ_PRE_RD;
+      end
+      REQ_DONE: req_nx = REQ_IDLE;
+      default: req_nx = REQ_IDLE;
+   endcase
 end
-	
+   
 assign req_wr = (req_st == REQ_PRE_WR);
 assign req_rd = (req_st == REQ_PRE_RD);
 
 assign io_ddr_arw_valid          = req_rd ? read_arvalid : 
-					req_wr ? write_awvalid : 1'b0;
+                                   req_wr ? write_awvalid : 1'b0;
 
 assign write_awready             = req_wr  ? io_ddr_arw_ready : 1'b0;
 assign read_arready              = req_rd  ? io_ddr_arw_ready : 1'b0;
 
 assign io_ddr_arw_payload_addr   = req_wr ? write_awaddr : 
-					req_rd ? read_araddr : 'h0; 
+                                   req_rd ? read_araddr : 'h0; 
 
 assign io_ddr_arw_payload_id     = 'hE0;
 assign io_ddr_arw_payload_len    = req_wr ? write_awlen : 
-					req_rd ? read_arlen : 'h0;
+                                   req_rd ? read_arlen : 'h0;
 
 assign io_ddr_arw_payload_size   = req_wr ? write_awsize : 
-					req_rd ? read_arsize : 'h0;
+                                   req_rd ? read_arsize : 'h0;
 assign io_ddr_arw_payload_burst  = req_wr ? write_awburst : 
-					req_rd ? read_arburst : 'h0;
+                                   req_rd ? read_arburst : 'h0;
 assign io_ddr_arw_payload_lock   = req_wr ? write_awlock :
-					req_rd ? read_arlock : 'h0;
+                                   req_rd ? read_arlock : 'h0;
 assign io_ddr_arw_payload_write  = req_wr ? write_awvalid : 1'b0;
 
 assign io_ddr_w_payload_id       = 'hE1;

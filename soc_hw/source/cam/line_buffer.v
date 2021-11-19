@@ -22,7 +22,7 @@
 
 module line_buffer #(
    parameter   P_DEPTH     = 10,          //Number of bits per pixel
-   parameter   PW          = P_DEPTH*2,	//Number of pixels per clock * Number of bits per pixel - 2PPC
+   parameter   PW          = P_DEPTH*2,   //Number of pixels per clock * Number of bits per pixel - 2PPC
    parameter   FRAME_WIDTH = 640
 )(
    input             i_arstn,
@@ -33,8 +33,8 @@ module line_buffer #(
    output            o_vsync,
    output            o_valid,
    output [PW-1:0]   o_p_11,
-   output [PW-1:0]   o_p_00,	
-   output [PW-1:0]   o_p_01	
+   output [PW-1:0]   o_p_00,  
+   output [PW-1:0]   o_p_01   
 );
 
 localparam PIX_COUNT_BIT = $clog2(FRAME_WIDTH/2); //2PPC. Number of address bits required for one image line
@@ -107,7 +107,7 @@ begin
       if (i_valid)
       begin
          r_addr1_1P  <= r_addr1_1P+1'b1;
-         r_addr2_1P  <= r_addr2_1P+1'b1;	
+         r_addr2_1P  <= r_addr2_1P+1'b1;  
       end
 
       if (end_of_img_line)

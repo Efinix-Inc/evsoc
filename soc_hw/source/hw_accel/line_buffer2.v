@@ -21,7 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 module line_buffer2 #(
-   parameter DATA_WIDTH	 = 8,
+   parameter DATA_WIDTH  = 8,
    parameter LINE_WORDS  = 10
 )(
    input  wire                  clk,

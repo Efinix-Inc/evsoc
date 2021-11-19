@@ -35,7 +35,7 @@ module edge_vision_soc #(
    //Clock and Reset Pins
    input          mipi_pll_locked,
    input          lvds_pll_locked,
-   input          ddr_clk_locked,	
+   input          ddr_clk_locked,
    input          mipi_pclk,     //75MHz
    input          tx_slowclk,    //37.12MHz
    input          axi_clk_locked,
@@ -66,7 +66,7 @@ module edge_vision_soc #(
    input          mipi_rx_inst1_VALID,
    input [5:0]    mipi_rx_inst1_TYPE,
    input [63:0]   mipi_rx_inst1_DATA,
-   input [1:0]    mipi_rx_inst1_VC,	
+   input [1:0]    mipi_rx_inst1_VC,
    input [17:0]   mipi_rx_inst1_ERR,
    
    input [3:0]    mipi_rx_inst2_HSYNC,
@@ -75,7 +75,7 @@ module edge_vision_soc #(
    input          mipi_rx_inst2_VALID,
    input [5:0]    mipi_rx_inst2_TYPE,
    input [63:0]   mipi_rx_inst2_DATA,
-   input [1:0]    mipi_rx_inst2_VC,	
+   input [1:0]    mipi_rx_inst2_VC, 
    input [17:0]   mipi_rx_inst2_ERR,
    
 `ifdef SIM
@@ -254,7 +254,7 @@ wire       io_systemReset;
 wire       io_d32_ddrMasterReset;
 wire       io_d64_ddrMasterReset;
 wire [1:0] io_ddrA_b_payload_resp;
-(* keep , syn_keep *) wire       io_memoryReset             /* synthesis syn_keep = 1 */;				
+(* keep , syn_keep *) wire       io_memoryReset             /* synthesis syn_keep = 1 */;
 (* keep , syn_keep *) wire [3:0] io_ddrA_arw_payload_qos    /* synthesis syn_keep = 1 */;
 (* keep , syn_keep *) wire [2:0] io_ddrA_arw_payload_prot   /* synthesis syn_keep = 1 */;
 (* keep , syn_keep *) wire [3:0] io_ddrA_arw_payload_cache  /* synthesis syn_keep = 1 */;
@@ -370,7 +370,7 @@ RubySoc u_soc (
   .io_systemClk                        (soc_clk),
   .io_asyncReset                       (mcuReset),
   .io_memoryClk                        (axi_clk),
-  .io_memoryReset                      (io_memoryReset), 		
+  .io_memoryReset                      (io_memoryReset),
   .system_uart_0_io_txd                (system_uart_0_io_txd),
   .system_uart_0_io_rxd                (system_uart_0_io_rxd),
   .system_uart_1_io_txd                (),
@@ -639,7 +639,7 @@ RubySoc_softTap u_soc_softTap (
   .io_systemClk                        (soc_clk),
   .io_asyncReset                       (mcuReset),
   .io_memoryClk                        (axi_clk),
-  .io_memoryReset                      (io_memoryReset), 		
+  .io_memoryReset                      (io_memoryReset),
   .system_uart_0_io_txd                (system_uart_0_io_txd),
   .system_uart_0_io_rxd                (system_uart_0_io_rxd),
   .system_uart_1_io_txd                (),
@@ -946,7 +946,7 @@ wire         cam1_dma_wvalid;
 wire         cam1_dma_wlast;
 wire [63:0]  cam1_dma_wdata;
 wire         cam1_dma_descriptorUpdated;
-wire [15:0]	 cam1_rgb_control;
+wire [15:0]  cam1_rgb_control;
 wire         cam1_trigger_capture_frame;
 wire         cam1_rgb_gray;
 wire         cam1_dma_init_done;
@@ -955,6 +955,8 @@ wire         debug_cam1_pixel_remap_fifo_overflow;
 wire         debug_cam1_pixel_remap_fifo_underflow;
 wire         debug_cam1_dma_fifo_overflow;
 wire         debug_cam1_dma_fifo_underflow;
+wire         debug_cam1_scaler_fifo_overflow;
+wire         debug_cam1_scaler_fifo_underflow;
 wire [31:0]  debug_cam1_dma_fifo_rcount;
 wire [31:0]  debug_cam1_dma_fifo_wcount;
 wire [31:0]  debug_cam1_dma_status;
@@ -964,7 +966,7 @@ wire         cam2_dma_wvalid;
 wire         cam2_dma_wlast;
 wire [63:0]  cam2_dma_wdata;
 wire         cam2_dma_descriptorUpdated;
-wire [15:0]	 cam2_rgb_control;
+wire [15:0]  cam2_rgb_control;
 wire         cam2_trigger_capture_frame;
 wire         cam2_rgb_gray;
 wire         cam2_dma_init_done;
@@ -973,6 +975,8 @@ wire         debug_cam2_pixel_remap_fifo_overflow;
 wire         debug_cam2_pixel_remap_fifo_underflow;
 wire         debug_cam2_dma_fifo_overflow;
 wire         debug_cam2_dma_fifo_underflow;
+wire         debug_cam2_scaler_fifo_overflow;
+wire         debug_cam2_scaler_fifo_underflow;
 wire [31:0]  debug_cam2_dma_fifo_rcount;
 wire [31:0]  debug_cam2_dma_fifo_wcount;
 wire [31:0]  debug_cam2_dma_status;
@@ -1001,11 +1005,10 @@ assign rx2_count = mipi_rx_inst2_CNT;
 cam_picam_v2 # (
    .MIPI_FRAME_WIDTH     (MIPI_FRAME_WIDTH),             //Input frame resolution from MIPI
    .MIPI_FRAME_HEIGHT    (MIPI_FRAME_HEIGHT),            //Input frame resolution from MIPI
-   .CROPPED_FRAME_WIDTH  (FRAME_WIDTH),                  //Output frame resolution to DDR
-   .CROPPED_FRAME_HEIGHT (FRAME_HEIGHT),                 //Output frame resolution to DDR
-   .CROPPED_X_OFFSET     (0),                            //X offset for cropping
-   .CROPPED_Y_OFFSET     (0),                            //Y offset for cropping
-   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2)  //2PPC
+   .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to DDR
+   .FRAME_HEIGHT         (FRAME_HEIGHT),                 //Output frame resolution to DDR
+   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2), //2PPC
+   .SCALING_EN           (1)                             //1 for scaling & 0 for cropping.
 ) u_cam1 (
    .mipi_pclk                             (mipi_pclk),
    .rst_n                                 (i_arstn),
@@ -1040,6 +1043,8 @@ cam_picam_v2 # (
    .debug_cam_pixel_remap_fifo_underflow  (debug_cam1_pixel_remap_fifo_underflow),
    .debug_cam_dma_fifo_overflow           (debug_cam1_dma_fifo_overflow),
    .debug_cam_dma_fifo_underflow          (debug_cam1_dma_fifo_underflow),
+   .debug_cam_scaler_fifo_overflow        (debug_cam1_scaler_fifo_overflow),
+   .debug_cam_scaler_fifo_underflow       (debug_cam1_scaler_fifo_underflow),
    .debug_cam_dma_fifo_rcount             (debug_cam1_dma_fifo_rcount),
    .debug_cam_dma_fifo_wcount             (debug_cam1_dma_fifo_wcount),
    .debug_cam_dma_status                  (debug_cam1_dma_status)
@@ -1048,11 +1053,10 @@ cam_picam_v2 # (
 cam_picam_v2 # (
    .MIPI_FRAME_WIDTH     (MIPI_FRAME_WIDTH),             //Input frame resolution from MIPI
    .MIPI_FRAME_HEIGHT    (MIPI_FRAME_HEIGHT),            //Input frame resolution from MIPI
-   .CROPPED_FRAME_WIDTH  (FRAME_WIDTH),                  //Output frame resolution to DDR
-   .CROPPED_FRAME_HEIGHT (FRAME_HEIGHT),                 //Output frame resolution to DDR
-   .CROPPED_X_OFFSET     (0),                            //X offset for cropping
-   .CROPPED_Y_OFFSET     (0),                            //Y offset for cropping
-   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2)  //2PPC
+   .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to DDR
+   .FRAME_HEIGHT         (FRAME_HEIGHT),                 //Output frame resolution to DDR
+   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2), //2PPC
+   .SCALING_EN           (1)                             //1 for scaling & 0 for cropping.
 ) u_cam2 (
    .mipi_pclk                             (mipi_pclk),
    .rst_n                                 (i_arstn),
@@ -1087,6 +1091,8 @@ cam_picam_v2 # (
    .debug_cam_pixel_remap_fifo_underflow  (debug_cam2_pixel_remap_fifo_underflow),
    .debug_cam_dma_fifo_overflow           (debug_cam2_dma_fifo_overflow),
    .debug_cam_dma_fifo_underflow          (debug_cam2_dma_fifo_underflow),
+   .debug_cam_scaler_fifo_overflow        (debug_cam2_scaler_fifo_overflow),
+   .debug_cam_scaler_fifo_underflow       (debug_cam2_scaler_fifo_underflow),
    .debug_cam_dma_fifo_rcount             (debug_cam2_dma_fifo_rcount),
    .debug_cam_dma_fifo_wcount             (debug_cam2_dma_fifo_wcount),
    .debug_cam_dma_status                  (debug_cam2_dma_status)
@@ -1098,7 +1104,7 @@ begin
    if (~i_arstn)
       flash_cnt <= 5'b0;
    else 
-   if (mipi_rx_inst1_ERR[9]) // bit9 will be "1"	if there is no error
+   if (mipi_rx_inst1_ERR[9]) // bit9 will be "1"   if there is no error
    begin
       vsync_LED <= mipi_rx_inst1_VSYNC[0];
       if (!vsync_LED && mipi_rx_inst1_VSYNC[0])
@@ -1151,7 +1157,8 @@ display_lvds # (
 
 wire [31:0] debug_cam_display_fifo_status;
 
-assign debug_cam_display_fifo_status = {22'd0, debug_cam1_pixel_remap_fifo_underflow, debug_cam1_pixel_remap_fifo_overflow, debug_cam1_dma_fifo_underflow, debug_cam1_dma_fifo_overflow, 
+assign debug_cam_display_fifo_status = {18'd0,debug_cam1_scaler_fifo_underflow, debug_cam1_scaler_fifo_overflow,debug_cam2_scaler_fifo_underflow, debug_cam2_scaler_fifo_overflow, 
+                                        debug_cam1_pixel_remap_fifo_underflow, debug_cam1_pixel_remap_fifo_overflow, debug_cam1_dma_fifo_underflow, debug_cam1_dma_fifo_overflow, 
                                         debug_cam2_pixel_remap_fifo_underflow, debug_cam2_pixel_remap_fifo_overflow, debug_cam2_dma_fifo_underflow, debug_cam2_dma_fifo_overflow,
                                         debug_display_dma_fifo_underflow, debug_display_dma_fifo_overflow};
 

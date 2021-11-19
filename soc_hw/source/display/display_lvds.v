@@ -269,12 +269,12 @@ end
 
 always @(posedge lvds_slowclk)
 begin
-	if(~rst_n) begin
-		display_vsync <= 1'b1;
-	end else if(display_vcount == {VCOUNT_BIT{1'b0}}) begin
-		display_vsync <= 1'b0;
-	end else if(display_vcount == V_SyncPulse) begin
-		display_vsync <= 1'b1;
+   if(~rst_n) begin
+      display_vsync <= 1'b1;
+   end else if(display_vcount == {VCOUNT_BIT{1'b0}}) begin
+      display_vsync <= 1'b0;
+   end else if(display_vcount == V_SyncPulse) begin
+      display_vsync <= 1'b1;
    end
 end
       
@@ -282,7 +282,7 @@ always @ (posedge lvds_slowclk)
 begin
    if(~rst_n) begin
       display_vde <= 1'b0;
-   end else begin		
+   end else begin    
       if(display_vcount == Vde_start) begin
          display_vde <= 1'b1;
       end else begin      
@@ -341,7 +341,7 @@ assign lvds_2b_DATA = {w_out_rd_01[9],  w_out_rd_01[10], w_out_rd_01[11], w_out_
 assign lvds_2c_DATA = {w_out_rd_10[10], w_out_rd_10[11], w_out_rd_10[12], w_out_rd_10[13], w_out_hsync    , w_out_vsync    , w_out_de      };
 assign lvds_2d_DATA = {w_out_rd_00[14], w_out_rd_00[15], w_out_rd_01[14], w_out_rd_01[15], w_out_rd_10[14], w_out_rd_10[15], 1'b0          };
 
-assign lvds_clk		= 7'b1100011;  //Fixed value to compensate for HDMI chip delay.
+assign lvds_clk      = 7'b1100011;  //Fixed value to compensate for HDMI chip delay.
 
 //Debug registers
 always @ (posedge lvds_slowclk)

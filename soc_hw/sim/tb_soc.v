@@ -178,16 +178,16 @@ end
 
 initial 
 begin:timeout
-	#1000000000
-	$display($time,,"[EFX_INFO]: Simulation timeout, end of simulation..");
-	$stop;
+   #1000000000
+   $display($time,,"[EFX_INFO]: Simulation timeout, end of simulation..");
+   $stop;
 end
 
 initial
 begin: main
    $display($time,,"--------------------------------------------");
-	$display($time,,"[EFX_INFO]: Start Edge Vision SoC Simulation");
-	$display($time,,"--------------------------------------------");
+   $display($time,,"[EFX_INFO]: Start Edge Vision SoC Simulation");
+   $display($time,,"--------------------------------------------");
 
    master_rstn              = 1'b0;
    i_pll_locked             = 1'b0;
@@ -402,7 +402,7 @@ edge_vision_soc_wrapper #(
    .mipi_inst1_VALID                   (1'b0),
    .mipi_inst1_TYPE                    (6'd0),
    .mipi_inst1_DATA                    (64'd0),
-   .mipi_inst1_VC                      (2'd0),	
+   .mipi_inst1_VC                      (2'd0),  
    .mipi_inst1_ERR                     (18'd0),
    //Simulation frame data
    .sim_cam_hsync                      (sim_cam_hsync),

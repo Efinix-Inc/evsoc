@@ -23,7 +23,7 @@
 module hw_accel_wrapper
 #(
    parameter AXI_ADDR_WIDTH         = 32,
-   parameter DATA_WIDTH	            = 32,  //For DMA and AXI
+   parameter DATA_WIDTH             = 32,  //For DMA and AXI
    parameter FRAME_WIDTH            = 640,
    parameter FRAME_HEIGHT           = 480,
    parameter DMA_TRANSFER_LENGTH    = 1920

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change_date="Thu July 29 2021 15:16:24" location="C:/efx_evsoc-v1.3/evsoc/soc_hw/efinity_project/isp_example_design/T120F324_devkit_hdmi_640_480" sw_version="2021.1.165.1.6" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change_date="Fri August 27 2021 15:15:32" location="C:/efx_evsoc-v1.3/evsoc/soc_hw/efinity_project/isp_example_design/T120F324_devkit_hdmi_640_480" sw_version="2021.1.165.1.6" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Trion"/>
         <efx:device name="T120F324"/>
@@ -28,6 +28,11 @@
         <efx:design_file name="../../../source/hw_accel/binary_erosion.v" version="verilog_2k" library="default"/>
         <efx:design_file name="../../../source/hw_accel/hw_accel.v" version="verilog_2k" library="default"/>
         <efx:design_file name="../../../source/hw_accel/axi4_hw_accel.v" version="verilog_2k" library="default"/>
+        <efx:design_file name="../../../source/cam/crop.v" version="default" library="default"/>
+        <efx:design_file name="../../../source/cam/simple_dual_port_ram.v" version="default" library="default"/>
+        <efx:design_file name="../../../source/cam/bilinear.v" version="default" library="default"/>
+        <efx:design_file name="../../../source/cam/scaling.v" version="default" library="default"/>
+        <efx:design_file name="../../../source/cam/shift_reg.v" version="default" library="default"/>
         <efx:top_vhdl_arch name="edge_vision_soc"/>
     </efx:design_info>
     <efx:constraint_info>
@@ -52,6 +57,9 @@
         <efx:ip instance_name="hw_accel_dma_out_fifo" path="ip/hw_accel_dma_out_fifo/settings.json">
             <efx:ip_src_file name="hw_accel_dma_out_fifo.v"/>
         </efx:ip>
+        <efx:ip instance_name="cam_scaler_fifo" path="ip/cam_scaler_fifo/settings.json">
+            <efx:ip_src_file name="cam_scaler_fifo.v"/>
+        </efx:ip>
     </efx:ip_info>
     <efx:synthesis tool_name="efx_map">
         <efx:param name="work_dir" value="work_syn" value_type="e_string"/>
@@ -63,13 +71,14 @@
         <efx:param name="infer-sync-set-reset" value="1" value_type="e_option"/>
         <efx:param name="fanout-limit" value="0" value_type="e_integer"/>
         <efx:param name="seq_opt" value="0" value_type="e_option"/>
-        <efx:param name="include" value="../../../source/cam" value_type="e_string"/>
-        <efx:param name="include" value="../../../source/soc" value_type="e_string"/>
         <efx:param name="bram_output_regs_packing" value="1" value_type="e_option"/>
         <efx:param name="retiming" value="1" value_type="e_option"/>
         <efx:param name="blast_const_operand_adders" value="1" value_type="e_option"/>
         <efx:param name="mult_input_regs_packing" value="1" value_type="e_option"/>
         <efx:param name="mult_output_regs_packing" value="1" value_type="e_option"/>
+        <efx:param name="include" value="../../../source/cam" value_type="e_string"/>
+        <efx:param name="include" value="../../../source/soc" value_type="e_string"/>
+        <efx:param name="include" value="ip/cam_scaler_fifo" value_type="e_string"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>

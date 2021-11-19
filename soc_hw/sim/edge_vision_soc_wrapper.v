@@ -33,7 +33,7 @@ module edge_vision_soc_wrapper #(
    //Clock and Reset Pins
    input          master_rstn,
    input          i_pll_locked,
-   input          ddr_clk_locked,	
+   input          ddr_clk_locked,   
    input          mipi_pclk,     //75MHz
    input          tx_slowclk,    //12.38MHz
    input          axi_clk_locked,
@@ -56,7 +56,7 @@ module edge_vision_soc_wrapper #(
    input          mipi_inst1_VALID,
    input [5:0]    mipi_inst1_TYPE,
    input [63:0]   mipi_inst1_DATA,
-   input [1:0]    mipi_inst1_VC,	
+   input [1:0]    mipi_inst1_VC, 
    input [17:0]   mipi_inst1_ERR,
 `ifdef SIM
    //Simulation frame data from testbench
@@ -93,21 +93,21 @@ module edge_vision_soc_wrapper #(
    output [1:0]   io_ddrA_arw_payload_burst,
    output [1:0]   io_ddrA_arw_payload_lock,
    output         io_ddrA_arw_payload_write,
-  	output [7:0]   io_ddrA_w_payload_id,
-  	output         io_ddrA_w_valid,
-  	input          io_ddrA_w_ready,
-  	output [127:0] io_ddrA_w_payload_data,
-  	output [15:0]  io_ddrA_w_payload_strb,
-  	output         io_ddrA_w_payload_last,
-  	input          io_ddrA_b_valid,
-  	output         io_ddrA_b_ready,
-  	input  [7:0]   io_ddrA_b_payload_id,
-  	input          io_ddrA_r_valid,
-  	output         io_ddrA_r_ready,
-  	input  [127:0] io_ddrA_r_payload_data,
-  	input  [7:0]   io_ddrA_r_payload_id,
-  	input  [1:0]   io_ddrA_r_payload_resp,
-  	input          io_ddrA_r_payload_last,
+   output [7:0]   io_ddrA_w_payload_id,
+   output         io_ddrA_w_valid,
+   input          io_ddrA_w_ready,
+   output [127:0] io_ddrA_w_payload_data,
+   output [15:0]  io_ddrA_w_payload_strb,
+   output         io_ddrA_w_payload_last,
+   input          io_ddrA_b_valid,
+   output         io_ddrA_b_ready,
+   input  [7:0]   io_ddrA_b_payload_id,
+   input          io_ddrA_r_valid,
+   output         io_ddrA_r_ready,
+   input  [127:0] io_ddrA_r_payload_data,
+   input  [7:0]   io_ddrA_r_payload_id,
+   input  [1:0]   io_ddrA_r_payload_resp,
+   input          io_ddrA_r_payload_last,
    output         io_ddrB_arw_valid,
    input          io_ddrB_arw_ready,
    output [31:0]  io_ddrB_arw_payload_addr,
@@ -117,21 +117,21 @@ module edge_vision_soc_wrapper #(
    output [1:0]   io_ddrB_arw_payload_burst,
    output [1:0]   io_ddrB_arw_payload_lock,
    output         io_ddrB_arw_payload_write,
-  	output [7:0]   io_ddrB_w_payload_id,
-  	output         io_ddrB_w_valid,
-  	input          io_ddrB_w_ready,
-  	output [255:0] io_ddrB_w_payload_data,
-  	output [31:0]  io_ddrB_w_payload_strb,
-  	output         io_ddrB_w_payload_last,
-  	input          io_ddrB_b_valid,
-  	output         io_ddrB_b_ready,
-  	input  [7:0]   io_ddrB_b_payload_id,
-  	input          io_ddrB_r_valid,
-  	output         io_ddrB_r_ready,
-  	input  [255:0] io_ddrB_r_payload_data,
-  	input  [7:0]   io_ddrB_r_payload_id,
-  	input  [1:0]   io_ddrB_r_payload_resp,
-  	input          io_ddrB_r_payload_last,
+   output [7:0]   io_ddrB_w_payload_id,
+   output         io_ddrB_w_valid,
+   input          io_ddrB_w_ready,
+   output [255:0] io_ddrB_w_payload_data,
+   output [31:0]  io_ddrB_w_payload_strb,
+   output         io_ddrB_w_payload_last,
+   input          io_ddrB_b_valid,
+   output         io_ddrB_b_ready,
+   input  [7:0]   io_ddrB_b_payload_id,
+   input          io_ddrB_r_valid,
+   output         io_ddrB_r_ready,
+   input  [255:0] io_ddrB_r_payload_data,
+   input  [7:0]   io_ddrB_r_payload_id,
+   input  [1:0]   io_ddrB_r_payload_resp,
+   input          io_ddrB_r_payload_last,
    inout          system_spi_0_io_data_0,
    inout          system_spi_0_io_data_1,
    output reg     system_spi_0_io_sclk_write,
@@ -154,32 +154,32 @@ module edge_vision_soc_wrapper #(
    output         ddr_inst1_CFG_SEQ_START
 );
 
-wire 		mipi_i2c_0_io_sda_read;
-wire 		mipi_i2c_0_io_sda_write;
-wire		mipi_i2c_0_io_sda_writeEnable;
-wire 		mipi_i2c_0_io_scl_read;
-wire 		mipi_i2c_0_io_scl_write;
-wire 		mipi_i2c_0_io_scl_writeEnable;
+wire     mipi_i2c_0_io_sda_read;
+wire     mipi_i2c_0_io_sda_write;
+wire     mipi_i2c_0_io_sda_writeEnable;
+wire     mipi_i2c_0_io_scl_read;
+wire     mipi_i2c_0_io_scl_write;
+wire     mipi_i2c_0_io_scl_writeEnable;
 
-wire 		hdmi_i2c_1_io_sda_read;
-wire 		hdmi_i2c_1_io_sda_write;
-wire		hdmi_i2c_1_io_sda_writeEnable;
-wire 		hdmi_i2c_1_io_scl_read;
-wire 		hdmi_i2c_1_io_scl_write;
-wire 		hdmi_i2c_1_io_scl_writeEnable;
+wire     hdmi_i2c_1_io_sda_read;
+wire     hdmi_i2c_1_io_sda_write;
+wire     hdmi_i2c_1_io_sda_writeEnable;
+wire     hdmi_i2c_1_io_scl_read;
+wire     hdmi_i2c_1_io_scl_write;
+wire     hdmi_i2c_1_io_scl_writeEnable;
 
-wire		spi_0_io_sclk_write;
-wire		spi_0_io_ss;
-wire		spi_0_io_data_0_write;
-reg		system_spi_0_io_data_0_write;
-reg		system_spi_0_io_data_0_read;
-wire		spi_0_io_data_0_writeEnable;
-reg		system_spi_0_io_data_0_writeEnable;
-wire		spi_0_io_data_1_write;
-reg		system_spi_0_io_data_1_write;
-reg		system_spi_0_io_data_1_read;
-wire		spi_0_io_data_1_writeEnable;
-reg		system_spi_0_io_data_1_writeEnable;
+wire     spi_0_io_sclk_write;
+wire     spi_0_io_ss;
+wire     spi_0_io_data_0_write;
+reg      system_spi_0_io_data_0_write;
+reg      system_spi_0_io_data_0_read;
+wire     spi_0_io_data_0_writeEnable;
+reg      system_spi_0_io_data_0_writeEnable;
+wire     spi_0_io_data_1_write;
+reg      system_spi_0_io_data_1_write;
+reg      system_spi_0_io_data_1_read;
+wire     spi_0_io_data_1_writeEnable;
+reg      system_spi_0_io_data_1_writeEnable;
 
 assign mipi_i2c_0_io_sda       = mipi_i2c_0_io_sda_writeEnable? mipi_i2c_0_io_sda_write : 1'bZ;
 assign mipi_i2c_0_io_sda_read  = mipi_i2c_0_io_sda;
@@ -238,7 +238,7 @@ edge_vision_soc #(
    .mipi_inst1_VALID                   (mipi_inst1_VALID),
    .mipi_inst1_TYPE                    (mipi_inst1_TYPE),
    .mipi_inst1_DATA                    (mipi_inst1_DATA),
-   .mipi_inst1_VC                      (mipi_inst1_VC),	
+   .mipi_inst1_VC                      (mipi_inst1_VC),  
    .mipi_inst1_ERR                     (mipi_inst1_ERR),   
 `ifdef SIM
    //Simulation frame data from testbench

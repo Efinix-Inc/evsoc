@@ -87,11 +87,11 @@ begin
    if (~i_arstn)
    begin
       pixel_count <= {PIX_COUNT_BIT{1'b0}};
-      i_vs_r		<= 1'b0;
+      i_vs_r      <= 1'b0;
       r_line_cnt  <= 1'b0;
    end else begin
       pixel_count <= ((i_valid && (pixel_count==(FRAME_WIDTH/4)-1)) || (vsync_falling_edge)) ? {PIX_COUNT_BIT{1'b0}} : (i_valid) ? pixel_count + 1'b1 : pixel_count;
-      i_vs_r		<= i_vs;
+      i_vs_r      <= i_vs;
       r_line_cnt  <= (i_vs_r && !i_vs) ? 1'b0 : (end_of_img_line) ? ~r_line_cnt : r_line_cnt;
    end
 end

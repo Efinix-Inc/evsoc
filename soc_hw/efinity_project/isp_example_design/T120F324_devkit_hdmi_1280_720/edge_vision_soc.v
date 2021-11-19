@@ -35,7 +35,7 @@ module edge_vision_soc #(
    //Clock and Reset Pins
    input          master_rstn,
    input          i_pll_locked,
-   input          ddr_clk_locked,	
+   input          ddr_clk_locked,
    input          mipi_pclk,     //75MHz
    input          tx_slowclk,    //37.12MHz
    input          axi_clk_locked,
@@ -60,7 +60,7 @@ module edge_vision_soc #(
    input          mipi_inst1_VALID,
    input [5:0]    mipi_inst1_TYPE,
    input [63:0]   mipi_inst1_DATA,
-   input [1:0]    mipi_inst1_VC,	
+   input [1:0]    mipi_inst1_VC,
    input [17:0]   mipi_inst1_ERR,
    
 `ifdef SIM
@@ -238,7 +238,7 @@ wire       io_systemReset;
 wire       io_d32_ddrMasterReset;
 wire       io_d64_ddrMasterReset;
 wire [1:0] io_ddrA_b_payload_resp;
-(* keep , syn_keep *) wire       io_memoryReset             /* synthesis syn_keep = 1 */;				
+(* keep , syn_keep *) wire       io_memoryReset             /* synthesis syn_keep = 1 */;
 (* keep , syn_keep *) wire [3:0] io_ddrA_arw_payload_qos    /* synthesis syn_keep = 1 */;
 (* keep , syn_keep *) wire [2:0] io_ddrA_arw_payload_prot   /* synthesis syn_keep = 1 */;
 (* keep , syn_keep *) wire [3:0] io_ddrA_arw_payload_cache  /* synthesis syn_keep = 1 */;
@@ -314,98 +314,7 @@ wire [31:0] axi_rdata;
 wire [1:0]  axi_rresp;
 wire        axi_rlast;
 wire        axi_rvalid;
-wire        axi_rready;	
-
-//DMA - 32-bit data port
-wire        mm2s_d32_intr;
-wire        mm2s_d32_ar_valid;
-wire        mm2s_d32_ar_ready;
-wire [31:0] mm2s_d32_ar_payload_addr;
-wire [3:0]  mm2s_d32_ar_payload_id;
-wire [3:0]  mm2s_d32_ar_payload_region;
-wire [7:0]  mm2s_d32_ar_payload_len;
-wire [2:0]  mm2s_d32_ar_payload_size;
-wire [1:0]  mm2s_d32_ar_payload_burst;
-wire [0:0]  mm2s_d32_ar_payload_lock;
-wire [3:0]  mm2s_d32_ar_payload_cache;
-wire [3:0]  mm2s_d32_ar_payload_qos;
-wire [2:0]  mm2s_d32_ar_payload_prot;
-wire        mm2s_d32_r_valid;
-wire        mm2s_d32_r_ready;
-wire [31:0] mm2s_d32_r_payload_data;
-wire [3:0]  mm2s_d32_r_payload_id;
-wire [1:0]  mm2s_d32_r_payload_resp;
-wire        mm2s_d32_r_payload_last;
-wire [31:0] mm2s_d32_tdata;
-wire [3:0]  mm2s_d32_tkeep;
-wire        mm2s_d32_tlast;
-wire        mm2s_d32_tvalid;
-wire        mm2s_d32_tready;
-wire        s2mm_d32_intr;
-wire        s2mm_d32_aw_valid;
-wire        s2mm_d32_aw_ready;
-wire [31:0] s2mm_d32_aw_payload_addr;
-wire [3:0]  s2mm_d32_aw_payload_id;
-wire [3:0]  s2mm_d32_aw_payload_region;
-wire [7:0]  s2mm_d32_aw_payload_len;
-wire [2:0]  s2mm_d32_aw_payload_size;
-wire [1:0]  s2mm_d32_aw_payload_burst;
-wire [0:0]  s2mm_d32_aw_payload_lock;
-wire [3:0]  s2mm_d32_aw_payload_cache;
-wire [3:0]  s2mm_d32_aw_payload_qos;
-wire [2:0]  s2mm_d32_aw_payload_prot;
-wire        s2mm_d32_w_valid;
-wire        s2mm_d32_w_ready;
-wire [31:0] s2mm_d32_w_payload_data;
-wire [3:0]  s2mm_d32_w_payload_strb;
-wire        s2mm_d32_w_payload_last;
-wire        s2mm_d32_b_valid;
-wire        s2mm_d32_b_ready;
-wire [3:0]  s2mm_d32_b_payload_id;
-wire [1:0]  s2mm_d32_b_payload_resp;
-
-//DMA - 64-bit data port
-wire        mm2s_d64_intr;
-wire        mm2s_d64_ar_valid;
-wire        mm2s_d64_ar_ready;
-wire [31:0] mm2s_d64_ar_payload_addr;
-wire [3:0]  mm2s_d64_ar_payload_id;
-wire [3:0]  mm2s_d64_ar_payload_region;
-wire [7:0]  mm2s_d64_ar_payload_len;
-wire [2:0]  mm2s_d64_ar_payload_size;
-wire [1:0]  mm2s_d64_ar_payload_burst;
-wire [0:0]  mm2s_d64_ar_payload_lock;
-wire [3:0]  mm2s_d64_ar_payload_cache;
-wire [3:0]  mm2s_d64_ar_payload_qos;
-wire [2:0]  mm2s_d64_ar_payload_prot;
-wire        mm2s_d64_r_valid;
-wire        mm2s_d64_r_ready;
-wire [63:0] mm2s_d64_r_payload_data;
-wire [3:0]  mm2s_d64_r_payload_id;
-wire [1:0]  mm2s_d64_r_payload_resp;
-wire        mm2s_d64_r_payload_last;
-wire        s2mm_d64_intr;
-wire        s2mm_d64_aw_valid;
-wire        s2mm_d64_aw_ready;
-wire [31:0] s2mm_d64_aw_payload_addr;
-wire [3:0]  s2mm_d64_aw_payload_id;
-wire [3:0]  s2mm_d64_aw_payload_region;
-wire [7:0]  s2mm_d64_aw_payload_len;
-wire [2:0]  s2mm_d64_aw_payload_size;
-wire [1:0]  s2mm_d64_aw_payload_burst;
-wire [0:0]  s2mm_d64_aw_payload_lock;
-wire [3:0]  s2mm_d64_aw_payload_cache;
-wire [3:0]  s2mm_d64_aw_payload_qos;
-wire [2:0]  s2mm_d64_aw_payload_prot;
-wire        s2mm_d64_w_valid;
-wire        s2mm_d64_w_ready;
-wire [63:0] s2mm_d64_w_payload_data;
-wire [7:0]  s2mm_d64_w_payload_strb;
-wire        s2mm_d64_w_payload_last;
-wire        s2mm_d64_b_valid;
-wire        s2mm_d64_b_ready;
-wire [3:0]  s2mm_d64_b_payload_id;
-wire [1:0]  s2mm_d64_b_payload_resp;
+wire        axi_rready;
 
 //Hardware accelerator
 wire        hw_accel_dma_rready;
@@ -447,7 +356,7 @@ RubySoc u_soc (
   .io_systemClk                        (soc_clk),
   .io_asyncReset                       (mcuReset),
   .io_memoryClk                        (axi_clk),
-  .io_memoryReset                      (io_memoryReset), 		
+  .io_memoryReset                      (io_memoryReset),
   .system_uart_0_io_txd                (system_uart_0_io_txd),
   .system_uart_0_io_rxd                (system_uart_0_io_rxd),
   .system_uart_1_io_txd                (),
@@ -716,7 +625,7 @@ RubySoc_softTap u_soc_softTap (
   .io_systemClk                        (soc_clk),
   .io_asyncReset                       (mcuReset),
   .io_memoryClk                        (axi_clk),
-  .io_memoryReset                      (io_memoryReset), 		
+  .io_memoryReset                      (io_memoryReset),
   .system_uart_0_io_txd                (system_uart_0_io_txd),
   .system_uart_0_io_rxd                (system_uart_0_io_rxd),
   .system_uart_1_io_txd                (),
@@ -1005,7 +914,7 @@ wire         cam_dma_wvalid;
 wire         cam_dma_wlast;
 wire [63:0]  cam_dma_wdata;
 wire         cam_dma_descriptorUpdated;
-wire [15:0]	 rgb_control;
+wire [15:0]  rgb_control;
 wire         trigger_capture_frame;
 wire         rgb_gray;
 wire         cam_dma_init_done;
@@ -1014,6 +923,8 @@ wire         debug_cam_pixel_remap_fifo_overflow;
 wire         debug_cam_pixel_remap_fifo_underflow;
 wire         debug_cam_dma_fifo_overflow;
 wire         debug_cam_dma_fifo_underflow;
+wire         debug_cam_scaler_fifo_overflow;
+wire         debug_cam_scaler_fifo_underflow;
 wire [31:0]  debug_cam_dma_fifo_rcount;
 wire [31:0]  debug_cam_dma_fifo_wcount;
 wire [31:0]  debug_cam_dma_status;
@@ -1033,11 +944,10 @@ assign rx_count = mipi_inst1_CNT;
 cam_picam_v2 # (
    .MIPI_FRAME_WIDTH     (MIPI_FRAME_WIDTH),             //Input frame resolution from MIPI
    .MIPI_FRAME_HEIGHT    (MIPI_FRAME_HEIGHT),            //Input frame resolution from MIPI
-   .CROPPED_FRAME_WIDTH  (FRAME_WIDTH),                  //Output frame resolution to DDR
-   .CROPPED_FRAME_HEIGHT (FRAME_HEIGHT),                 //Output frame resolution to DDR
-   .CROPPED_X_OFFSET     (0),                            //X offset for cropping
-   .CROPPED_Y_OFFSET     (0),                            //Y offset for cropping
-   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2)  //2PPC
+   .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to DDR
+   .FRAME_HEIGHT         (FRAME_HEIGHT),                 //Output frame resolution to DDR
+   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2), //2PPC
+   .SCALING_EN           (1)                             //1 for scaling & 0 for cropping.
 ) u_cam (
    .mipi_pclk                             (mipi_pclk),
    .rst_n                                 (i_arstn),
@@ -1072,6 +982,8 @@ cam_picam_v2 # (
    .debug_cam_pixel_remap_fifo_underflow  (debug_cam_pixel_remap_fifo_underflow),
    .debug_cam_dma_fifo_overflow           (debug_cam_dma_fifo_overflow),
    .debug_cam_dma_fifo_underflow          (debug_cam_dma_fifo_underflow),
+   .debug_cam_scaler_fifo_overflow        (debug_cam_scaler_fifo_overflow),
+   .debug_cam_scaler_fifo_underflow       (debug_cam_scaler_fifo_underflow),
    .debug_cam_dma_fifo_rcount             (debug_cam_dma_fifo_rcount),
    .debug_cam_dma_fifo_wcount             (debug_cam_dma_fifo_wcount),
    .debug_cam_dma_status                  (debug_cam_dma_status)
@@ -1083,7 +995,7 @@ begin
    if (~i_arstn)
       flash_cnt <= 5'b0;
    else 
-   if (mipi_inst1_ERR[9]) // bit9 will be "1"	if there is no error
+   if (mipi_inst1_ERR[9]) // bit9 will be "1"   if there is no error
    begin
       vsync_LED <= mipi_inst1_VSYNC[0];
       if (!vsync_LED && mipi_inst1_VSYNC[0])
@@ -1136,8 +1048,8 @@ display_lvds # (
 
 wire [31:0] debug_cam_display_fifo_status;
 
-assign debug_cam_display_fifo_status = {26'd0, debug_cam_pixel_remap_fifo_underflow, debug_cam_pixel_remap_fifo_overflow, debug_cam_dma_fifo_underflow, debug_cam_dma_fifo_overflow, 
-                                        debug_display_dma_fifo_underflow, debug_display_dma_fifo_overflow};
+assign debug_cam_display_fifo_status = {24'd0,debug_cam_scaler_fifo_underflow, debug_cam_scaler_fifo_overflow, debug_cam_pixel_remap_fifo_underflow, debug_cam_pixel_remap_fifo_overflow, 
+                                        debug_cam_dma_fifo_underflow, debug_cam_dma_fifo_overflow, debug_display_dma_fifo_underflow, debug_display_dma_fifo_overflow};
 
 //Shared for both camera and display
 apb3_cam #(

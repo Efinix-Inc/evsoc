@@ -21,7 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 module hw_accel #(
-   parameter DATA_WIDTH	   = 8,
+   parameter DATA_WIDTH    = 8,
    parameter IMG_WIDTH     = 512,
    parameter IMG_HEIGHT    = 512
 )(

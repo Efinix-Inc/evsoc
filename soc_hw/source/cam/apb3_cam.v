@@ -23,9 +23,9 @@
 `timescale 1ns / 1ps
 
 module apb3_cam #(
-   parameter	ADDR_WIDTH	= 12,
-   parameter	DATA_WIDTH	= 32,
-   parameter	NUM_REG		= 10
+   parameter   ADDR_WIDTH  = 12,
+   parameter   DATA_WIDTH  = 32,
+   parameter   NUM_REG     = 10
 ) (
    input    [1:0]          select_demo_mode,
    output   [15:0]         rgb_control,
@@ -58,14 +58,14 @@ localparam [1:0] IDLE   = 2'b00,
                  SETUP  = 2'b01,
                  ACCESS = 2'b10;
 
-reg [1:0]   busState, 
-            busNext;
+reg [1:0]            busState, 
+                     busNext;
 reg [DATA_WIDTH-1:0] slaveReg [0:NUM_REG-1];
 reg [DATA_WIDTH-1:0] slaveRegOut;
-reg         slaveReady;
-wire	 		actWrite,
-            actRead;
-integer     byteIndex;
+reg                  slaveReady;
+wire                 actWrite,
+                     actRead;
+integer              byteIndex;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -110,11 +110,11 @@ integer     byteIndex;
       endcase
    end
 
-   assign actWrite = PWRITE  & (busState == ACCESS);
-   assign actRead  = !PWRITE & (busState == ACCESS);
-   assign PSLVERROR = 1'b0; //FIXME
-   assign PRDATA = slaveRegOut;
-   assign PREADY = slaveReady & & (busState !== IDLE);
+   assign actWrite   = PWRITE  & (busState == ACCESS);
+   assign actRead    = !PWRITE & (busState == ACCESS);
+   assign PSLVERROR  = 1'b0; //FIXME
+   assign PRDATA     = slaveRegOut;
+   assign PREADY     = slaveReady & & (busState !== IDLE);
 
    always@ (posedge clk)
    begin
@@ -125,13 +125,13 @@ integer     byteIndex;
    begin
       if(!resetn)
          for(byteIndex = 0; byteIndex < NUM_REG; byteIndex = byteIndex + 1)
-         slaveReg[byteIndex] <= {{DATA_WIDTH}{1'b0}};
+            slaveReg[byteIndex] <= {{DATA_WIDTH}{1'b0}};
       else begin
          for(byteIndex = 0; byteIndex < NUM_REG; byteIndex = byteIndex + 1)
-         if(actWrite && PADDR[ADDR_WIDTH-1:0] == (byteIndex*4))
-            slaveReg[byteIndex] <= PWDATA;
-         else
-            slaveReg[byteIndex] <= slaveReg[byteIndex];
+            if(actWrite && PADDR[ADDR_WIDTH-1:0] == (byteIndex*4))
+               slaveReg[byteIndex] <= PWDATA;
+            else
+               slaveReg[byteIndex] <= slaveReg[byteIndex];
       end
    end
 

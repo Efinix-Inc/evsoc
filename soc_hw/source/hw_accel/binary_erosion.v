@@ -21,7 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 module binary_erosion #(
-   parameter DATA_WIDTH	   = 8,
+   parameter DATA_WIDTH    = 8,
    parameter IMG_WIDTH     = 10,
    parameter IMG_HEIGHT    = 4
 )(

@@ -116,7 +116,7 @@ begin
       o_e_pixel_cnt      <= 1'b0;
       o_e_line_cnt       <= 1'b0;
       r_vsync_00_1P      <= 0;
-      r_valid_00_1P      <= 0;	
+      r_valid_00_1P      <= 0;   
    
       r_bayer_11_01_0P_0 <= {P_DEPTH{1'b0}};
       r_bayer_11_01_0P_1 <= {P_DEPTH{1'b0}};
@@ -141,7 +141,7 @@ begin
       
       r_r_00_00_1P       <= {PW{1'b0}};
       r_g_00_00_1P       <= {PW{1'b0}};
-      r_b_00_00_1P       <= {PW{1'b0}};		
+      r_b_00_00_1P       <= {PW{1'b0}};      
    end
    else
    begin
@@ -165,42 +165,42 @@ begin
 
       if (pixel_count == {PIX_COUNT_BIT{1'b0}})
       begin
-         r_bayer_11_00_1P_0	<= {P_DEPTH{1'b0}};
-         r_bayer_11_00_1P_1	<= {P_DEPTH{1'b0}};
-         r_bayer_00_00_1P_0	<= {P_DEPTH{1'b0}};
-         r_bayer_00_00_1P_1	<= {P_DEPTH{1'b0}};
-         r_bayer_01_00_1P_0	<= {P_DEPTH{1'b0}};
-         r_bayer_01_00_1P_1	<= {P_DEPTH{1'b0}};
+         r_bayer_11_00_1P_0   <= {P_DEPTH{1'b0}};
+         r_bayer_11_00_1P_1   <= {P_DEPTH{1'b0}};
+         r_bayer_00_00_1P_0   <= {P_DEPTH{1'b0}};
+         r_bayer_00_00_1P_1   <= {P_DEPTH{1'b0}};
+         r_bayer_01_00_1P_0   <= {P_DEPTH{1'b0}};
+         r_bayer_01_00_1P_1   <= {P_DEPTH{1'b0}};
          
-         r_bayer_11_11_2P_0	<= {P_DEPTH{1'b0}};
-         r_bayer_11_11_2P_1	<= {P_DEPTH{1'b0}};
-         r_bayer_00_11_2P_0	<= {P_DEPTH{1'b0}};
-         r_bayer_00_11_2P_1	<= {P_DEPTH{1'b0}};
-         r_bayer_01_11_2P_0	<= {P_DEPTH{1'b0}};
-         r_bayer_01_11_2P_1	<= {P_DEPTH{1'b0}};
+         r_bayer_11_11_2P_0   <= {P_DEPTH{1'b0}};
+         r_bayer_11_11_2P_1   <= {P_DEPTH{1'b0}};
+         r_bayer_00_11_2P_0   <= {P_DEPTH{1'b0}};
+         r_bayer_00_11_2P_1   <= {P_DEPTH{1'b0}};
+         r_bayer_01_11_2P_0   <= {P_DEPTH{1'b0}};
+         r_bayer_01_11_2P_1   <= {P_DEPTH{1'b0}};
       end
       else
       begin
-         r_bayer_11_00_1P_0	<= r_bayer_11_01_0P_0;
-         r_bayer_11_00_1P_1	<= r_bayer_11_01_0P_1;
-         r_bayer_00_00_1P_0	<= r_bayer_00_01_0P_0;
-         r_bayer_00_00_1P_1	<= r_bayer_00_01_0P_1;
-         r_bayer_01_00_1P_0	<= r_bayer_01_01_0P_0;
-         r_bayer_01_00_1P_1	<= r_bayer_01_01_0P_1;
+         r_bayer_11_00_1P_0   <= r_bayer_11_01_0P_0;
+         r_bayer_11_00_1P_1   <= r_bayer_11_01_0P_1;
+         r_bayer_00_00_1P_0   <= r_bayer_00_01_0P_0;
+         r_bayer_00_00_1P_1   <= r_bayer_00_01_0P_1;
+         r_bayer_01_00_1P_0   <= r_bayer_01_01_0P_0;
+         r_bayer_01_00_1P_1   <= r_bayer_01_01_0P_1;
          
-         r_bayer_11_11_2P_0	<= r_bayer_11_00_1P_0;
-         r_bayer_11_11_2P_1	<= r_bayer_11_00_1P_1;
-         r_bayer_00_11_2P_0	<= r_bayer_00_00_1P_0;
-         r_bayer_00_11_2P_1	<= r_bayer_00_00_1P_1;
-         r_bayer_01_11_2P_0	<= r_bayer_01_00_1P_0;
-         r_bayer_01_11_2P_1	<= r_bayer_01_00_1P_1;
+         r_bayer_11_11_2P_0   <= r_bayer_11_00_1P_0;
+         r_bayer_11_11_2P_1   <= r_bayer_11_00_1P_1;
+         r_bayer_00_11_2P_0   <= r_bayer_00_00_1P_0;
+         r_bayer_00_11_2P_1   <= r_bayer_00_00_1P_1;
+         r_bayer_01_11_2P_0   <= r_bayer_01_00_1P_0;
+         r_bayer_01_11_2P_1   <= r_bayer_01_00_1P_1;
       end
 
       if (!r_valid_00_1P || (line_count=={LINE_COUNT_BIT{1'b0}}))
       begin
          r_r_00_00_1P <= {PW{1'b0}};
          r_g_00_00_1P <= {PW{1'b0}};
-         r_b_00_00_1P <= {PW{1'b0}};	
+         r_b_00_00_1P <= {PW{1'b0}};   
       end
       else if (line_count[0])
       begin
@@ -210,27 +210,27 @@ begin
          r_b_00_00_1P[P_DEPTH-1:0]  <= (((r_bayer_11_00_1P_1 >> 1) + (r_bayer_01_11_2P_1 >> 1)) >> 1) + (((r_bayer_01_00_1P_1 >> 1) + (r_bayer_11_11_2P_1 >> 1)) >> 1);
          
          r_r_00_00_1P[PW-1:P_DEPTH] <= (r_bayer_00_01_0P_0 >> 1) + (r_bayer_00_00_1P_0 >> 1);
-         r_g_00_00_1P[PW-1:P_DEPTH] <= r_bayer_00_00_1P_1;				
+         r_g_00_00_1P[PW-1:P_DEPTH] <= r_bayer_00_00_1P_1;           
          r_b_00_00_1P[PW-1:P_DEPTH] <= (r_bayer_11_00_1P_1 >> 1) + (r_bayer_01_00_1P_1 >> 1);
 
          /* Gr R Gr R */
          //r_r_00_00_1P[P_DEPTH-1:0]  <= (r_bayer_00_00_1P_1 >> 1) + (r_bayer_00_11_2P_1 >> 1);
-         //r_g_00_00_1P[P_DEPTH-1:0]  <= r_bayer_00_00_1P_0;				
+         //r_g_00_00_1P[P_DEPTH-1:0]  <= r_bayer_00_00_1P_0;            
          //r_b_00_00_1P[P_DEPTH-1:0]  <= (r_bayer_11_00_1P_0 >> 1) + (r_bayer_01_00_1P_0 >> 1);
          //
          //r_r_00_00_1P[PW-1:P_DEPTH] <= r_bayer_00_00_1P_1;
          //r_g_00_00_1P[PW-1:P_DEPTH] <= (((r_bayer_00_01_0P_0 >> 1) + (r_bayer_00_00_1P_0 >> 1)) >> 1) + (((r_bayer_11_00_1P_1 >> 1) + (r_bayer_01_00_1P_1 >> 1)) >> 1);
-         //r_b_00_00_1P[PW-1:P_DEPTH] <= (((r_bayer_11_01_0P_0 >> 1) + (r_bayer_01_00_1P_0 >> 1)) >> 1) + (((r_bayer_01_01_0P_0 >> 1) + (r_bayer_11_00_1P_0 >> 1)) >> 1);			
+         //r_b_00_00_1P[PW-1:P_DEPTH] <= (((r_bayer_11_01_0P_0 >> 1) + (r_bayer_01_00_1P_0 >> 1)) >> 1) + (((r_bayer_01_01_0P_0 >> 1) + (r_bayer_11_00_1P_0 >> 1)) >> 1);        
       end
       else
       begin
          /* Gb B Gb G */
          r_r_00_00_1P[P_DEPTH-1:0]  <= (r_bayer_11_00_1P_0 >> 1) + (r_bayer_01_00_1P_0 >> 1);
-         r_g_00_00_1P[P_DEPTH-1:0]  <= r_bayer_00_00_1P_0;				
+         r_g_00_00_1P[P_DEPTH-1:0]  <= r_bayer_00_00_1P_0;           
          r_b_00_00_1P[P_DEPTH-1:0]  <= (r_bayer_00_00_1P_1 >> 1) + (r_bayer_00_11_2P_1 >> 1);
                   
          r_r_00_00_1P[PW-1:P_DEPTH] <= (((r_bayer_01_01_0P_0 >> 1) + (r_bayer_11_00_1P_0 >> 1)) >> 1) + (((r_bayer_11_01_0P_0 >> 1) + (r_bayer_01_00_1P_0 >> 1)) >> 1);
-         r_g_00_00_1P[PW-1:P_DEPTH] <= (((r_bayer_11_00_1P_1 >> 1) + (r_bayer_01_00_1P_1 >> 1)) >> 1) + (((r_bayer_00_01_0P_0 >> 1) + (r_bayer_00_00_1P_0 >> 1)) >> 1);		
+         r_g_00_00_1P[PW-1:P_DEPTH] <= (((r_bayer_11_00_1P_1 >> 1) + (r_bayer_01_00_1P_1 >> 1)) >> 1) + (((r_bayer_00_01_0P_0 >> 1) + (r_bayer_00_00_1P_0 >> 1)) >> 1);    
          r_b_00_00_1P[PW-1:P_DEPTH] <= r_bayer_00_00_1P_1;
 
          /* B Gb B Gb */
@@ -239,10 +239,10 @@ begin
          //r_b_00_00_1P[P_DEPTH-1:0]  <= r_bayer_00_00_1P_0;
          //
          //r_r_00_00_1P[PW-1:P_DEPTH] <= (r_bayer_11_00_1P_1 >> 1) + (r_bayer_01_00_1P_1 >> 1);
-         //r_g_00_00_1P[PW-1:P_DEPTH] <= r_bayer_00_00_1P_1;				
+         //r_g_00_00_1P[PW-1:P_DEPTH] <= r_bayer_00_00_1P_1;            
          //r_b_00_00_1P[PW-1:P_DEPTH] <= (r_bayer_00_01_0P_0 >> 1) + (r_bayer_00_00_1P_0 >> 1);
       end
-   end	
+   end   
 end
 
 assign o_vsync = r_vsync_00_2P;
