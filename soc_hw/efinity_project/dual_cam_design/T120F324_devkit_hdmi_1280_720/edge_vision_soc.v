@@ -26,8 +26,8 @@ module edge_vision_soc #(
    //Input frame resolution from MIPI Rx.
    parameter MIPI_FRAME_WIDTH      = 1920,
    parameter MIPI_FRAME_HEIGHT     = 1080,
-   //Actual frame resolution used for subsequent processing (after cropping).
-   parameter FRAME_WIDTH           = 1280, //Multiple of 4 - To match with 4PPC pixel data.
+   //Actual frame resolution used for subsequent processing (after cropping/scaling).
+   parameter FRAME_WIDTH           = 1280, //Multiple of 2 - To match with 2PPC pixel data.
    parameter FRAME_HEIGHT          = 720,  //Multiple of 2 - To preserve bayer format prior to raw2rgb conversion.
    //Display resolution setting: "640x480_60Hz" or "1280x720_60Hz"
    parameter DISPLAY_MODE          = "1280x720_60Hz"
@@ -948,6 +948,7 @@ wire [63:0]  cam1_dma_wdata;
 wire         cam1_dma_descriptorUpdated;
 wire [15:0]  cam1_rgb_control;
 wire         cam1_trigger_capture_frame;
+wire         cam1_continuous_capture_frame;
 wire         cam1_rgb_gray;
 wire         cam1_dma_init_done;
 wire [31:0]  cam1_frames_per_second;
@@ -968,6 +969,7 @@ wire [63:0]  cam2_dma_wdata;
 wire         cam2_dma_descriptorUpdated;
 wire [15:0]  cam2_rgb_control;
 wire         cam2_trigger_capture_frame;
+wire         cam2_continuous_capture_frame;
 wire         cam2_rgb_gray;
 wire         cam2_dma_init_done;
 wire [31:0]  cam2_frames_per_second;
@@ -1008,7 +1010,7 @@ cam_picam_v2 # (
    .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to DDR
    .FRAME_HEIGHT         (FRAME_HEIGHT),                 //Output frame resolution to DDR
    .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2), //2PPC
-   .SCALING_EN           (1)                             //1 for scaling & 0 for cropping.
+   .CROP_SCALE           (0)                             //0: Crop to output resolution; 1: Scale to output resolution
 ) u_cam1 (
    .mipi_pclk                             (mipi_pclk),
    .rst_n                                 (i_arstn),
@@ -1036,6 +1038,7 @@ cam_picam_v2 # (
    .cam_dma_descriptorUpdated             (cam1_dma_descriptorUpdated),  //SG mode DMA transfer
    .rgb_control                           (cam1_rgb_control),
    .trigger_capture_frame                 (cam1_trigger_capture_frame),
+   .continuous_capture_frame              (cam1_continuous_capture_frame),
    .rgb_gray                              (cam1_rgb_gray),
    .cam_dma_init_done                     (cam1_dma_init_done),
    .frames_per_second                     (cam1_frames_per_second),
@@ -1056,7 +1059,7 @@ cam_picam_v2 # (
    .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to DDR
    .FRAME_HEIGHT         (FRAME_HEIGHT),                 //Output frame resolution to DDR
    .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2), //2PPC
-   .SCALING_EN           (1)                             //1 for scaling & 0 for cropping.
+   .CROP_SCALE           (0)                             //0: Crop to output resolution; 1: Scale to output resolution
 ) u_cam2 (
    .mipi_pclk                             (mipi_pclk),
    .rst_n                                 (i_arstn),
@@ -1084,6 +1087,7 @@ cam_picam_v2 # (
    .cam_dma_descriptorUpdated             (cam2_dma_descriptorUpdated),  //SG mode DMA transfer
    .rgb_control                           (cam2_rgb_control),
    .trigger_capture_frame                 (cam2_trigger_capture_frame),
+   .continuous_capture_frame              (cam2_continuous_capture_frame),
    .rgb_gray                              (cam2_rgb_gray),
    .cam_dma_init_done                     (cam2_dma_init_done),
    .frames_per_second                     (cam2_frames_per_second),
@@ -1171,6 +1175,7 @@ apb3_cam_dual_cam #(
    .mipi_rst                      (mipi_rst),
    .cam1_rgb_control              (cam1_rgb_control),
    .cam1_trigger_capture_frame    (cam1_trigger_capture_frame),
+   .cam1_continuous_capture_frame (cam1_continuous_capture_frame),
    .cam1_rgb_gray                 (cam1_rgb_gray),
    .cam1_dma_init_done            (cam1_dma_init_done),
    .cam1_frames_per_second        (cam1_frames_per_second),
@@ -1179,6 +1184,7 @@ apb3_cam_dual_cam #(
    .debug_cam1_dma_status         (debug_cam1_dma_status),
    .cam2_rgb_control              (cam2_rgb_control),
    .cam2_trigger_capture_frame    (cam2_trigger_capture_frame),
+   .cam2_continuous_capture_frame (cam2_continuous_capture_frame),
    .cam2_rgb_gray                 (cam2_rgb_gray),
    .cam2_dma_init_done            (cam2_dma_init_done),
    .cam2_frames_per_second        (cam2_frames_per_second),

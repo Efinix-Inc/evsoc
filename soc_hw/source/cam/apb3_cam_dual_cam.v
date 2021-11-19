@@ -30,6 +30,7 @@ module apb3_cam_dual_cam #(
    output                  mipi_rst,
    output   [15:0]         cam1_rgb_control,
    output                  cam1_trigger_capture_frame,
+   output                  cam1_continuous_capture_frame,
    output                  cam1_rgb_gray,
    output                  cam1_dma_init_done,
    input   [31:0]          cam1_frames_per_second,
@@ -38,6 +39,7 @@ module apb3_cam_dual_cam #(
    input   [31:0]          debug_cam1_dma_status,
    output   [15:0]         cam2_rgb_control,
    output                  cam2_trigger_capture_frame,
+   output                  cam2_continuous_capture_frame,
    output                  cam2_rgb_gray,
    output                  cam2_dma_init_done,
    input   [31:0]          cam2_frames_per_second,
@@ -170,14 +172,16 @@ integer              byteIndex;
    end
 
    //custom logic starts here
-   assign mipi_rst                   = slaveReg[0][0];
-   assign cam1_rgb_control           = slaveReg[1][15:0];
-   assign cam1_trigger_capture_frame = slaveReg[2][0];
-   assign cam1_rgb_gray              = slaveReg[3][0];
-   assign cam1_dma_init_done         = slaveReg[4][0];
-   assign cam2_rgb_control           = slaveReg[5][15:0];
-   assign cam2_trigger_capture_frame = slaveReg[6][0];
-   assign cam2_rgb_gray              = slaveReg[7][0];
-   assign cam2_dma_init_done         = slaveReg[8][0];
+   assign mipi_rst                        = slaveReg[0][0];
+   assign cam1_rgb_control                = slaveReg[1][15:0];
+   assign cam1_trigger_capture_frame      = slaveReg[2][0];
+   assign cam1_continuous_capture_frame   = slaveReg[2][1];
+   assign cam1_rgb_gray                   = slaveReg[3][0];
+   assign cam1_dma_init_done              = slaveReg[4][0];
+   assign cam2_rgb_control                = slaveReg[5][15:0];
+   assign cam2_trigger_capture_frame      = slaveReg[6][0];
+   assign cam2_continuous_capture_frame   = slaveReg[6][1];
+   assign cam2_rgb_gray                   = slaveReg[7][0];
+   assign cam2_dma_init_done              = slaveReg[8][0];
    
 endmodule

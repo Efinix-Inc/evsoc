@@ -26,8 +26,8 @@ module edge_vision_soc #(
    //Input frame resolution from MIPI Rx.
    parameter MIPI_FRAME_WIDTH      = 1920,  
    parameter MIPI_FRAME_HEIGHT     = 1080,
-   //Actual frame resolution used for subsequent processing (after cropping).
-   parameter FRAME_WIDTH           = 640, //Multiple of 4 - To match with 4PPC pixel data.
+   //Actual frame resolution used for subsequent processing (after cropping/scaling).
+   parameter FRAME_WIDTH           = 640, //Multiple of 2 - To match with 2PPC pixel data.
    parameter FRAME_HEIGHT          = 480, //Multiple of 2 - To preserve bayer format prior to raw2rgb conversion.
    //Display resolution setting: "640x480_60Hz" or "1280x720_60Hz"
    parameter DISPLAY_MODE          = "640x480_60Hz"
@@ -916,6 +916,7 @@ wire [63:0]  cam_dma_wdata;
 wire         cam_dma_descriptorUpdated;
 wire [15:0]  rgb_control;
 wire         trigger_capture_frame;
+wire         continuous_capture_frame;
 wire         rgb_gray;
 wire         cam_dma_init_done;
 wire [31:0]  frames_per_second;
@@ -947,7 +948,7 @@ cam_picam_v2 # (
    .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to DDR
    .FRAME_HEIGHT         (FRAME_HEIGHT),                 //Output frame resolution to DDR
    .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2), //2PPC
-   .SCALING_EN           (1)                             //1 for scaling & 0 for cropping.
+   .CROP_SCALE           (0)                             //0: Crop to output resolution; 1: Scale to output resolution
 ) u_cam (
    .mipi_pclk                             (mipi_pclk),
    .rst_n                                 (i_arstn),
@@ -975,6 +976,7 @@ cam_picam_v2 # (
    .cam_dma_descriptorUpdated             (cam_dma_descriptorUpdated),  //SG mode DMA transfer
    .rgb_control                           (rgb_control),
    .trigger_capture_frame                 (trigger_capture_frame),
+   .continuous_capture_frame              (continuous_capture_frame),
    .rgb_gray                              (rgb_gray),
    .cam_dma_init_done                     (cam_dma_init_done),
    .frames_per_second                     (frames_per_second),
@@ -1061,6 +1063,7 @@ apb3_cam #(
    .rgb_control                   (rgb_control),
    .mipi_rstn                     (mipi_rstn),
    .trigger_capture_frame         (trigger_capture_frame),
+   .continuous_capture_frame      (continuous_capture_frame),
    .rgb_gray                      (rgb_gray),
    .cam_dma_init_done             (cam_dma_init_done),
    .frames_per_second             (frames_per_second),

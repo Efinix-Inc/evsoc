@@ -31,6 +31,7 @@ module apb3_cam #(
    output   [15:0]         rgb_control,
    output                  mipi_rstn,
    output                  trigger_capture_frame,
+   output                  continuous_capture_frame,
    output                  rgb_gray,
    output                  cam_dma_init_done,
    input   [31:0]          debug_fifo_status,
@@ -160,10 +161,11 @@ integer              byteIndex;
    end
 
    //custom logic starts here
-   assign rgb_control           = slaveReg[0][15:0];
-   assign mipi_rstn             = slaveReg[1][0];
-   assign trigger_capture_frame = slaveReg[2][0];
-   assign rgb_gray              = slaveReg[3][0];
-   assign cam_dma_init_done     = slaveReg[4][0];
+   assign rgb_control              = slaveReg[0][15:0];
+   assign mipi_rstn                = slaveReg[1][0];
+   assign trigger_capture_frame    = slaveReg[2][0];
+   assign continuous_capture_frame = slaveReg[2][1];
+   assign rgb_gray                 = slaveReg[3][0];
+   assign cam_dma_init_done        = slaveReg[4][0];
    
 endmodule

@@ -27,11 +27,12 @@ module cam_picam_v2 #(
    //Output resolution to DDR - Pre-processed & Scale/Cropped
    parameter FRAME_WIDTH          = 11'd640,
    parameter FRAME_HEIGHT         = 11'd480,
+   //0: Crop to output resolution; 1: Scale to output resolution
+   parameter CROP_SCALE           = 0,
    //Should match with firmware DMA transfer length
    parameter DMA_TRANSFER_LENGTH  = 1920,
    //Should match with mipi_pclk clock rate
-   parameter MIPI_PCLK_CLK_RATE   = 75000000,
-   parameter SCALING_EN           = 1
+   parameter MIPI_PCLK_CLK_RATE   = 75000000
 ) (
    input  wire        mipi_pclk,
    input  wire        rst_n,
@@ -66,6 +67,7 @@ module cam_picam_v2 #(
    //RISC-V slave control & Debug
    input  wire [15:0] rgb_control,
    input  wire        trigger_capture_frame,
+   input  wire        continuous_capture_frame,
    input  wire        rgb_gray,
    input  wire        cam_dma_init_done,
    
@@ -143,6 +145,9 @@ reg                         trigger_capture_frame_r1;
 reg                         trigger_capture_frame_r2;
 reg                         trigger_capture_frame_r3;
 reg                         trigger_capture_frame_hold;
+reg                         continuous_capture_frame_r1;
+reg                         continuous_capture_frame_r2;
+reg                         continuous_capture_frame_hold;
 reg                         capture_frame;
 reg                         rgb_gray_r;
 reg                         rgb_gray_synced;
@@ -341,191 +346,188 @@ raw_to_rgb #(
    .o_b     (rgb_pixel_b_out_m)
 );
 
-// declare a new counter x & y for scaling/cropping.  
-reg [31:0] mipi_x_count;
-reg [31:0] mipi_y_count;
-                                                                                                               
-      always @(posedge mipi_pclk)
-      begin
-         if (~rst_n)
-         begin
-           mipi_x_count <= 32'd0;
-           mipi_y_count <= 32'd0;
-         end else begin
-         //Incoming frame data 2PPC
-        mipi_x_count <= (rgb_pixel_out_valid && (mipi_x_count == MIPI_FRAME_WIDTH/2-1)) ? 32'd0 :
-             (rgb_pixel_out_valid)                                                               ? mipi_x_count + 1'b1      : mipi_x_count;
-        mipi_y_count <= (rgb_pixel_out_valid && (mipi_y_count == MIPI_FRAME_HEIGHT-1) && (mipi_x_count == MIPI_FRAME_WIDTH/2-1)) ? 32'd0 :
-             (rgb_pixel_out_valid && (mipi_x_count == MIPI_FRAME_WIDTH/2-1))                     ? mipi_y_count + 1'b1      : mipi_y_count;
-         end
-      end
+//Crop or Scale to output resolution
+reg [10:0] mipi_x_count;
+reg [10:0] mipi_y_count;
 
-//Pass to cam DMA fifo
-//------------------scaling-----------------------
+always @(posedge mipi_pclk)
+begin
+   if (~rst_n)
+   begin
+      mipi_x_count   <= 11'd0;
+      mipi_y_count   <= 11'd0;
+   end else begin
+      //Incoming frame data 2PPC
+      mipi_x_count   <= (rgb_pixel_out_valid && (mipi_x_count == MIPI_FRAME_WIDTH/2-1))                                          ? 11'd0                 :
+                        (rgb_pixel_out_valid)                                                                                    ? mipi_x_count + 1'b1   : mipi_x_count;
+      mipi_y_count   <= (rgb_pixel_out_valid && (mipi_y_count == MIPI_FRAME_HEIGHT-1) && (mipi_x_count == MIPI_FRAME_WIDTH/2-1)) ? 11'd0                 :
+                        (rgb_pixel_out_valid && (mipi_x_count == MIPI_FRAME_WIDTH/2-1))                                          ? mipi_y_count + 1'b1   : mipi_y_count;
+   end
+end
+
 generate
-   if (SCALING_EN == 1) begin
-/* Scaler for MSB RED data */ 
-scaling #(  
-   .P_DEPTH    (8),
-   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
-   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
-   .X_SCALE    (FRAME_WIDTH/2),
-   .Y_SCALE    (FRAME_HEIGHT)
-) scaling_in_r01 (
-   .in_pclk       (mipi_pclk),   
-   .in_arstn      (rst_n),    
-   .in_x          (mipi_x_count),   
-   .in_y          (mipi_y_count),   
-   .in_valid      (rgb_pixel_out_valid),
-   .in_data       (rgb_pixel_r_out_m[15:8]),
-
-   .out_x         (),   
-   .out_y         (),   
-   .out_valid     (cam_dma_fifo_wvalid),
-   .out_data      (rgb_pixel_r_out[15:8]),
-   .overflow_o    (cam_scaler_fifo_overflow),
-   .underflow_o   (cam_scaler_fifo_underflow)
-);
-
-/* Scaler for LSB RED data */ 
-scaling #(  
-   .P_DEPTH    (8),
-   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
-   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
-   .X_SCALE    (FRAME_WIDTH/2),
-   .Y_SCALE    (FRAME_HEIGHT)
-) scaling_in_r00 (
-   .in_pclk       (mipi_pclk),    //d  
-   .in_arstn      (rst_n  ),  
-   .in_x          (mipi_x_count),   
-   .in_y          (mipi_y_count),   
-   .in_valid      (rgb_pixel_out_valid),  
-   .in_data       (rgb_pixel_r_out_m[7:0]),
-   .out_x         (),   
-   .out_y         (),   
-   .out_valid     (),   
-   .out_data      (rgb_pixel_r_out[7:0]),
-   .overflow_o    (),
-   .underflow_o   ()
-);
-
-/* Scaler for MSB GREEN data */ 
-scaling #(  
-   .P_DEPTH    (8),
-   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
-   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
-   .X_SCALE    (FRAME_WIDTH/2),
-   .Y_SCALE    (FRAME_HEIGHT)
-) scaling_in_g01 (
-   .in_pclk       (mipi_pclk),      
-   .in_arstn      (rst_n),    
-   .in_x          (mipi_x_count),   
-   .in_y          (mipi_y_count),   
-   .in_valid      (rgb_pixel_out_valid),  
-   .in_data       (rgb_pixel_g_out_m[15:8]),
-   .out_x         (),   
-   .out_y         (),   
-   .out_valid     (),   
-   .out_data      (rgb_pixel_g_out[15:8]),
-   .overflow_o    (),
-   .underflow_o   ()
-);
-
-/* Scaler for LSB GREEN data */ 
-scaling #(  
-   .P_DEPTH    (8),
-   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
-   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
-   .X_SCALE    (FRAME_WIDTH/2),
-   .Y_SCALE    (FRAME_HEIGHT)
-) scaling_in_g00 (
-   .in_pclk       (mipi_pclk),      
-   .in_arstn      (rst_n),    
-   .in_x          (mipi_x_count),   
-   .in_y          (mipi_y_count),   
-   .in_valid      (rgb_pixel_out_valid),  
-   .in_data       (rgb_pixel_g_out_m[7:0]),
-   .out_x         (),   
-   .out_y         (),   
-   .out_valid     (),   
-   .out_data      (rgb_pixel_g_out[7:0]),
-   .overflow_o    (),
-   .underflow_o   ()
-);
-
-/* Scaler for MSB BLUE data */ 
-scaling #(  
-   .P_DEPTH    (8),
-   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
-   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
-   .X_SCALE    (FRAME_WIDTH/2),
-   .Y_SCALE    (FRAME_HEIGHT)
-) scaling_in_b01 (
-   .in_pclk       (mipi_pclk),      
-   .in_arstn      (rst_n),    
-   .in_x          (mipi_x_count),   
-   .in_y          (mipi_y_count),   
-   .in_valid      (rgb_pixel_out_valid),  
-   .in_data       (rgb_pixel_b_out_m[15:8]),
-   .out_x         (),   
-   .out_y         (),   
-   .out_valid     (),
-   .out_data      (rgb_pixel_b_out[15:8]),
-   .overflow_o    (),
-   .underflow_o   ()
-);
-
-/* Scaler for LSB BLUE data */ 
-scaling #(  
-   .P_DEPTH    (8),
-   .X_TOTAL    (MIPI_FRAME_WIDTH/2),
-   .Y_TOTAL    (MIPI_FRAME_HEIGHT),
-   .X_SCALE    (FRAME_WIDTH/2),
-   .Y_SCALE    (FRAME_HEIGHT)
-) scaling_in_b00 (
-   .in_pclk       (mipi_pclk),      
-   .in_arstn      (rst_n),    
-   .in_x          (mipi_x_count),   
-   .in_y          (mipi_y_count),   
-   .in_valid      (rgb_pixel_out_valid),  
-   .in_data       (rgb_pixel_b_out_m[7:0]),
-   .out_x         (),   
-   .out_y         (),   
-   .out_valid     (),   
-   .out_data      (rgb_pixel_b_out[7:0]),
-   .overflow_o    (),
-   .underflow_o   ()
-);
-
-end else begin
-//----------------------cropping----------------------
-/* 2 pixels per clk */
-crop #(  
-   .P_DEPTH    (16),
-   .X_START    (0),
-   .Y_START    (0),
-   .X_WIN      (FRAME_WIDTH/2),
-   .Y_WIN      (FRAME_HEIGHT)
-) crop_inst (
-   .in_pclk       (mipi_pclk),      
-   .in_arstn      (rst_n),    
-
-   .in_x          (mipi_x_count),   
-   .in_y          (mipi_y_count),   
-   .in_valid      (rgb_pixel_out_valid),
-   .in_data_00    (rgb_pixel_r_out_m[15:0]), 
-   .in_data_01    (rgb_pixel_g_out_m[15:0]), 
-   .in_data_10    (rgb_pixel_b_out_m[15:0]), 
-
-   .out_x         (),   
-   .out_y         (),   
-   .out_valid     (cam_dma_fifo_wvalid),  
-   .out_hs        (),   
-   .out_data_00   (rgb_pixel_r_out[15:0]),   
-   .out_data_01   (rgb_pixel_g_out[15:0]),   
-   .out_data_10   (rgb_pixel_b_out[15:0])
-);  
-
+   if (CROP_SCALE == 0) begin
+      //Cropping - 2 pixels per clock
+      crop #(
+         .P_DEPTH    (16),
+         .X_START    (0),
+         .Y_START    (0),
+         .X_WIN      (FRAME_WIDTH/2),
+         .Y_WIN      (FRAME_HEIGHT)
+      ) u_cam_crop (
+         .in_pclk       (mipi_pclk),
+         .in_arstn      (rst_n),
+         .in_x          (mipi_x_count),
+         .in_y          (mipi_y_count),
+         .in_valid      (rgb_pixel_out_valid),
+         .in_data_00    (rgb_pixel_r_out_m[15:0]),
+         .in_data_01    (rgb_pixel_g_out_m[15:0]),
+         .in_data_10    (rgb_pixel_b_out_m[15:0]),
+         .out_x         (),
+         .out_y         (),
+         .out_valid     (cam_dma_fifo_wvalid),
+         .out_hs        (),
+         .out_data_00   (rgb_pixel_r_out[15:0]),
+         .out_data_01   (rgb_pixel_g_out[15:0]),
+         .out_data_10   (rgb_pixel_b_out[15:0])
+      );
+      
+      //Terminate non-related signals
+      assign cam_scaler_fifo_overflow  = 1'b0;
+      assign cam_scaler_fifo_underflow = 1'b0;
+      
+   end else begin
+      //Scaler for MSB RED data
+      scaling #(
+         .P_DEPTH    (8),
+         .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+         .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+         .X_SCALE    (FRAME_WIDTH/2),
+         .Y_SCALE    (FRAME_HEIGHT)
+      ) u_cam_scale_msb_red (
+         .in_pclk       (mipi_pclk),
+         .in_arstn      (rst_n),
+         .in_x          (mipi_x_count),
+         .in_y          (mipi_y_count),
+         .in_valid      (rgb_pixel_out_valid),
+         .in_data       (rgb_pixel_r_out_m[15:8]),
+         .out_x         (),
+         .out_y         (),
+         .out_valid     (cam_dma_fifo_wvalid),
+         .out_data      (rgb_pixel_r_out[15:8]),
+         .overflow_o    (cam_scaler_fifo_overflow),
+         .underflow_o   (cam_scaler_fifo_underflow)
+      );
+      
+      //Scaler for LSB RED data
+      scaling #(
+         .P_DEPTH    (8),
+         .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+         .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+         .X_SCALE    (FRAME_WIDTH/2),
+         .Y_SCALE    (FRAME_HEIGHT)
+      ) u_cam_scale_lsb_red (
+         .in_pclk       (mipi_pclk),
+         .in_arstn      (rst_n),
+         .in_x          (mipi_x_count),
+         .in_y          (mipi_y_count),
+         .in_valid      (rgb_pixel_out_valid),
+         .in_data       (rgb_pixel_r_out_m[7:0]),
+         .out_x         (),
+         .out_y         (),
+         .out_valid     (),
+         .out_data      (rgb_pixel_r_out[7:0]),
+         .overflow_o    (),
+         .underflow_o   ()
+      );
+      
+      //Scaler for MSB GREEN data
+      scaling #(
+         .P_DEPTH    (8),
+         .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+         .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+         .X_SCALE    (FRAME_WIDTH/2),
+         .Y_SCALE    (FRAME_HEIGHT)
+      ) u_cam_scale_msb_green (
+         .in_pclk       (mipi_pclk),
+         .in_arstn      (rst_n),
+         .in_x          (mipi_x_count),
+         .in_y          (mipi_y_count),
+         .in_valid      (rgb_pixel_out_valid),
+         .in_data       (rgb_pixel_g_out_m[15:8]),
+         .out_x         (),
+         .out_y         (),
+         .out_valid     (),
+         .out_data      (rgb_pixel_g_out[15:8]),
+         .overflow_o    (),
+         .underflow_o   ()
+      );
+      
+      //Scaler for LSB GREEN data
+      scaling #(
+         .P_DEPTH    (8),
+         .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+         .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+         .X_SCALE    (FRAME_WIDTH/2),
+         .Y_SCALE    (FRAME_HEIGHT)
+      ) u_cam_scale_lsb_green (
+         .in_pclk       (mipi_pclk),
+         .in_arstn      (rst_n),
+         .in_x          (mipi_x_count),
+         .in_y          (mipi_y_count),
+         .in_valid      (rgb_pixel_out_valid),
+         .in_data       (rgb_pixel_g_out_m[7:0]),
+         .out_x         (),
+         .out_y         (),
+         .out_valid     (),
+         .out_data      (rgb_pixel_g_out[7:0]),
+         .overflow_o    (),
+         .underflow_o   ()
+      );
+      
+      //Scaler for MSB BLUE data
+      scaling #(
+         .P_DEPTH    (8),
+         .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+         .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+         .X_SCALE    (FRAME_WIDTH/2),
+         .Y_SCALE    (FRAME_HEIGHT)
+      ) u_cam_scale_msb_blue (
+         .in_pclk       (mipi_pclk),
+         .in_arstn      (rst_n),
+         .in_x          (mipi_x_count),
+         .in_y          (mipi_y_count),
+         .in_valid      (rgb_pixel_out_valid),
+         .in_data       (rgb_pixel_b_out_m[15:8]),
+         .out_x         (),
+         .out_y         (),
+         .out_valid     (),
+         .out_data      (rgb_pixel_b_out[15:8]),
+         .overflow_o    (),
+         .underflow_o   ()
+      );
+      
+      //Scaler for LSB BLUE data
+      scaling #(
+         .P_DEPTH    (8),
+         .X_TOTAL    (MIPI_FRAME_WIDTH/2),
+         .Y_TOTAL    (MIPI_FRAME_HEIGHT),
+         .X_SCALE    (FRAME_WIDTH/2),
+         .Y_SCALE    (FRAME_HEIGHT)
+      ) u_cam_scale_lsb_blue (
+         .in_pclk       (mipi_pclk),
+         .in_arstn      (rst_n),
+         .in_x          (mipi_x_count),
+         .in_y          (mipi_y_count),
+         .in_valid      (rgb_pixel_out_valid),
+         .in_data       (rgb_pixel_b_out_m[7:0]),
+         .out_x         (),
+         .out_y         (),
+         .out_valid     (),
+         .out_data      (rgb_pixel_b_out[7:0]),
+         .overflow_o    (),
+         .underflow_o   ()
+      );
    end
 endgenerate
 
@@ -574,21 +576,28 @@ always @(posedge mipi_pclk)
 begin
    if (~rst_n) 
    begin
-      trigger_capture_frame_r1   <= 1'b0;
-      trigger_capture_frame_r2   <= 1'b0;
-      trigger_capture_frame_r3   <= 1'b0;
-      trigger_capture_frame_hold <= 1'b0;
-      capture_frame              <= 1'b0;
-      rgb_gray_r                 <= 1'b0;
-      rgb_gray_synced            <= 1'b0;
+      trigger_capture_frame_r1      <= 1'b0;
+      trigger_capture_frame_r2      <= 1'b0;
+      trigger_capture_frame_r3      <= 1'b0;
+      trigger_capture_frame_hold    <= 1'b0;
+      continuous_capture_frame_r1   <= 1'b0;
+      continuous_capture_frame_r2   <= 1'b0;
+      continuous_capture_frame_hold <= 1'b0;
+      capture_frame                 <= 1'b0;
+      rgb_gray_r                    <= 1'b0;
+      rgb_gray_synced               <= 1'b0;
    end else begin
-      trigger_capture_frame_r1   <= trigger_capture_frame;
-      trigger_capture_frame_r2   <= trigger_capture_frame_r1;
-      trigger_capture_frame_r3   <= trigger_capture_frame_r2;
-      trigger_capture_frame_hold <= (~trigger_capture_frame_r3 && trigger_capture_frame_r2) ? 1'b1 : (cam_dma_fifo_wvalid)               ? 1'b0 : trigger_capture_frame_hold;
-      capture_frame              <= (trigger_capture_frame_hold && cam_vs_fall_edge)        ? 1'b1 : (capture_frame && cam_vs_fall_edge) ? 1'b0 : capture_frame;
-      rgb_gray_r                 <= rgb_gray;
-      rgb_gray_synced            <= rgb_gray_r;
+      trigger_capture_frame_r1      <= trigger_capture_frame;
+      trigger_capture_frame_r2      <= trigger_capture_frame_r1;
+      trigger_capture_frame_r3      <= trigger_capture_frame_r2;
+      trigger_capture_frame_hold    <= (~trigger_capture_frame_r3 && trigger_capture_frame_r2) ? 1'b1 : (cam_dma_fifo_wvalid) ? 1'b0 : trigger_capture_frame_hold;
+      continuous_capture_frame_r1   <= continuous_capture_frame;
+      continuous_capture_frame_r2   <= continuous_capture_frame_r1;
+      continuous_capture_frame_hold <= (continuous_capture_frame_r2) ? 1'b1 : continuous_capture_frame_hold;
+      capture_frame                 <= ((trigger_capture_frame_hold | continuous_capture_frame_hold) & cam_vs_fall_edge) ? 1'b1 : 
+                                       (capture_frame & cam_vs_fall_edge & (~continuous_capture_frame_hold))             ? 1'b0 : capture_frame;
+      rgb_gray_r                    <= rgb_gray;
+      rgb_gray_synced               <= rgb_gray_r;
    end
 end
 
