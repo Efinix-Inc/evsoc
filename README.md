@@ -74,8 +74,8 @@ Efinity® IDE is required for project compilation and bitstream generation, wher
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
 ### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2021.1.165.4.10
-- [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.3
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2021.2.323.1.8
+- [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.4
 
 ## Documentation
 - [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC)
