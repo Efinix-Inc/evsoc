@@ -275,9 +275,7 @@ cam_pixel_remap_fifo u_cam_pixel_remap_fifo (
    .rd_en_i        (cam_pixel_remap_fifo_re),
    .a_rst_i        (~rst_n),
    .wdata          (cam_pixel_remap_fifo_wdata),
-   .datacount_o    (),
-   .wr_datacount_o (),
-   .rd_datacount_o ()
+   .datacount_o    ()
 );
 
 //Adjusted vsync signal for 2PPC outputs
@@ -621,9 +619,7 @@ cam_dma_fifo u_cam_dma_fifo (
    .rd_en_i        (cam_dma_fifo_re),
    .a_rst_i        (~rst_n),
    .wdata          (cam_dma_fifo_wdata),
-   .datacount_o    (),
-   .wr_datacount_o (),
-   .rd_datacount_o ()
+   .datacount_o    ()
 );
 
 reg [31:0] timer_count;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change_date="Fri October 22 2021 12:31:53" location="C:/Users/yhlee/Desktop/ti60_prodkit/clean_up/cleanup_v3_rename_panel_sim_model/evsoc/soc_hw/efinity_project/isp_example_design/Ti60F225_devkit_dsi" sw_version="2021.1.165.3.18" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change_date="Tue January 25 2022 12:36:30" location="C:/Users/yhlee/Desktop/efx_evsoc-v1.4.1/evsoc/soc_hw/efinity_project/isp_example_design/Ti60F225_devkit_dsi" sw_version="2021.2.323.1.8" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium"/>
         <efx:device name="Ti60F225"/>
@@ -20,7 +20,6 @@
         <efx:design_file name="../../../source_ti60/cam/crop.v" version="default" library="default"/>
         <efx:design_file name="../../../source_ti60/cam/scale_down_2x_nn.v" version="default" library="default"/>
         <efx:design_file name="../../../source_ti60/cam/scale_up_2x_nn.v" version="default" library="default"/>
-        <efx:design_file name="../../../source_ti60/mipi/efx_dsi_tx.sv" version="default" library="default"/>
         <efx:design_file name="../../../source_ti60/display/vga_gen.v" version="default" library="default"/>
         <efx:design_file name="../../../source_ti60/display/display_dsi.v" version="default" library="default"/>
         <efx:design_file name="../../../source_ti60/display/panel_config.v" version="default" library="default"/>
@@ -68,6 +67,9 @@
         <efx:ip instance_name="hw_accel_dma_out_fifo" path="ip/hw_accel_dma_out_fifo/settings.json">
             <efx:ip_src_file name="hw_accel_dma_out_fifo.v"/>
         </efx:ip>
+        <efx:ip instance_name="dsi_tx_display" path="ip/dsi_tx_display/settings.json">
+            <efx:ip_src_file name="dsi_tx_display.sv"/>
+        </efx:ip>
     </efx:ip_info>
     <efx:synthesis tool_name="efx_map">
         <efx:param name="work_dir" value="work_syn" value_type="e_string"/>
@@ -85,6 +87,9 @@
         <efx:param name="dsp-output-regs-packing" value="1" value_type="e_option"/>
         <efx:param name="bram_output_regs_packing" value="1" value_type="e_option"/>
         <efx:param name="blast_const_operand_adders" value="1" value_type="e_option"/>
+        <efx:param name="operator-sharing" value="0" value_type="e_option"/>
+        <efx:param name="optimize-adder-tree" value="0" value_type="e_option"/>
+        <efx:param name="pack-luts-to-comb4" value="0" value_type="e_option"/>
         <efx:param name="include" value="ip/csi2_rx_cam" value_type="e_string"/>
         <efx:param name="include" value="ip/hbram" value_type="e_string"/>
         <efx:param name="include" value="../../../source_ti60/soc" value_type="e_string"/>
@@ -93,12 +98,13 @@
         <efx:param name="include" value="ip/cam_pixel_remap_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_in_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/dsi_tx_display" value_type="e_string"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
-        <efx:param name="optimization_level" value="TIMING_2" value_type="e_option"/>
+        <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
         <efx:param name="seed" value="0" value_type="e_integer"/>
     </efx:place_and_route>
     <efx:bitstream_generation tool_name="efx_pgm">
@@ -111,10 +117,23 @@
         <efx:param name="io_weak_pullup" value="on" value_type="e_bool"/>
         <efx:param name="oscillator_clock_divider" value="DIV8" value_type="e_option"/>
         <efx:param name="enable_crc_check" value="on" value_type="e_bool"/>
+        <efx:param name="bitstream_compression" value="on" value_type="e_bool"/>
+        <efx:param name="active_capture_clk_edge" value="posedge" value_type="e_option"/>
+        <efx:param name="release_tri_then_reset" value="on" value_type="e_bool"/>
+        <efx:param name="enable_external_master_clock" value="off" value_type="e_bool"/>
+        <efx:param name="jtag_usercode" value="0xFFFFFFFF" value_type="e_string"/>
     </efx:bitstream_generation>
     <efx:debugger>
         <efx:param name="work_dir" value="work_dbg" value_type="e_string"/>
         <efx:param name="auto_instantiation" value="off" value_type="e_bool"/>
         <efx:param name="profile" value="debug_profile.wizard.json" value_type="e_string"/>
     </efx:debugger>
+    <efx:security>
+        <efx:param name="enable_bitstream_encrypt" value="off" value_type="e_bool"/>
+        <efx:param name="enable_bitstream_auth" value="off" value_type="e_bool"/>
+        <efx:param name="encryption_key_file" value="NONE" value_type="e_string"/>
+        <efx:param name="auth_key_file" value="NONE" value_type="e_string"/>
+        <efx:param name="randomize_iv_value" value="off" value_type="e_bool"/>
+        <efx:param name="iv_value" value="" value_type="e_string"/>
+    </efx:security>
 </efx:project>

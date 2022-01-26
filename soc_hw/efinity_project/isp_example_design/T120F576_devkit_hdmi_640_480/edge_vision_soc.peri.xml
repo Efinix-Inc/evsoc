@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="T120F576" location="C:\efx_evsoc-v1.3\evsoc\soc_hw\efinity_project\isp_example_design\T120F576_devkit_hdmi_640_480" version="2020.2.299" db_version="20211999" last_change_date="Tue Jul 27 10:43:20 2021" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="T120F576" location="C:\Users\yhlee\Desktop\efx_evsoc-v1.4.1\evsoc\soc_hw\efinity_project\isp_example_design\T120F576_devkit_hdmi_640_480" version="2021.2.323.1.8" db_version="20212001" last_change_date="Mon Jan 24 14:35:47 2022" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="3.3 V LVTTL / LVCMOS"/>
@@ -134,31 +134,31 @@
     </efxpt:pll_info>
     <efxpt:lvds_info>
         <efxpt:lvds name="lvds_1a_DATA" lvds_def="GPIOB_TX21" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_1a_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_1a_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_1b_DATA" lvds_def="GPIOB_TX24" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_1b_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_1b_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_1c_DATA" lvds_def="GPIOB_TX25" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_1c_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_1c_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_1d_DATA" lvds_def="GPIOB_TX23" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_1d_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_1d_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_2a_DATA" lvds_def="GPIOB_TX10" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_2a_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2a_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_2b_DATA" lvds_def="GPIOB_TX12" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_2b_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2b_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_2c_DATA" lvds_def="GPIOB_TX11" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_2c_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2c_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_2d_DATA" lvds_def="GPIOB_TX22" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_2d_DATA" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2d_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_clk" lvds_def="GPIOB_TX26" ops_type="tx">
-            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" clock_div="1" out_bname="lvds_clk" oe_name="" mode="out" serialization="7" reduced_swing="false" load="3"/>
+            <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_clk" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
     </efxpt:lvds_info>
     <efxpt:mipi_info>

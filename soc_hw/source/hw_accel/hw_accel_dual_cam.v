@@ -98,9 +98,7 @@ module hw_accel_dual_cam #(
       .rd_en_i          (dual_cam_scaling_fifo_re),
       .a_rst_i          (rst),
       .wdata            (dual_cam_scaling_fifo_wdata),
-      .datacount_o      (),
-      .wr_datacount_o   (),
-      .rd_datacount_o   ()
+      .datacount_o      ()
    );
 
 

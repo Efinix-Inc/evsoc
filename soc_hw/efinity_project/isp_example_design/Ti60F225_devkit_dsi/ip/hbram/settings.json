@@ -3,13 +3,13 @@
         "-o",
         "hbram",
         "--base_path",
-        "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip",
+        "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
-            "name": "efx_hyper_ram",
             "library": "memory_controller",
-            "version": "1.0"
+            "name": "efx_hyper_ram",
+            "version": "2.0"
         }
     ],
     "conf": {
@@ -28,31 +28,112 @@
         "AXI_AWR_DEPTH": "16",
         "AXI_R_DEPTH": "256",
         "AXI_W_DEPTH": "256",
+        "RDO_DELAY": "3",
         "CAL_CLK_CH": "4",
         "CAL_MODE": "2",
-        "MHZ": "200"
+        "MHZ": "200",
+        "USER_IF": "1",
+        "NATIVE_DBW": "32",
+        "NATIVE_R_DEPTH": "256",
+        "NATIVE_W_DEPTH": "256"
     },
     "output": {
         "external_source": [
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram.v",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram_define.vh",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram_tmpl.v",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\hbram_tmpl.vhd"
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\hbram_tmpl.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\hbram_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\hbram.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\hbram_tmpl.vhd"
         ],
-        "external_example_fpga_soft": [
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\constraints.sdc",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram_ti60.peri.xml",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\efx_pnr_settings.ini",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram_ti60.xml",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\memory_checker.v",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\memory_checker_start.v",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\top.v",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\soft_logic_cal_example.v",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\soft_logic_cal_example_define.vh",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram.v",
-            "C:\\Efinity\\TI60\\Project\\Production\\TI60F225_Release_16VC_DEMO_2021Sep15\\efinity_tx\\ip\\hbram\\Ti60F225_devkit_soft_logic_cal\\hbram_define.vh"
+        "external_testbench_synopsys": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\synopsys\\hbram.sv"
+        ],
+        "external_testbench_modelsim": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\modelsim\\hbram.sv"
+        ],
+        "external_testbench_ncsim": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\ncsim\\hbram.sv"
+        ],
+        "external_testbench": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\tb.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\clock_gen.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\efx_crc32.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\efx_lut4.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\EFX_GPIO_model.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\flist",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\modelsim.do",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\modelsim.sh",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\xrun.sh",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\hbram.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Testbench\\hbram_define.vh"
+        ],
+        "external_example_1": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_2": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_3": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_4": [
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\Desktop\\efx_evsoc-v1.4.1\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\Ti60F225_devkit_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_define.vh"
         ]
     },
-    "sw_version": "2021.1.165",
-    "generated_date": "2021-09-15T09:35:13.185843"
+    "sw_version": "2021.2.323",
+    "generated_date": "2022-01-24T07:51:01.559753"
 }

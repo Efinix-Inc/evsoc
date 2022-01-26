@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 // Copyright (c) 2021 github-efx
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -931,7 +932,7 @@ display_dsi #(
 
 ////////////////////////////////////////////////////////////////
 // MIPI DSI TX Channel - Display panel
-efx_dsi_tx u_efx_dsi_tx (
+dsi_tx_display u_dsi_tx_display (
    .reset_n          (w_sys_dp_arstn),
    .clk              (i_mipi_clk),     //100
    .reset_byte_HS_n  (w_sys_dp_arstn),

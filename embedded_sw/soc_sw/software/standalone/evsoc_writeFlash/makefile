@@ -2,7 +2,6 @@ PROJ_NAME=evsoc_writeFlash
 
 STANDALONE = ..
 
-
 SRCS = 	$(wildcard src/*.c) \
 		$(wildcard src/*.cpp) \
 		$(wildcard src/*.S) \

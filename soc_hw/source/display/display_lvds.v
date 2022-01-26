@@ -224,9 +224,7 @@ display_dma_fifo u_display_dma_fifo (
    .rd_en_i        (display_dma_fifo_re),
    .a_rst_i        (~rst_n),
    .wdata          (display_dma_fifo_wdata),
-   .datacount_o    (display_dma_fifo_dcount),
-   .wr_datacount_o (),
-   .rd_datacount_o ()
+   .datacount_o    (display_dma_fifo_dcount)
 );
 
 //Facilitate readout valid frames from fifo (once start, should not stop for valid hde, cautious on potential fifo underflow)

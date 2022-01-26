@@ -1,10 +1,6 @@
 PROJ_NAME=evsoc_dualCam
 STANDALONE = ..
 
-
-DEBUG = yes
-DEBUG_og = no
-
 SRCS = $(wildcard src/*.c) \
 		 $(wildcard src/*.cpp) \
 		 $(wildcard src/*.S) \

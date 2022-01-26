@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="T120F324" location="C:\efx_evsoc-v1.3\evsoc\soc_hw\efinity_project\isp_example_design\T120F324_devkit_hdmi_1280_720" version="2021.1.165.1.6" db_version="20211999" last_change_date="Thu Jul 29 16:31:46 2021" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="T120F324" location="C:\Users\yhlee\Desktop\efx_evsoc-v1.4.1\evsoc\soc_hw\efinity_project\isp_example_design\T120F324_devkit_hdmi_1280_720" version="2021.2.323.1.8" db_version="20212001" last_change_date="Mon Jan 24 14:22:30 2022" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="3.3 V LVTTL / LVCMOS"/>

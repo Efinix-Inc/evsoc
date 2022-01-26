@@ -302,9 +302,7 @@ module hw_accel_wrapper_dual_cam
       .rd_en_i        (dma1_in_fifo_re),
       .a_rst_i        (rst_hw_accel),
       .wdata          (dma1_in_fifo_wdata),
-      .datacount_o    (),
-      .wr_datacount_o (),
-      .rd_datacount_o ()
+      .datacount_o    ()
    );
    
    hw_accel_dma_in_fifo u_dma2_in_fifo (
@@ -323,9 +321,7 @@ module hw_accel_wrapper_dual_cam
       .rd_en_i        (dma2_in_fifo_re),
       .a_rst_i        (rst_hw_accel),
       .wdata          (dma2_in_fifo_wdata),
-      .datacount_o    (),
-      .wr_datacount_o (),
-      .rd_datacount_o ()
+      .datacount_o    ()
    );
    
    //DMA write/output fifo - FWFT mode
@@ -352,9 +348,7 @@ module hw_accel_wrapper_dual_cam
       .rd_en_i        (dma_out_fifo_re),
       .a_rst_i        (rst_hw_accel),
       .wdata          (dma_out_fifo_wdata),
-      .datacount_o    (),
-      .wr_datacount_o (),
-      .rd_datacount_o ()
+      .datacount_o    ()
    );
 
    //Hardware accelerator - Image Merger

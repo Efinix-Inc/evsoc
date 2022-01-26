@@ -1,10 +1,6 @@
 PROJ_NAME=evsoc_ispExample_sim
 STANDALONE = ..
 
-
-DEBUG = yes
-DEBUG_og = no
-
 SRCS = $(wildcard src/*.c) \
 		 $(wildcard src/*.cpp) \
 		 $(wildcard src/*.S) \
