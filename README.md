@@ -9,6 +9,10 @@ Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framewor
 - [Videos](#videos)
 - [Frequently Asked Questions](#frequently-asked-questions)
 
+**Note:**
+- The *main* branch contains new version of EVSoC, which is based on user configurable Efinix Sapphire RISC-V SoC.
+- A branch named *evsoc_ruby* is created for the older version of EVSoC, which is based on Efinix Ruby Vision RISC-V SoC.
+
 ## Overview
 
 Key features:
@@ -16,7 +20,7 @@ Key features:
 - **Established data transfer flow** between main memory and different building blocks through Direct Memory Access (DMA)
 - **Ready-to-deploy** domain-specific **I/O peripherals and interfaces** (SW drivers, HW controllers, pre- and post-processing blocks are provided)
 - Highly **flexible HW/SW co-design** is feasible (RISC-V performs control & compute, HW accelerator for time-critical computations)
-- Enable **quick porting** of users' design for **edge AI and vision solutions**  
+- Enable **quick porting** of users' design for **edge AI and vision solutions**
 <br />
 
 ![](docs/evsoc_top_level.png "EVSoC Top-Level Block Diagram")
@@ -74,11 +78,12 @@ Efinity® IDE is required for project compilation and bitstream generation, wher
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
 ### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2021.2.323.1.8
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2021.2.323.2.18
 - [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.4
 
 ## Documentation
 - [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC)
+- [Sapphire RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=DS-SAPPHIREUG)
 - [Ruby Vision RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=DS-RUBYV)
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F324-DK-UG)
 - [Trion T120 BGA576 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F576-DK-UG)
@@ -95,91 +100,117 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 ## Frequently Asked Questions
 1.  **Where are the HW/RTL and SW/firmware source files located?**
 
-    The top-level RTL file is named *edge_vision_soc.v*, which is located in respective project folder in *soc_hw/efinity_project* directory. The rest of the RTL files are placed in *soc_hw/source\** directory, which are organized according to respective building block. On the other hand, the main firmware file is named *main.c*, which is in *embedded_sw/soc_sw\*/software/standalone/\*/src* directory, where other related drivers are provided in the same folder as well.
-    
+    The top-level RTL file is named *edge_vision_soc.v*, located in individual project folder. The rest of the RTL files are placed in *source* directory, which are organized according to respective building block. On the other hand, the main firmware file is named *main.c*, located in *embedded_sw/SapphireSoc/software/evsoc/\*/src* directory, where other related drivers are provided in the same folder as well.
+
     Below depicts the directory structure of EVSoC framework:
     
     ```
-    evsoc
-    ├── embedded_sw
-    │   ├── soc_sw
-    │   │   ├── bsp
-    │   │   ├── config
-    │   │   ├── config_linux
-    │   │   └── software
-    │   └── soc_sw_ti60
-    │       ├── bsp
-    │       ├── config
-    │       ├── config_linux
-    │       ├── software
-    │       └── tool
-    └── soc_hw
-        ├── efinity_project
-        │   ├── dual_cam_design
-        │   │   ├── T120F324_devkit_hdmi_1280_720
-        │   │   └── T120F576_devkit_hdmi_1280_720
-        │   └── isp_example_design
-        │       ├── T120F324_devkit_hdmi_1280_720
-        │       ├── T120F324_devkit_hdmi_640_480
-        │       ├── T120F576_devkit_hdmi_1280_720
-        │       ├── T120F576_devkit_hdmi_640_480
-        │       └── Ti60F225_devkit_dsi
+    ├── T120F324_1280_720
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── evsoc
+    │   ├── ip
+    │   ├── sim
+    │   └── source
+    ├── T120F324_1280_720_dualCam
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── evsoc
+    │   ├── ip
+    │   └── source
+    ├── T120F324_640_480
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── evsoc
+    │   ├── ip
+    │   ├── sim
+    │   └── source
+    ├── T120F576_1280_720
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── evsoc
+    │   ├── ip
+    │   ├── sim
+    │   └── source
+    ├── T120F576_1280_720_dualCam
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── evsoc
+    │   ├── ip
+    │   └── source
+    ├── T120F576_640_480
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── evsoc
+    │   ├── ip
+    │   ├── sim
+    │   └── source
+    └── Ti60F225_dsi
+        ├── embedded_sw
+        │   └── SapphireSoc
+        │       └── software
+        │           └── evsoc
+        ├── ip
         ├── sim
-        ├── sim_ti60
-        ├── source
-        └── source_ti60
+        └── source
     ```
     
     ***Note:*** Source files for Efinix soft-IP(s) are to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder. Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for more detail.
     
 2.  **How much is the resource consumption for EVSoC framework?**
 
-    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2021.1.
+    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2021.2.
     
     **Resource utilization for ISP example design (640x480 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 22755 | 12823 | 2214 | 14750 | 145       | 4    |
-    | RISC-V SoC              |   -   | 6357  | 702  | 7357  | 70        | 4    |
-    | DMA Controller          |   -   | 4784  | 672  | 5268  | 29        | 0    |
-    | Camera                  |   -   | 771   | 666  | 1057  | 22        | 0    |
-    | Display                 |   -   | 180   | 0    | 254   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 619   | 162  | 588   | 14        | 0    |
+    | Edge Vision SoC (Total) | 33446 | 16372 | 2543 | 24356 | 192       | 4    |
+    | RISC-V SoC              |   -   | 7156  | 534  | 6400  | 54        | 4    |
+    | DMA Controller          |   -   | 7553  | 1106 | 15967 | 92        | 0    |
+    | Camera                  |   -   | 764   | 691  | 1035  | 22        | 0    |
+    | Display                 |   -   | 171   | 13   | 219   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 616   | 187  | 577   | 14        | 0    |
     
     **Resource utilization for ISP example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 22718 | 12799 | 2214 | 14734 | 157       | 4    |
-    | RISC-V SoC              |   -   | 6357  | 702  | 7333  | 70        | 4    |
-    | DMA Controller          |   -   | 4745  | 672  | 5273  | 29        | 0    |
-    | Camera                  |   -   | 772   | 666  | 1049  | 22        | 0    |
-    | Display                 |   -   | 181   | 0    | 250   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 632   | 162  | 610   | 26        | 0    |
+    | Edge Vision SoC (Total) | 34633 | 16404 | 2543 | 23638 | 204       | 4    |
+    | RISC-V SoC              |   -   | 7156  | 534  | 6354  | 54        | 4    |
+    | DMA Controller          |   -   | 7570  | 1106 | 15250 | 92        | 0    |
+    | Camera                  |   -   | 765   | 691  | 1055  | 22        | 0    |
+    | Display                 |   -   | 172   | 13   | 214   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 629   | 187  | 595   | 26        | 0    |
     
     **Resource utilization for dual-camera example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 31743 | 16778 | 3180 | 21759 | 201       | 4    |
-    | RISC-V SoC              |   -   | 6357  | 702  | 7275  | 70        | 4    |
-    | DMA Controller          |   -   | 7716  | 972  | 10893 | 36        | 0    |
-    | Camera (x2)             |   -   | 1544  | 1332 | 2156  | 44        | 0    |
-    | Display                 |   -   | 181   | 0    | 229   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 854   | 162  | 920   | 41        | 0    |
+    | Edge Vision SoC (Total) | 37871 | 18198 | 3302 | 26034 | 344       | 4    |
+    | RISC-V SoC              |   -   | 7127  | 534  | 6358  | 54        | 4    |
+    | DMA Controller          |   -   | 8382  | 1156 | 16290 | 195       | 0    |
+    | Camera (x2)             |   -   | 1530  | 1382 | 2061  | 44        | 0    |
+    | Display                 |   -   | 172   | 13   | 237   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 819   | 205  | 894   | 41        | 0    |
     
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2021.1.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2021.2.
     
-    **Resource utilization for ISP example design (1280x720 resolution):**
+    **Resource utilization for ISP example design:**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 38727 | 19246 | 2673 | 28265 | 211        | 4   |
-    | RISC-V SoC               |   -   | 6196  | 702  | 7301  | 59         | 4   |
-    | DMA Controller           |   -   | 6162  | 745  | 8393  | 67         | 0   |
-    | CSI-2 RX Controller Core |   -   | 871   | 60   | 2149  | 15         | 0   |
-    | DSI TX Controller Core   |   -   | 1574  | 111  | 4506  | 21         | 0   |
-    | HyperRAM Controller Core |   -   | 1738  | 263  | 2601  | 18         | 0   |
-    | Camera                   |   -   | 814   | 618  | 1039  | 11         | 0   |
-    | Display                  |   -   | 489   | 0    | 716   | 12         | 0   |
-    | Hardware Accelerator     |   -   | 630   | 162  | 606   | 8          | 0   |
+    | Edge Vision SoC (Total)  | 34289 | 17653 | 2376 | 23941 | 206        | 4   |
+    | RISC-V SoC               |   -   | 6790  | 508  | 5788  | 49         | 4   |
+    | DMA Controller           |   -   | 4763  | 683  | 6578  | 53         | 0   |
+    | CSI-2 RX Controller Core |   -   | 835   | 41   | 2124  | 15         | 0   |
+    | DSI TX Controller Core   |   -   | 1486  | 93   | 4039  | 17         | 0   |
+    | HyperRAM Controller Core |   -   | 1153  | 194  | 2186  | 13         | 0   |
+    | Camera                   |   -   | 776   | 643  | 996   | 11         | 0   |
+    | Display                  |   -   | 341   | 15   | 598   | 27         | 0   |
+    | Hardware Accelerator     |   -   | 620   | 187  | 594   | 8          | 0   |
     
     ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are served as reference purposes.
 
@@ -191,13 +222,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     
     In the case of the above expected outputs are not observed, user is to check on the board, camera, display, software setup, etc., with reference to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC).
 
-4.	**Are the software apps provided in the ISP example design can be used for a different resolution setting?**
-
-    Yes. User is required to update *FRAME_WIDTH* and *FRAME_HEIGHT* parameter values in firmware (*main.c*) accordingly. Default values are set for 1280x720 resolution.
-
-    ***Note:*** Please make sure the parameter values assigned in SW (*main.c*) match with the parameter values (*FRAME_WIDTH* and *FRAME_HEIGHT*) set for HW (*edge_vision_soc.v*).
-
-5.	**How to modify camera input resolution from MIPI interface?**
+4.	**How to modify camera input resolution from MIPI interface?**
 
     For HW, modify *MIPI_FRAME_WIDTH* and *MIPI_FRAME_HEIGHT* parameter values in *edge_vision_soc.v* accordingly. For SW, note to ensure the same set of values are set in camera SW driver (*PiCamDriver.c*) under *PiCam_init()* function, for example:
     ```
@@ -205,7 +230,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     ```
     Refer to *Raspberry Pi Camera Module v2 Datasheet* for more detail about camera setting.
 
-6.	**Why is after enabling Sobel operation (either HW or SW mode) in the firmware, display shows only black with scatter white lines/dots?**
+5.	**Why is after enabling Sobel operation (either HW or SW mode) in the firmware, display shows only black with scatter white lines/dots?**
 
     There are several potential factors that contribute to this, please try out the following adjustments:
 
@@ -219,19 +244,19 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 
     in firmware (*main.c*). The Sobel threshold value is to be adjusted based on the lighting condition where the camera operates at.
 
-7.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
+6.	**Why is zooming effect observed on ISP example design, especially for 640x480 resolution?**
 
     This is due to the default setup performs cropping on the incoming 1920x1080 resolution MIPI camera frames to a smaller size eg., 640x480 resolution, prior to further processing. To perform resizing with scaling method, modify the *CROP_SCALE* parameter that is passed to *cam_picam_v2* instance at *edge_vision_soc.v*.
     
-8.	**Why are captured frames not of central view of the camera?**
+7.	**Why are captured frames not of central view of the camera?**
 
     This is due to the default setup for cropping is with X- and Y-offsets *(0,0)*. To adjust the cropping offsets, modify the *X_START* and *Y_START* parameter values that are passed to *crop* instance at *cam_picam_v2.v*. 
 
-9.	**What is the mechanism used to configure and trigger an DMA transfer?**
+8.	**What is the mechanism used to configure and trigger an DMA transfer?**
 
-    RISC-V firmware is used to configure DMA controller through APB3 slave port. SW driver for DMA controller (*dmasg.h*) is in *embedded_sw/soc_sw\*/software/standalone/driver* directory.
+    RISC-V firmware is used to configure DMA controller through APB3 slave port. SW driver for DMA controller (*dmasg.h*) is in *embedded_sw/SapphireSoc/software/standalone/driver* directory.
 
-10.	**How does RISC-V detect completion of a triggered DMA transfer?**
+9.	**How does RISC-V detect completion of a triggered DMA transfer?**
 
     User can make use of polling or interrupt mode in RISC-V firmware to detect the completion of an DMA transfer. In the ISP example design, DMA completion checking with polling mode is demonstrated in the firmware (*main.c*).
 
@@ -279,14 +304,14 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     }
     ```
 
-11. **How to customize RISC-V firmware for different HW/SW scenarios available in the ISP example design?**
+10. **How to customize RISC-V firmware for different HW/SW scenarios available in the ISP example design?**
 
     Please refer to *Customizing the Firmware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for the detail.
 
-12. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
+11. **How to replace the example ISP hardware accelerator core with user custom accelerator?**
 
     Please refer to *Using Your Own Hardware Accelerator* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for the detail.
 
-13.	**How to obtain processing frame rate of a specific scenario in the ISP example design?**
+12. **How to obtain processing frame rate of a specific scenario in the ISP example design?**
     
-    Software app *evsoc_ispExample_timestamp* is provided in *embedded_sw/soc_sw\*/software/standalone* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c*. 
+    Software app *evsoc_ispExample_timestamp* is provided in *embedded_sw/SapphireSoc/software/evsoc* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c*. 

@@ -1,0 +1,34 @@
+{
+    "args": [
+        "-o",
+        "ddr_reset_seq",
+        "--base_path",
+        "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory_controller",
+            "name": "efx_ddr_reset_controller",
+            "version": "1.0"
+        }
+    ],
+    "conf": {
+        "FREQ": "100"
+    },
+    "output": {
+        "external_source": [
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\ddr_reset_seq_tmpl.vhd",
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\ddr_reset_seq_define.vh",
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\ddr_reset_seq.v",
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\ddr_reset_seq_tmpl.v"
+        ],
+        "external_testbench": [
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\Testbench\\ddr_reset_sequencer_tb.v",
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\Testbench\\modelsim.do",
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\Testbench\\ddr_reset_seq.v",
+            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\ddr_reset_seq\\Testbench\\ddr_reset_seq_define.vh"
+        ]
+    },
+    "sw_version": "2021.2.323",
+    "generated_date": "2022-02-17T09:32:52.219001"
+}

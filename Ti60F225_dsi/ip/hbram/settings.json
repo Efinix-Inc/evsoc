@@ -1,0 +1,139 @@
+{
+    "args": [
+        "-o",
+        "hbram",
+        "--base_path",
+        "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory_controller",
+            "name": "efx_hyper_ram",
+            "version": "2.0"
+        }
+    ],
+    "conf": {
+        "RAM_DBW": "16",
+        "RAM_ABW": "25",
+        "CR0_DPD": "1",
+        "CR0_ILC": "2",
+        "CR0_ODS": "0",
+        "CR0_HBE": "1",
+        "CR0_WBL": "3",
+        "CR1_MCT": "1",
+        "CR1_PAR": "0",
+        "CR1_HSE": "0",
+        "AXI_DBW": "128",
+        "DDIN_MODE": "0",
+        "AXI_AWR_DEPTH": "16",
+        "AXI_R_DEPTH": "256",
+        "AXI_W_DEPTH": "256",
+        "RDO_DELAY": "3",
+        "CAL_CLK_CH": "4",
+        "CAL_MODE": "2",
+        "MHZ": "200",
+        "USER_IF": "1",
+        "NATIVE_DBW": "32",
+        "NATIVE_R_DEPTH": "256",
+        "NATIVE_W_DEPTH": "256"
+    },
+    "output": {
+        "external_source": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\hbram_tmpl.vhd",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\hbram_define.vh",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\hbram.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\hbram_tmpl.v"
+        ],
+        "external_testbench_synopsys": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\synopsys\\hbram.sv"
+        ],
+        "external_testbench_modelsim": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\modelsim\\hbram.sv"
+        ],
+        "external_testbench_ncsim": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\ncsim\\hbram.sv"
+        ],
+        "external_testbench": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\tb.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\clock_gen.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\efx_crc32.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\efx_lut4.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\EFX_GPIO_model.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\flist",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\modelsim.do",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\modelsim.sh",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\xrun.sh",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\hbram.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Testbench\\hbram_define.vh"
+        ],
+        "external_example_1": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_clk_monitor.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_crc32.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\ed_define.vh",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\constraints.sdc",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_ti60.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\debug_top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\debug_profile.json",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\ed_encrypt.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_2": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_clk_monitor.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_crc32.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\debug_top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_ti60.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\ed_define.vh",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\constraints.sdc",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\debug_profile.json",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\ed_encrypt.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_3": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_crc32.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_clk_monitor.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\debug_top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\debug_profile.json",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_ti60.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\ed_define.vh",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\constraints.sdc",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\ed_encrypt.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_4": [
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_crc32.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_clk_monitor.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\debug_top.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\debug_profile.json",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_ti60.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\ed_define.vh",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\constraints.sdc",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\ed_encrypt.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram.v",
+            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_define.vh"
+        ]
+    },
+    "sw_version": "2021.2.323",
+    "generated_date": "2022-02-17T08:59:11.688178"
+}

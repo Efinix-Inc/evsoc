@@ -1,0 +1,71 @@
+{
+    "args": [
+        "-o",
+        "cam_scaler_fifo",
+        "--base_path",
+        "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "1.0"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH": "8",
+        "DATA_WIDTH": "23",
+        "MODE": "0",
+        "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "16",
+        "PROGRAMMABLE_FULL": "0",
+        "PROG_FULL_NEGATE": "16",
+        "PROG_EMPTY_ASSERT": "2",
+        "PROG_EMPTY_NEGATE": "3",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "1",
+        "DEVICE_FAMILY": "0",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\cam_scaler_fifo_define.vh",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\cam_scaler_fifo.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\cam_scaler_fifo_tmpl.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\cam_scaler_fifo_tmpl.vhd"
+        ],
+        "external_example": [
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\T20F256_devkit\\fifo_demo_top.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\T20F256_devkit\\fifo_demo.peri.xml",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\T20F256_devkit\\fifo_demo.xml",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\T20F256_devkit\\fifo_demo_T20.sdc",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\T20F256_devkit\\efx_symmetric_width_fifo_top.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\T20F256_devkit\\cam_scaler_fifo.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\T20F256_devkit\\cam_scaler_fifo_define.vh"
+        ],
+        "external_example_2": [
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Ti60F225_devkit\\fifo_demo_top.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Ti60F225_devkit\\fifo_demo.peri.xml",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Ti60F225_devkit\\fifo_demo.xml",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Ti60F225_devkit\\fifo_demo_Ti60.sdc",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Ti60F225_devkit\\efx_symmetric_width_fifo_top.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Ti60F225_devkit\\cam_scaler_fifo.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Ti60F225_devkit\\cam_scaler_fifo_define.vh"
+        ],
+        "external_testbench": [
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Testbench\\fifo_tb.sv",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Testbench\\xrun.sh",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Testbench\\msim.sh",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Testbench\\flist",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Testbench\\modelsim.do",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Testbench\\cam_scaler_fifo.v",
+            "C:\\efx_evsoc-v1.4\\evsoc\\soc_hw\\efinity_project\\isp_example_design\\T120F324_devkit_hdmi_640_480\\ip\\cam_scaler_fifo\\Testbench\\cam_scaler_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2021.2.323",
+    "generated_date": "2022-01-18T07:38:22.600852"
+}
