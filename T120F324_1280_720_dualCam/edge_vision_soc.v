@@ -263,7 +263,7 @@ wire [1:0] io_ddrA_b_payload_resp;
 //User Interrupt
 wire       userInterrupt;
 wire       axi4Interrupt;
-wire [3:0] dma_interrupts;
+wire [5:0] dma_interrupts;
 
 //APB Slave 0
 wire [15:0] io_apbSlave_0_PADDR;
