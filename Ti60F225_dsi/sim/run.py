@@ -164,10 +164,10 @@ def main():
     path_hbram=os.path.join("..","ip","hbram","hbram_define.vh")
     shutil.copy(path_hbram, dest_sim)
 
-    path_efx_dsi_tx_msim=os.path.join("..","ip","efx_dsi_tx","Testbench","modelsim","efx_dsi_tx.sv")
+    path_efx_dsi_tx_msim=os.path.join("..","ip","dsi_tx_display","Testbench","modelsim","dsi_tx_display.sv")
     shutil.copy(path_efx_dsi_tx_msim, dest_sim)
 
-    path_efx_dsi_tx=os.path.join("..","ip","efx_dsi_tx","Testbench","efx_dsi_tx_define.vh")
+    path_efx_dsi_tx=os.path.join("..","ip","dsi_tx_display","Testbench","dsi_tx_display_define.vh")
     shutil.copy(path_efx_dsi_tx, dest_sim)    
          
     test=os.listdir(dest_sim)

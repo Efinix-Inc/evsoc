@@ -1099,6 +1099,9 @@ hbram u_hbram (
 // RISC-V SoC
 
 assign mcuReset = ~(i_hbramClk_pll_locked & i_pll_locked & i_arstn);
+
+//Share 100MHz clock
+//If this is updated, user to ensure corresponding clock pin is set in related peripheral(s) such as SPI in Interface Designer.
 assign peripheralClk = i_mipi_rx_pclk;
 
 SapphireSoc u_risc_v
