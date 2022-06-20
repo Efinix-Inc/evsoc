@@ -255,6 +255,12 @@
         <efxpt:comp_gpio name="system_uart_0_io_txd" gpio_def="GPIOL_02" mode="output" bus_name="" io_standard="1.8 V LVCMOS">
             <efxpt:output_config name="system_uart_0_io_txd" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="4" fastclk_name=""/>
         </efxpt:comp_gpio>
+        <efxpt:comp_gpio name="user_dip0" gpio_def="GPIOL_P_13" mode="input" bus_name="" io_standard="1.8 V LVCMOS">
+            <efxpt:input_config name="user_dip0" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pullup" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="user_dip0_PULL_UP_ENA" dyn_delay_en_name="user_dip0_DLY_ENA" dyn_delay_reset_name="user_dip0_DLY_RST" dyn_delay_ctrl_name="user_dip0_DLY_CTRL" clkmux_buf_name=""/>
+        </efxpt:comp_gpio>
+        <efxpt:comp_gpio name="user_dip1" gpio_def="GPIOL_N_13" mode="input" bus_name="" io_standard="1.8 V LVCMOS">
+            <efxpt:input_config name="user_dip1" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pullup" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="user_dip1_PULL_UP_ENA" dyn_delay_en_name="user_dip1_DLY_ENA" dyn_delay_reset_name="user_dip1_DLY_RST" dyn_delay_ctrl_name="user_dip1_DLY_CTRL" clkmux_buf_name=""/>
+        </efxpt:comp_gpio>
         <efxpt:global_unused_config state="input with weak pullup"/>
         <efxpt:bus name="hbc_dq" mode="inout" msb="15" lsb="0"/>
         <efxpt:bus name="hbc_rwds" mode="inout" msb="1" lsb="0"/>

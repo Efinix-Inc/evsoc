@@ -16,7 +16,6 @@ add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_cam/cam_dma_wready
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_cam/cam_dma_wvalid
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_cam/cam_dma_wlast
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_cam/cam_dma_wdata
-add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_cam/cam_dma_descriptorUpdated
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_cam/debug_cam_dma_fifo_overflow
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_cam/debug_cam_dma_fifo_underflow
 add wave -noupdate /tb_soc/cam_valid_count
@@ -34,7 +33,6 @@ add wave -noupdate /tb_soc/DUT_wrapper/DUT/hw_accel_dma_wready
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/hw_accel_dma_wvalid
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/hw_accel_dma_wlast
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/hw_accel_dma_wdata
-add wave -noupdate /tb_soc/DUT_wrapper/DUT/hw_accel_dma_descriptorUpdated
 add wave -noupdate /tb_soc/hw_accel_out_valid_count
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_hw_accel_wrapper/debug_dma_in_fifo_underflow
 add wave -noupdate /tb_soc/DUT_wrapper/DUT/u_hw_accel_wrapper/debug_dma_in_fifo_overflow

@@ -27,7 +27,7 @@ module apb3_cam #(
    parameter   DATA_WIDTH  = 32,
    parameter   NUM_REG     = 10
 ) (
-//   input    [1:0]          select_demo_mode,
+   input    [1:0]          select_demo_mode,
    output                  cam_confdone,
    output   [15:0]         rgb_control,
    output                  trigger_capture_frame,
@@ -151,7 +151,7 @@ integer              byteIndex;
                5'd10 : slaveRegOut <= debug_display_dma_fifo_wcount;
                5'd11 : slaveRegOut <= debug_cam_dma_status;
                5'd12 : slaveRegOut <= frames_per_second;
-               //5'd13 : slaveRegOut <= {30'd0, select_demo_mode};
+               5'd13 : slaveRegOut <= {30'd0, select_demo_mode};
                default: begin slaveRegOut <= slaveRegOut; end
             endcase
          end

@@ -166,6 +166,10 @@ module edge_vision_soc #(
    input    wire           sw6,
    input    wire           sw7,
    
+   //User DIP switches to select demo mode
+   input   wire            user_dip0,
+   input   wire            user_dip1,
+   
    output   wire           o_led,
    output   wire           hbc_cal_pass,
    
@@ -1009,7 +1013,7 @@ apb3_cam #(
    .DATA_WIDTH (32),
    .NUM_REG    (5)
 ) u_apb3_cam_display (
-//   .select_demo_mode              ({user_dip1,user_dip0}),
+   .select_demo_mode              ({user_dip1,user_dip0}),
    .cam_confdone                  (cam_confdone),
    .rgb_control                   (rgb_control),
    .trigger_capture_frame         (trigger_capture_frame),

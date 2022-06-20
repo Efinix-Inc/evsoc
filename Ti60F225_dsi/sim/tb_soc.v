@@ -538,6 +538,8 @@ edge_vision_soc_wrapper #(
    .sw1                                (1'b1),
    .sw6                                (1'b1),
    .sw7                                (1'b1),
+   .user_dip0                          (1'b0),
+   .user_dip1                          (1'b0),
    .o_led                              (),
    .hbc_cal_pass                       (hbc_cal_pass),
    .system_uart_0_io_txd               (),

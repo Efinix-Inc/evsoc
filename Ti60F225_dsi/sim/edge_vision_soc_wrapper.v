@@ -138,6 +138,10 @@ module edge_vision_soc_wrapper #(
    input             sw1,
    input             sw6,
    input             sw7,
+   
+   //User DIP switches to select demo mode
+   input             user_dip0,
+   input             user_dip1,
 
    //LED
    output            o_led,
@@ -310,6 +314,8 @@ edge_vision_soc #(
    .sw1                                (sw1                               ),
    .sw6                                (sw6                               ),
    .sw7                                (sw7                               ),
+   .user_dip0                          (user_dip0                         ),
+   .user_dip1                          (user_dip1                         ),  
    .o_led                              (o_led                             ),
    .hbc_cal_pass                       (hbc_cal_pass                      ),
    .system_uart_0_io_txd               (system_uart_0_io_txd              ),
