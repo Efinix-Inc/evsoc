@@ -134,7 +134,7 @@
         </efxpt:pll>
     </efxpt:pll_info>
     <efxpt:lvds_info>
-        <efxpt:lvds name="lvds_1a_DATA" lvds_def="GPIOB_TX21" ops_type="tx">
+        <efxpt:lvds name="lvds_1a_DATA" lvds_def="GPIOB_TX13" ops_type="tx">
             <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_1a_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_1b_DATA" lvds_def="GPIOB_TX24" ops_type="tx">
@@ -155,7 +155,7 @@
         <efxpt:lvds name="lvds_2c_DATA" lvds_def="GPIOB_TX11" ops_type="tx">
             <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2c_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
-        <efxpt:lvds name="lvds_2d_DATA" lvds_def="GPIOB_TX22" ops_type="tx">
+        <efxpt:lvds name="lvds_2d_DATA" lvds_def="GPIOB_TX14" ops_type="tx">
             <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2d_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_clk" lvds_def="GPIOB_TX26" ops_type="tx">

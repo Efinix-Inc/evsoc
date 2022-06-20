@@ -18,7 +18,7 @@
             <efxpt:iobank name="3E" iostd="1.5 V"/>
             <efxpt:iobank name="4A" iostd="1.8 V LVCMOS"/>
             <efxpt:iobank name="4B" iostd="3.3 V LVTTL / LVCMOS"/>
-            <efxpt:iobank name="4C" iostd="3.3 V LVTTL / LVCMOS"/>
+            <efxpt:iobank name="4C" iostd="1.8 V LVCMOS"/>
             <efxpt:iobank name="4D" iostd="3.3 V LVTTL / LVCMOS"/>
             <efxpt:iobank name="4E" iostd="3.3 V LVTTL / LVCMOS"/>
             <efxpt:iobank name="4F" iostd="3.3 V LVTTL / LVCMOS"/>
@@ -65,10 +65,10 @@
         <efxpt:gpio name="hdmi_rstn" gpio_def="GPIOL_74" mode="output" bus_name="" is_lvds_gpio="false" io_standard="3.3 V LVTTL / LVCMOS">
             <efxpt:output_config name="hdmi_rstn" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" drive_strength="1"/>
         </efxpt:gpio>
-        <efxpt:gpio name="master_rstn" gpio_def="GPIOB_RXP08" mode="input" bus_name="" is_lvds_gpio="true" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="master_rstn" gpio_def="GPIOB_RXP08" mode="input" bus_name="" is_lvds_gpio="true" io_standard="1.8 V LVCMOS">
             <efxpt:input_config name="master_rstn" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pullup" is_schmitt_trigger="false" ddio_type="none"/>
         </efxpt:gpio>
-        <efxpt:gpio name="offchip_rstn" gpio_def="GPIOB_RXN08" mode="input" bus_name="" is_lvds_gpio="true" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="offchip_rstn" gpio_def="GPIOB_RXN08" mode="input" bus_name="" is_lvds_gpio="true" io_standard="1.8 V LVCMOS">
             <efxpt:input_config name="offchip_rstn" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pullup" is_schmitt_trigger="false" ddio_type="none"/>
         </efxpt:gpio>
         <efxpt:gpio name="pllin1" gpio_def="GPIOR_187" mode="input" bus_name="" is_lvds_gpio="false" io_standard="3.3 V LVTTL / LVCMOS">
@@ -96,16 +96,16 @@
         <efxpt:gpio name="system_uart_0_io_txd" gpio_def="GPIOT_RXN07" mode="output" bus_name="" is_lvds_gpio="true" io_standard="3.3 V LVTTL / LVCMOS">
             <efxpt:output_config name="system_uart_0_io_txd" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" drive_strength="1"/>
         </efxpt:gpio>
-        <efxpt:gpio name="user_dip0" gpio_def="GPIOB_RXP02" mode="input" bus_name="" is_lvds_gpio="true" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="user_dip0" gpio_def="GPIOB_RXP02" mode="input" bus_name="" is_lvds_gpio="true" io_standard="1.8 V LVCMOS">
             <efxpt:input_config name="user_dip0" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pullup" is_schmitt_trigger="false" ddio_type="none"/>
         </efxpt:gpio>
-        <efxpt:gpio name="user_dip1" gpio_def="GPIOB_RXN02" mode="input" bus_name="" is_lvds_gpio="true" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="user_dip1" gpio_def="GPIOB_RXN02" mode="input" bus_name="" is_lvds_gpio="true" io_standard="1.8 V LVCMOS">
             <efxpt:input_config name="user_dip1" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pullup" is_schmitt_trigger="false" ddio_type="none"/>
         </efxpt:gpio>
-        <efxpt:gpio name="user_led2" gpio_def="GPIOB_RXP05" mode="output" bus_name="" is_lvds_gpio="true" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="user_led2" gpio_def="GPIOB_RXP05" mode="output" bus_name="" is_lvds_gpio="true" io_standard="1.8 V LVCMOS">
             <efxpt:output_config name="user_led2" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" drive_strength="1"/>
         </efxpt:gpio>
-        <efxpt:gpio name="user_led3" gpio_def="GPIOB_RXN05" mode="output" bus_name="" is_lvds_gpio="true" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="user_led3" gpio_def="GPIOB_RXN05" mode="output" bus_name="" is_lvds_gpio="true" io_standard="1.8 V LVCMOS">
             <efxpt:output_config name="user_led3" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" drive_strength="1"/>
         </efxpt:gpio>
         <efxpt:global_unused_config state="input with weak pullup"/>
@@ -133,7 +133,7 @@
         </efxpt:pll>
     </efxpt:pll_info>
     <efxpt:lvds_info>
-        <efxpt:lvds name="lvds_1a_DATA" lvds_def="GPIOB_TX21" ops_type="tx">
+        <efxpt:lvds name="lvds_1a_DATA" lvds_def="GPIOB_TX13" ops_type="tx">
             <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_1a_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_1b_DATA" lvds_def="GPIOB_TX24" ops_type="tx">
@@ -154,7 +154,7 @@
         <efxpt:lvds name="lvds_2c_DATA" lvds_def="GPIOB_TX11" ops_type="tx">
             <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2c_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
-        <efxpt:lvds name="lvds_2d_DATA" lvds_def="GPIOB_TX22" ops_type="tx">
+        <efxpt:lvds name="lvds_2d_DATA" lvds_def="GPIOB_TX14" ops_type="tx">
             <efxpt:ltx_info pll_instance="" fast_clock_name="tx_fastclk" slow_clock_name="tx_slowclk" reset_name="" out_bname="lvds_2d_DATA" oe_name="" clock_div="1" mode="out" serialization="7" reduced_swing="false" load="3"/>
         </efxpt:lvds>
         <efxpt:lvds name="lvds_clk" lvds_def="GPIOB_TX26" ops_type="tx">
