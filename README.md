@@ -96,6 +96,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [ISP Example Design Tutorial - RTL Design](https://vimeo.com/500664581)
 - [ISP Example Design Tutorial - Flash Memory Read & Write](https://vimeo.com/516979931)
 - [Dual-Camera Example Design Tutorial](https://vimeo.com/516963010)
+- [Ti60 F225 Demonstration](https://vimeo.com/715811780)
 
 ## Frequently Asked Questions
 1.  **Where are the HW/RTL and SW/firmware source files located?**
