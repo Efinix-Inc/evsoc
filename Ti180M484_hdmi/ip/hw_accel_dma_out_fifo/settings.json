@@ -1,0 +1,71 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dma_out_fifo",
+        "--base_path",
+        "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "1.2"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH": "6",
+        "DATA_WIDTH": "8",
+        "MODE": "1",
+        "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "40",
+        "PROGRAMMABLE_FULL": "1",
+        "PROG_FULL_NEGATE": "40",
+        "PROG_EMPTY_ASSERT": "2",
+        "PROG_EMPTY_NEGATE": "3",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "DEVICE_FAMILY": "1",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_tmpl.vhd",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_define.vh",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_tmpl.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo.v"
+        ],
+        "external_example": [
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo_top.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo.peri.xml",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo.xml",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo_T20.sdc",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\efx_symmetric_width_fifo_top.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\hw_accel_dma_out_fifo.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\hw_accel_dma_out_fifo_define.vh"
+        ],
+        "external_example_2": [
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo_top.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo.peri.xml",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo.xml",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo_Ti60.sdc",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\efx_symmetric_width_fifo_top.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\hw_accel_dma_out_fifo.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\hw_accel_dma_out_fifo_define.vh"
+        ],
+        "external_testbench": [
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Testbench\\fifo_tb.sv",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Testbench\\xrun.sh",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Testbench\\msim.sh",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Testbench\\flist",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Testbench\\modelsim.do",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Testbench\\hw_accel_dma_out_fifo.v",
+            "C:\\my_projects\\31_ti180\\5_clean_up_efinity\\ip\\hw_accel_dma_out_fifo\\Testbench\\hw_accel_dma_out_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2022.1.226",
+    "generated_date": "2022-11-28T08:36:24.151978"
+}
