@@ -72,14 +72,15 @@ The example designs are implemented on:
 - [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html)
 - [Trion® T120 BGA576 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga576.html)
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
+- [Titanium® Ti180 M484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180m484.html)
 
-Efinity® IDE is required for project compilation and bitstream generation, whereas RISC-V SDK (includes Eclipse, OpenOCD Debugger, etc) is used to manage RISC-V software projects and for debugging purposes.
+Efinity® IDE is required for project compilation and bitstream generation, whereas Efinity® RISC-V Embedded Software IDE is used to manage RISC-V software projects and for debugging purposes.
 
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
 ### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2021.2.323.2.18
-- [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.4
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.1.8
+- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.3
 
 ## Documentation
 - [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC)
@@ -88,6 +89,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F324-DK-UG)
 - [Trion T120 BGA576 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F576-DK-UG)
 - [Titanium Ti60 F225 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti60F225-DK-UG)
+- [Titanium Ti180 M484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180M484-DK-UG)
 
 ## Videos
 - [Edge Vision SoC Solution](https://vimeo.com/492359014)
@@ -101,7 +103,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 ## Frequently Asked Questions
 1.  **Where are the HW/RTL and SW/firmware source files located?**
 
-    The top-level RTL file is named *edge_vision_soc.v*, located in individual project folder. The rest of the RTL files are placed in *source* directory, which are organized according to respective building block. On the other hand, the main firmware file is named *main.c*, located in *embedded_sw/SapphireSoc/software/evsoc/\*/src* directory, where other related drivers are provided in the same folder as well.
+    The top-level RTL file is named *edge_vision_soc.v*, located in individual project folder. The rest of the RTL files are placed in *source* directory, which are organized according to respective building block. On the other hand, the main firmware file is named *main.c*, located in *embedded_sw/SapphireSoc/software/standalone/evsoc_\*/src* directory, where other related drivers are provided in the same folder as well.
 
     Below depicts the directory structure of EVSoC framework:
     
@@ -110,7 +112,8 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     │   ├── embedded_sw
     │   │   └── SapphireSoc
     │   │       └── software
-    │   │           └── evsoc
+    │   │           └── standalone
+    │   │               └── evsoc_*
     │   ├── ip
     │   ├── sim
     │   └── source
@@ -118,14 +121,16 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     │   ├── embedded_sw
     │   │   └── SapphireSoc
     │   │       └── software
-    │   │           └── evsoc
+    │   │           └── standalone
+    │   │               └── evsoc_*
     │   ├── ip
     │   └── source
     ├── T120F324_640_480
     │   ├── embedded_sw
     │   │   └── SapphireSoc
     │   │       └── software
-    │   │           └── evsoc
+    │   │           └── standalone
+    │   │               └── evsoc_*
     │   ├── ip
     │   ├── sim
     │   └── source
@@ -133,7 +138,8 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     │   ├── embedded_sw
     │   │   └── SapphireSoc
     │   │       └── software
-    │   │           └── evsoc
+    │   │           └── standalone
+    │   │               └── evsoc_*
     │   ├── ip
     │   ├── sim
     │   └── source
@@ -141,22 +147,34 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     │   ├── embedded_sw
     │   │   └── SapphireSoc
     │   │       └── software
-    │   │           └── evsoc
+    │   │           └── standalone
+    │   │               └── evsoc_*
     │   ├── ip
     │   └── source
     ├── T120F576_640_480
     │   ├── embedded_sw
     │   │   └── SapphireSoc
     │   │       └── software
-    │   │           └── evsoc
+    │   │           └── standalone
+    │   │               └── evsoc_*
     │   ├── ip
     │   ├── sim
     │   └── source
-    └── Ti60F225_dsi
+    ├── Ti60F225_dsi
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── standalone
+    │   │               └── evsoc_*
+    │   ├── ip
+    │   ├── sim
+    │   └── source
+    └── Ti180M484_hdmi
         ├── embedded_sw
         │   └── SapphireSoc
         │       └── software
-        │           └── evsoc
+        │           └── standalone
+        │               └── evsoc_*
         ├── ip
         ├── sim
         └── source
@@ -166,60 +184,63 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
     
 2.  **How much is the resource consumption for EVSoC framework?**
 
-    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2021.2.
-    
-    **Resource utilization for ISP example design (640x480 resolution):**
-    | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
-    |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 33446 | 16372 | 2543 | 24356 | 192       | 4    |
-    | RISC-V SoC              |   -   | 7156  | 534  | 6400  | 54        | 4    |
-    | DMA Controller          |   -   | 7553  | 1106 | 15967 | 92        | 0    |
-    | Camera                  |   -   | 764   | 691  | 1035  | 22        | 0    |
-    | Display                 |   -   | 171   | 13   | 219   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 616   | 187  | 577   | 14        | 0    |
+    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2022.2.
     
     **Resource utilization for ISP example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 34633 | 16404 | 2543 | 23638 | 204       | 4    |
-    | RISC-V SoC              |   -   | 7156  | 534  | 6354  | 54        | 4    |
-    | DMA Controller          |   -   | 7570  | 1106 | 15250 | 92        | 0    |
-    | Camera                  |   -   | 765   | 691  | 1055  | 22        | 0    |
-    | Display                 |   -   | 172   | 13   | 214   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 629   | 187  | 595   | 26        | 0    |
+    | Edge Vision SoC (Total) | 33686 | 16418 | 3577 | 22653 | 204       | 4    |
+    | RISC-V SoC              |   -   | 7168  | 796  | 6090  | 54        | 4    |
+    | DMA Controller          |   -   | 7549  | 1247 | 15193 | 92        | 0    |
+    | Camera                  |   -   | 767   | 968  | 679   | 22        | 0    |
+    | Display                 |   -   | 173   | 113  | 85    | 10        | 0    |
+    | Hardware Accelerator    |   -   | 648   | 437  | 426   | 26        | 0    |
     
     **Resource utilization for dual-camera example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 37871 | 18198 | 3302 | 26034 | 344       | 4    |
-    | RISC-V SoC              |   -   | 7127  | 534  | 6358  | 54        | 4    |
-    | DMA Controller          |   -   | 8382  | 1156 | 16290 | 195       | 0    |
-    | Camera (x2)             |   -   | 1530  | 1382 | 2061  | 44        | 0    |
-    | Display                 |   -   | 172   | 13   | 237   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 819   | 205  | 894   | 41        | 0    |
+    | Edge Vision SoC (Total) | 38789 | 19092 | 4909 | 25534 | 264       | 4    |
+    | RISC-V SoC              |   -   | 7168  | 796  | 6132  | 54        | 4    |
+    | DMA Controller          |   -   | 9219  | 1453 | 17192 | 112       | 0    |
+    | Camera (x2)             |   -   | 1534  | 1936 | 1335  | 44        | 0    |
+    | Display                 |   -   | 173   | 113  | 107   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 871   | 595  | 557   | 44        | 0    |
     
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2021.2.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2022.2.
     
     **Resource utilization for ISP example design:**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 34289 | 17653 | 2376 | 23941 | 206        | 4   |
-    | RISC-V SoC               |   -   | 6790  | 508  | 5788  | 49         | 4   |
-    | DMA Controller           |   -   | 4763  | 683  | 6578  | 53         | 0   |
-    | CSI-2 RX Controller Core |   -   | 835   | 41   | 2124  | 15         | 0   |
-    | DSI TX Controller Core   |   -   | 1486  | 93   | 4039  | 17         | 0   |
-    | HyperRAM Controller Core |   -   | 1153  | 194  | 2186  | 13         | 0   |
-    | Camera                   |   -   | 776   | 643  | 996   | 11         | 0   |
-    | Display                  |   -   | 341   | 15   | 598   | 27         | 0   |
-    | Hardware Accelerator     |   -   | 620   | 187  | 594   | 8          | 0   |
+    | Edge Vision SoC (Total)  | 33862 | 17902 | 3980 | 21625 | 189        | 4   |
+    | RISC-V SoC               |   -   | 6724  | 697  | 5482  | 49         | 4   |
+    | DMA Controller           |   -   | 4762  | 824  | 6072  | 53         | 0   |
+    | CSI-2 RX Controller Core |   -   | 844   | 194  | 2036  | 15         | 0   |
+    | DSI TX Controller Core   |   -   | 1737  | 409  | 3482  | 19         | 0   |
+    | HyperRAM Controller Core |   -   | 1153  | 305  | 2096  | 22         | 0   |
+    | Camera                   |   -   | 809   | 919  | 646   | 11         | 0   |
+    | Display                  |   -   | 338   | 174  | 374   | 8          | 0   |
+    | Hardware Accelerator     |   -   | 646   | 427  | 405   | 8          | 0   |
+
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti180M484 device using Efinity® IDE v2022.2.
+    
+    **Resource utilization for ISP example design (1920x1080 resolution):**
+    | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
+    |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
+    | Edge Vision SoC (Total)  | 46150 | 26697 | 3660 | 29088 | 257        | 4   |
+    | RISC-V SoC               |   -   | 15434 | 815  | 10503 | 105        | 4   |
+    | DMA Controller           |   -   | 8362  | 973  | 15031 | 64         | 0   |
+    | CSI-2 RX Controller Core |   -   | 618   | 204  | 1595  | 17         | 0   |
+    | Camera                   |   -   | 740   | 946  | 671   | 11         | 0   |
+    | Display                  |   -   | 707   | 223  | 560   | 46         | 0   |
+    | Hardware Accelerator     |   -   | 555   | 410  | 317   | 14         | 0   |
     
     ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are served as reference purposes.
 
 3.  **How to check if the hardware and software setup for ISP example design is done correctly?**
     
-    After setting up the hardware and software accordingly (refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for the detail), user is to program the hardware bitstream (using Efinity Programmer) and software binary (using Eclipse software) to the targeted development kit. 
+    After setting up the hardware and software accordingly (refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for the detail), user is to program the hardware bitstream (using *Efinity Programmer*) and software binary (using *Efinity RISC-V Embedded Software IDE*) to the targeted development kit. 
     
-    User is expected to see colour bar on display, which lasts for a few seconds. This indicates the display, RISC-V, and DMA are running correctly. If evsoc_ispExample or evsoc_ispExample_demo* software apps is used, user is expected to see video streaming of camera captured output (default mode) on display after the colour bar. This shows the camera is setup correctly too.
+    User is expected to see colour bar on display, which lasts for a few seconds. This indicates the display, RISC-V, and DMA are running correctly. If *evsoc_ispExample* or *evsoc_ispExample_demo* software apps is used, user is expected to see video streaming of camera captured output (default mode) on display after the colour bar. This shows the camera is setup correctly too.
     
     In the case of the above expected outputs are not observed, user is to check on the board, camera, display, software setup, etc., with reference to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC).
 
@@ -315,4 +336,4 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 
 12. **How to obtain processing frame rate of a specific scenario in the ISP example design?**
     
-    Software app *evsoc_ispExample_timestamp* is provided in *embedded_sw/SapphireSoc/software/evsoc* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c*. 
+    Software app *evsoc_ispExample_timestamp* is provided in *embedded_sw/SapphireSoc/software/standalone* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c*. 
