@@ -257,7 +257,7 @@ void PiCam2_init(void)
    PiCam_WriteRegData(i2c_base, LINE_LENGTH_A_1, 0x0D);
    PiCam_WriteRegData(i2c_base, LINE_LENGTH_A_0, 0x78);
 
-   PiCam_Output_activePixel(i2c_base, 0, 3279, 0, 2463);
+   PiCam_Output_activePixel(i2c_base, 680, 3279, 0, 2463);
 
    PiCam_Output_Size(i2c_base, 1920, 1080);
    //PiCam_Output_Size(i2c_base, 1280, 720);

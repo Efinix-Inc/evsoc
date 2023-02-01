@@ -3,13 +3,13 @@
         "-o",
         "dsi_tx_display",
         "--base_path",
-        "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip",
+        "/tmp/tmp8tacba_t/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "1.0"
+            "version": "2.1"
         }
     ],
     "conf": {
@@ -46,69 +46,54 @@
         "ENABLE_EOTP": "0"
     },
     "output": {
-        "external_source": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display_tmpl.vhd",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display_define.vh",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display_tmpl.v"
+        "external_source_source": [
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/dsi_tx_display_tmpl.vhd",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/dsi_tx_display_tmpl.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/dsi_tx_display.sv",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/dsi_tx_display_define.vh"
         ],
         "external_testbench_modelsim": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\modelsim\\dsi_tx_display.sv"
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
         ],
-        "external_testbench": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\data_pack.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\data_unpack.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dual_clock_fifo.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\fifo.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\i2c_phy.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\led_blink.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\memory.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\panel_config.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\pattern_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\piv2_config.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\shift_reg.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\simple_dual_port_ram.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\true_dual_port_ram.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\vga_buffer.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\vga_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_hs_cmd_tb.mem",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_tb.mem",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\TI60F225_MIPI_dsi_tb.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\modelsim.do",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_tx_display.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_tx_display_define.vh"
+        "external_testbench_testbench": [
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/data_pack.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/dual_clock_fifo.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/panel_config.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/shift_reg.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/simple_dual_port_ram.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/true_dual_port_ram.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/vga_gen.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/dsi_hs_cmd_tb.mem",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/dsi_tb.mem",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/TI60F225_MIPI_dsi_tb.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/modelsim.do",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/dsi_tx_display.sv",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/dsi_tx_display_define.vh"
         ],
-        "external_example": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\data_pack.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\data_unpack.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\dual_clock_fifo.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\fifo.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\i2c_phy.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\led_blink.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\memory.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\panel_config.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\pattern_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\piv2_config.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\shift_reg.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\simple_dual_port_ram.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\TI60F225_MIPI_dsi.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\true_dual_port_ram.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\vga_buffer.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\vga_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\TI60F225_MIPI_dsi.peri.xml",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\dsi_tx_init.mem",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\TI60F225_MIPI_dsi.xml",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\TI60F225_MIPI_dsi.pt.sdc",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\dsi_tx_display.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\dsi_tx_display_define.vh"
+        "external_example_example": [
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/data_pack.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/dual_clock_fifo.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/panel_config.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/reset.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/shift_reg.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/simple_dual_port_ram.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/true_dual_port_ram.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/vga_gen.v",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.peri.xml",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/Panel_1080p_reg.mem",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.xml",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.sdc",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display.sv",
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display_define.vh"
         ],
         "external_testbench_ncsim": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\ncsim\\dsi_tx_display.sv"
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/ncsim/dsi_tx_display.sv"
         ],
         "external_testbench_synopsys": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\synopsys\\dsi_tx_display.sv"
+            "/tmp/tmp8tacba_t/ip/dsi_tx_display/Testbench/synopsys/dsi_tx_display.sv"
         ]
     },
-    "sw_version": "2021.2.323",
-    "generated_date": "2022-02-17T08:59:42.217870"
+    "sw_version": "2022.2.322",
+    "generated_date": "2023-01-26T07:47:43.558570"
 }

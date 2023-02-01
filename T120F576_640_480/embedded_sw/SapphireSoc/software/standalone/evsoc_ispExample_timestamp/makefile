@@ -1,5 +1,5 @@
 PROJ_NAME=evsoc_ispExample_timestamp
-STANDALONE = ../../standalone
+STANDALONE = ..
 
 SRCS = $(wildcard src/*.c) \
        $(wildcard src/*.cpp) \

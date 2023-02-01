@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_out_fifo",
         "--base_path",
-        "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip",
+        "/tmp/tmphfmzndy7/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "1.0"
+            "version": "1.2"
         }
     ],
     "conf": {
@@ -33,39 +33,39 @@
     },
     "output": {
         "external_source": [
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_tmpl.vhd",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_define.vh",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\hw_accel_dma_out_fifo_tmpl.v"
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh"
         ],
         "external_example": [
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo_top.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo.peri.xml",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo.xml",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\fifo_demo_T20.sdc",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\efx_symmetric_width_fifo_top.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\hw_accel_dma_out_fifo.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\T20F256_devkit\\hw_accel_dma_out_fifo_define.vh"
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo_top.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo.xml",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/T20F256_devkit/hw_accel_dma_out_fifo.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/T20F256_devkit/hw_accel_dma_out_fifo_define.vh"
         ],
         "external_example_2": [
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo_top.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo.peri.xml",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo.xml",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\fifo_demo_Ti60.sdc",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\efx_symmetric_width_fifo_top.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\hw_accel_dma_out_fifo.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Ti60F225_devkit\\hw_accel_dma_out_fifo_define.vh"
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo.xml",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/hw_accel_dma_out_fifo.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/hw_accel_dma_out_fifo_define.vh"
         ],
         "external_testbench": [
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Testbench\\fifo_tb.sv",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Testbench\\xrun.sh",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Testbench\\msim.sh",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Testbench\\flist",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Testbench\\modelsim.do",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Testbench\\hw_accel_dma_out_fifo.v",
-            "C:\\efx_evsoc-v2.0\\T120F324_1280_720_dualCam\\ip\\hw_accel_dma_out_fifo\\Testbench\\hw_accel_dma_out_fifo_define.vh"
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Testbench/fifo_tb.sv",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Testbench/xrun.sh",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Testbench/msim.sh",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Testbench/flist",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Testbench/modelsim.do",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Testbench/hw_accel_dma_out_fifo.v",
+            "/tmp/tmphfmzndy7/ip/hw_accel_dma_out_fifo/Testbench/hw_accel_dma_out_fifo_define.vh"
         ]
     },
-    "sw_version": "2021.2.323",
-    "generated_date": "2022-02-17T09:32:39.321477"
+    "sw_version": "2022.1.226",
+    "generated_date": "2023-01-30T03:28:39.363295"
 }

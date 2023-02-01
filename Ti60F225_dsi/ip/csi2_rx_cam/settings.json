@@ -3,13 +3,13 @@
         "-o",
         "csi2_rx_cam",
         "--base_path",
-        "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip",
+        "/tmp/tmpus4q3u22/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx",
-            "version": "2.0"
+            "version": "2.1"
         }
     ],
     "conf": {
@@ -20,6 +20,7 @@
         "tHS_SETTLE_NS": "85",
         "tHS_PREPARE_ZERO_NS": "145",
         "NUM_DATA_LANE": "2",
+        "ASYNC_STAGE": "2",
         "HS_BYTECLK_MHZ": "113",
         "CLOCK_FREQ_MHZ(mhz)": "100",
         "DPHY_CLOCK_MODE": "1",
@@ -35,54 +36,54 @@
     },
     "output": {
         "external_source": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\csi2_rx_cam.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\csi2_rx_cam_tmpl.vhd",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\csi2_rx_cam_define.vh",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\csi2_rx_cam_tmpl.v"
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/csi2_rx_cam_tmpl.vhd",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/csi2_rx_cam_tmpl.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/csi2_rx_cam.sv",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/csi2_rx_cam_define.vh"
         ],
         "external_example": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\data_unpack.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\datatype_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\dual_clock_fifo.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\pattern_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\shift_reg.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\simple_dual_port_ram.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\vga_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\reset.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\top.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\efx_csi2_tx.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\mipi.sdc",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\top.xml",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\top.peri.xml",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\csi2_rx_cam.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Ti60F225_devkit\\csi2_rx_cam_define.vh"
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/data_unpack.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/datatype_gen.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/dual_clock_fifo.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/pattern_gen.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/shift_reg.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/simple_dual_port_ram.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/vga_gen.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/reset.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/top.sv",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/efx_csi2_tx.sv",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/mipi.sdc",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/top.xml",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/top.peri.xml",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam.sv",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam_define.vh"
         ],
         "external_testbench": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\data_unpack.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\datatype_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\dual_clock_fifo.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\pattern_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\shift_reg.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\simple_dual_port_ram.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\vga_gen.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\reset.v",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\top_tb.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\rx_modelsim.do",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\rx_filelist.f",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\top.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\efx_csi2_tx_modelsim.sv",
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\csi2_rx_cam_define.vh"
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/data_unpack.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/datatype_gen.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/dual_clock_fifo.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/pattern_gen.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/shift_reg.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/simple_dual_port_ram.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/vga_gen.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/reset.v",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_tb.sv",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_rx_modelsim.do",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/rx_filelist.f",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/top.sv",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/efx_csi2_tx_modelsim.sv",
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/csi2_rx_cam_define.vh"
         ],
         "external_testbench_modelsim": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\modelsim\\csi2_rx_cam.sv"
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/modelsim/csi2_rx_cam.sv"
         ],
         "external_testbench_ncsim": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\ncsim\\csi2_rx_cam.sv"
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/ncsim/csi2_rx_cam.sv"
         ],
         "external_testbench_synopsys": [
-            "C:\\efx_evsoc-v2.0\\Ti60F225_dsi\\ip\\csi2_rx_cam\\Testbench\\synopsys\\csi2_rx_cam.sv"
+            "/tmp/tmpus4q3u22/ip/csi2_rx_cam/Testbench/synopsys/csi2_rx_cam.sv"
         ]
     },
-    "sw_version": "2021.2.323",
-    "generated_date": "2022-02-17T08:59:05.840928"
+    "sw_version": "2021.2.323.6.17",
+    "generated_date": "2022-10-13T05:58:24.913266"
 }

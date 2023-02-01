@@ -1,5 +1,5 @@
 PROJ_NAME=evsoc_ispExample_demo2
-STANDALONE = ../../standalone
+STANDALONE = ..
 
 SRCS = $(wildcard src/*.c) \
        $(wildcard src/*.cpp) \

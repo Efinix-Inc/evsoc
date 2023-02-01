@@ -3,13 +3,13 @@
         "-o",
         "ddr_reset_seq",
         "--base_path",
-        "C:\\evsoc_new\\T120F576_640_480\\ip",
+        "/tmp/tmpowwfyjol/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory_controller",
             "name": "efx_ddr_reset_controller",
-            "version": "1.0"
+            "version": "1.1"
         }
     ],
     "conf": {
@@ -17,18 +17,18 @@
     },
     "output": {
         "external_source": [
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\ddr_reset_seq_tmpl.vhd",
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\ddr_reset_seq_define.vh",
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\ddr_reset_seq.v",
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\ddr_reset_seq_tmpl.v"
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq_tmpl.v",
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq.v",
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq_define.vh",
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq_tmpl.vhd"
         ],
         "external_testbench": [
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\Testbench\\ddr_reset_sequencer_tb.v",
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\Testbench\\modelsim.do",
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\Testbench\\ddr_reset_seq.v",
-            "C:\\evsoc_new\\T120F576_640_480\\ip\\ddr_reset_seq\\Testbench\\ddr_reset_seq_define.vh"
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/ddr_reset_sequencer_tb.v",
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/modelsim.do",
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/ddr_reset_seq.v",
+            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/ddr_reset_seq_define.vh"
         ]
     },
-    "sw_version": "2021.2.323",
-    "generated_date": "2022-02-07T07:25:45.852856"
+    "sw_version": "2022.1.226",
+    "generated_date": "2023-01-30T03:27:31.324613"
 }
