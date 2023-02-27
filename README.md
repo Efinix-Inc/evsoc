@@ -79,6 +79,13 @@ Efinity® IDE is required for project compilation and bitstream generation, wher
 
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
+### List of supported cameras:
+1. Raspberry PI Camera Module v2
+   - Sony IMX219 image sensor
+2. Google Coral Camera Module
+   - Omnivision OV5645 SoC with build-in image signal processor
+   - Auto focus, auto exposure control, auto white balance, and more.
+
 ### Software Tools Version
 - [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.1.8
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.3
@@ -119,6 +126,9 @@ List of development kits & switches for selecting demo mode:
 Bring up quick start demo design on Efinix development kit by following listed steps below:
 1. Set up hardware
    - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
+   - For demo design that uses Google Coral Camera module (*\<device\>\_coral\_\<display\>\_\<application\>\_demo*),
+      - Google Coral Camera and Google Coral Camera connector daughter card are required.
+      - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Kit, or P1 header on Titanium Ti180 M484 Development Kit.
 2. Program hex file using Efinity Programmer
    - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (T120 BGA324, T120 BGA576, Ti60 F225) or SPI Active using JTAG bridge mode (Ti180 M484).
 3. Press CRESET button & Demo design is up and running
@@ -195,7 +205,25 @@ As the quick start demo design is programmed through SPI active mode or SPI Acti
     │   ├── ip
     │   ├── sim
     │   └── source
-    └── Ti180M484_hdmi
+    ├── Ti60F225_coral_dsi
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── standalone
+    │   │               └── evsoc_*
+    │   ├── ip
+    │   ├── sim
+    │   └── source
+    ├── Ti180M484_hdmi
+    │   ├── embedded_sw
+    │   │   └── SapphireSoc
+    │   │       └── software
+    │   │           └── standalone
+    │   │               └── evsoc_*
+    │   ├── ip
+    │   ├── sim
+    │   └── source
+    └── Ti180M484_coral_hdmi
         ├── embedded_sw
         │   └── SapphireSoc
         │       └── software
