@@ -9,14 +9,14 @@
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx_top",
-            "version": "1.0"
+            "version": "1.1"
         }
     ],
     "conf": {
         "tINIT_NS": "100000",
         "NUM_DATA_LANE": "2",
         "ASYNC_STAGE": "2",
-        "CLOCK_FREQ_MHZ(mhz)": "100",
+        "CLOCK_FREQ_MHZ": "100",
         "PIXEL_FIFO_DEPTH": "2048",
         "AREGISTER": "8",
         "Pack_40": "1",

@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "memory_controller",
             "name": "efx_hyper_ram",
-            "version": "2.3"
+            "version": "2.5"
         }
     ],
     "conf": {

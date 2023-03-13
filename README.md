@@ -87,7 +87,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
    - Auto focus, auto exposure control, auto white balance, and more.
 
 ### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.1.8
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.2.14
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.3
 
 ## Documentation

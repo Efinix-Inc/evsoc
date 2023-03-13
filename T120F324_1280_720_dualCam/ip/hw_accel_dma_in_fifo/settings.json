@@ -9,25 +9,25 @@
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "1.2"
+            "version": "1.3"
         }
     ],
     "conf": {
         "SYNC_CLK": "1",
         "SYNC_STAGE": "2",
-        "DEPTH": "5",
+        "DEPTH_2": "5",
         "DATA_WIDTH": "24",
         "MODE": "0",
         "OUTPUT_REG": "1",
         "PROG_FULL_ASSERT": "25",
         "PROGRAMMABLE_FULL": "1",
-        "PROG_FULL_NEGATE": "25",
-        "PROG_EMPTY_ASSERT": "2",
-        "PROG_EMPTY_NEGATE": "3",
+        "PFN_INTERNAL": "25",
+        "PEA_INTERNAL": "2",
+        "PEN_INTERNAL": "3",
         "PROGRAMMABLE_EMPTY": "0",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "DEVICE_FAMILY": "0",
+        "FAMILY": "0",
         "ASYM_WIDTH_RATIO": "4",
         "BYPASS_RESET_SYNC": "0"
     },
