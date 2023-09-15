@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" location="C:\my_projects\51_coral\2_ti60\Ti60F225_dsi" version="2022.2.322.2.14" db_version="20222999" last_change_date="Tue Feb 21 13:43:31 2023" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" location="/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.1-wip/Ti60F225_coral_dsi" version="2023.1.150.3.11" db_version="20231999" last_change_date="Wed Aug 16 16:23:05 2023" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="1A_MODE_SEL"/>
@@ -274,19 +274,19 @@
                 <efxpt:pin name="" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="60" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="60" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="5" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="5" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_sysclk_div_2" number="2" out_divider="24" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_sysclk_div_2" number="2" out_divider="24" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_rx_pclk" number="3" out_divider="15" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_mipi_rx_pclk" number="3" out_divider="15" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_prop is_outclk_inverted="false"/>
+            <efxpt:comp_prop/>
         </efxpt:pll>
         <efxpt:pll name="pll_inst2" pll_def="PLL_BR0" ref_clock_name="i_fb_clk" ref_clock_freq="25.0000" multiplier="4" pre_divider="1" post_divider="2" reset_name="o_mipi_pll_rstn" locked_name="i_mipi_tx_pll_locked" is_ipfrz="false" is_bypass_lock="true">
             <efxpt:adv_prop ref_clock_mode="core" ref_clock1_name="" ext_ref_clock_id="2" clksel_name="" feedback_clock_name="i_mipi_clk" feedback_mode="core"/>
@@ -296,19 +296,19 @@
                 <efxpt:pin name="" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_mipi_clk" number="0" out_divider="20" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_mipi_clk" number="0" out_divider="20" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_txc_sclk" number="1" out_divider="4" is_dyn_phase="false" phase_setting="3">
+            <efxpt:comp_output_clock name="i_mipi_txc_sclk" number="1" out_divider="4" is_dyn_phase="false" phase_setting="3" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_txd_sclk" number="2" out_divider="4" is_dyn_phase="false" phase_setting="1">
+            <efxpt:comp_output_clock name="i_mipi_txd_sclk" number="2" out_divider="4" is_dyn_phase="false" phase_setting="1" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_tx_pclk" number="3" out_divider="16" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_mipi_tx_pclk" number="3" out_divider="16" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_prop is_outclk_inverted="false"/>
+            <efxpt:comp_prop/>
         </efxpt:pll>
         <efxpt:pll name="pll_inst3" pll_def="PLL_BL0" ref_clock_name="i_fb_clk" ref_clock_freq="25.0000" multiplier="4" pre_divider="1" post_divider="2" reset_name="o_hbramClk_pll_rstn" locked_name="i_hbramClk_pll_locked" is_ipfrz="false" is_bypass_lock="true">
             <efxpt:adv_prop ref_clock_mode="core" ref_clock1_name="" ext_ref_clock_id="2" clksel_name="" feedback_clock_name="i_hbramClk_fb" feedback_mode="core"/>
@@ -318,19 +318,19 @@
                 <efxpt:pin name="o_hbc_cal_SHIFT" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="o_hbc_cal_SHIFT_SEL" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="24" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="24" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="12" is_dyn_phase="false" phase_setting="6">
+            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="12" is_dyn_phase="false" phase_setting="6" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="12" is_dyn_phase="true" phase_setting="0">
+            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="12" is_dyn_phase="true" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="12" is_dyn_phase="false" phase_setting="0">
+            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="12" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_prop is_outclk_inverted="false"/>
+            <efxpt:comp_prop/>
         </efxpt:pll>
     </efxpt:pll_info>
     <efxpt:osc_info/>

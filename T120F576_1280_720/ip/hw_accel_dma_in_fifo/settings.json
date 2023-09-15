@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_in_fifo",
         "--base_path",
-        "/tmp/tmpwauh53vz/ip",
+        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "1.3"
+            "version": "5.0"
         }
     ],
     "conf": {
@@ -17,55 +17,29 @@
         "SYNC_STAGE": "2",
         "DEPTH_2": "5",
         "DATA_WIDTH": "8",
-        "MODE": "0",
+        "MODE": "\"STANDARD\"",
         "OUTPUT_REG": "1",
         "PROG_FULL_ASSERT": "20",
-        "PROGRAMMABLE_FULL": "1",
+        "PROGRAMMABLE_FULL": "\"STATIC_SINGLE\"",
         "PFN_INTERNAL": "20",
         "PEA_INTERNAL": "2",
         "PEN_INTERNAL": "3",
-        "PROGRAMMABLE_EMPTY": "0",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "FAMILY": "0",
+        "FAMILY": "\"TRION\"",
         "ASYM_WIDTH_RATIO": "4",
-        "BYPASS_RESET_SYNC": "0"
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "0"
     },
     "output": {
-        "external_source": [
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd"
-        ],
-        "external_example": [
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_top.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.peri.xml",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.xml",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_T20.sdc",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo_define.vh"
-        ],
-        "external_example_2": [
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_top.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.xml",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo_define.vh"
-        ],
-        "external_testbench": [
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Testbench/fifo_tb.sv",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Testbench/xrun.sh",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Testbench/msim.sh",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Testbench/flist",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Testbench/modelsim.do",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo.v",
-            "/tmp/tmpwauh53vz/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo_define.vh"
+        "external_source_source": [
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v"
         ]
     },
-    "sw_version": "2022.1.226",
-    "generated_date": "2023-01-30T03:27:40.276786"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-09-10T03:11:28.569635"
 }

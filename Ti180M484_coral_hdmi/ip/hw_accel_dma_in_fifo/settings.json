@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_in_fifo",
         "--base_path",
-        "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip",
+        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_coral_hdmi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "1.3"
+            "version": "5.0"
         }
     ],
     "conf": {
@@ -17,55 +17,29 @@
         "SYNC_STAGE": "2",
         "DEPTH_2": "5",
         "DATA_WIDTH": "8",
-        "MODE": "0",
+        "MODE": "\"STANDARD\"",
         "OUTPUT_REG": "1",
         "PROG_FULL_ASSERT": "20",
-        "PROGRAMMABLE_FULL": "1",
+        "PROGRAMMABLE_FULL": "\"STATIC_SINGLE\"",
         "PFN_INTERNAL": "20",
         "PEA_INTERNAL": "2",
         "PEN_INTERNAL": "3",
-        "PROGRAMMABLE_EMPTY": "0",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "FAMILY": "1",
+        "FAMILY": "\"TITANIUM\"",
         "ASYM_WIDTH_RATIO": "4",
-        "BYPASS_RESET_SYNC": "0"
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "0"
     },
     "output": {
         "external_source_source": [
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_define.vh",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.vhd"
-        ],
-        "external_example_example": [
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\T20F256_devkit\\fifo_demo_top.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\T20F256_devkit\\fifo_demo.peri.xml",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\T20F256_devkit\\fifo_demo.xml",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\T20F256_devkit\\fifo_demo_T20.sdc",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\T20F256_devkit\\efx_symmetric_width_fifo_top.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\T20F256_devkit\\hw_accel_dma_in_fifo.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\T20F256_devkit\\hw_accel_dma_in_fifo_define.vh"
-        ],
-        "external_example_2": [
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Ti60F225_devkit\\fifo_demo_top.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Ti60F225_devkit\\fifo_demo.peri.xml",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Ti60F225_devkit\\fifo_demo.xml",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Ti60F225_devkit\\fifo_demo_Ti60.sdc",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Ti60F225_devkit\\efx_symmetric_width_fifo_top.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Ti60F225_devkit\\hw_accel_dma_in_fifo.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Ti60F225_devkit\\hw_accel_dma_in_fifo_define.vh"
-        ],
-        "external_testbench_testbench": [
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Testbench\\fifo_tb.sv",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Testbench\\xrun.sh",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Testbench\\msim.sh",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Testbench\\flist",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Testbench\\modelsim.do",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Testbench\\hw_accel_dma_in_fifo.v",
-            "C:\\Ti180_dev\\efx_evsoc-v2.1\\Ti180M484_hdmi\\ip\\hw_accel_dma_in_fifo\\Testbench\\hw_accel_dma_in_fifo_define.vh"
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_coral_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_coral_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_coral_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_coral_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v"
         ]
     },
-    "sw_version": "2022.2.322",
-    "generated_date": "2023-02-16T09:06:35.823244"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-09-10T06:43:50.014202"
 }

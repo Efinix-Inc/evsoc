@@ -81,7 +81,7 @@ void main() {
 
    //Array name to be modified to DDR location used for display
    //Colour bar & Red dots at 4 corners of active display
-/*
+
    //Initialize test image in cam_array
    for (int y=0; y<FRAME_HEIGHT; y++) {
       for (int x=0; x<FRAME_WIDTH; x++) {
@@ -98,8 +98,8 @@ void main() {
          }
       }
    }
- */
 
+/*
    //Initialize test image in sobel_array
    for (int y=0; y<FRAME_HEIGHT; y++) {
       for (int x=0; x<FRAME_WIDTH; x++) {
@@ -116,20 +116,20 @@ void main() {
          }
       }
    }
-
+*/
    
    //Trigger display DMA once then the rest handled by DMA self restart
    uart_writeStr(BSP_UART_TERMINAL, "\nTrigger display DMA..\n\r");
    
    //SELECT start address of to be displayed data accordingly
-   //dmasg_input_memory(DMASG_BASE, DMASG_DISPLAY_MM2S_CHANNEL, CAM_START_ADDR, 16);
+   dmasg_input_memory(DMASG_BASE, DMASG_DISPLAY_MM2S_CHANNEL, CAM_START_ADDR, 16);
    //dmasg_input_memory(DMASG_BASE, DMASG_DISPLAY_MM2S_CHANNEL, GRAYSCALE_START_ADDR, 16);
-   dmasg_input_memory(DMASG_BASE, DMASG_DISPLAY_MM2S_CHANNEL, SOBEL_START_ADDR, 16);
+   //dmasg_input_memory(DMASG_BASE, DMASG_DISPLAY_MM2S_CHANNEL, SOBEL_START_ADDR, 16);
    
    dmasg_output_stream(DMASG_BASE, DMASG_DISPLAY_MM2S_CHANNEL, DMASG_DISPLAY_MM2S_PORT, 0, 0, 1);
    dmasg_direct_start(DMASG_BASE, DMASG_DISPLAY_MM2S_CHANNEL, (FRAME_WIDTH*FRAME_HEIGHT)*4, 1);
    
-   msDelay(3000); //Display test content for 5 seconds
+   msDelay(5000); //Display test content for 5 seconds
    
    uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\n\r");
 
@@ -141,8 +141,8 @@ void main() {
    //Camera capture - continuous mode (to facilitate processing without frame-drop if scaler is enabled in camera building block)
    
    //SELECT RGB or grayscale output from camera pre-processing block.
-   //EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000000);   //RGB
-   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000001); //grayscale
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000000);   //RGB
+   //EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000001); //grayscale
    
    //Trigger continuous frame capture via APB3 slave
    //EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG2_OFFSET, 0x00000002);
@@ -156,8 +156,8 @@ void main() {
      // uart_writeStr(BSP_UART_TERMINAL, "\nTrigger camera capture..\n\r");
       
       //SELECT RGB or grayscale output from camera pre-processing block.
-      //EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000000);   //RGB
-      EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000001); //grayscale
+      EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000000);   //RGB
+      //EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG3_OFFSET, 0x00000001); //grayscale
       
       //Trigger camera DMA
       dmasg_input_stream(DMASG_BASE, DMASG_CAM_S2MM_CHANNEL, DMASG_CAM_S2MM_PORT, 1, 0);
@@ -187,7 +187,7 @@ void main() {
       //uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\n\r");
 */
       /**********************************************************HW Accelerator***********************************************************/
-
+/*
       //uart_writeStr(BSP_UART_TERMINAL, "Hardware Acceleration...");
 
       //SET Sobel edge detection threshold via AXI4 slave
@@ -223,7 +223,7 @@ void main() {
       flush_data_cache();
 
       //uart_writeStr(BSP_UART_TERMINAL, "Done\n\r");
-
+*/
    }
    
    timerCmp1 = clint_getTime(BSP_CLINT);

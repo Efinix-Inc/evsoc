@@ -387,30 +387,12 @@ edge_vision_soc_wrapper #(
    .master_rstn                        (master_rstn),
    .i_pll_locked                       (i_pll_locked),
    .ddr_clk_locked                     (ddr_clk_locked),
-   .mipi_pclk                          (i_mipi_rx_pclk),
-   .tx_slowclk                         (i_mipi_tx_pclk),
-   .axi_clk_locked                     (axi_clk_locked),
-   .axi_clk                            (i_memoryClk),
-   .soc_clk                            (i_systemClk),
-   .dma_clk                            (i_memoryClk),
-   .offchip_rstn                       (1'b1),
-   .cam_rstn                           (),
-   .hdmi_rstn                          (),
-   //MIPI Control
-   .mipi_inst1_DPHY_RSTN               (),
-   .mipi_inst1_RSTN                    (),
-   .mipi_inst1_VC_ENA                  (),
-   .mipi_inst1_LANES                   (),
-   .mipi_inst1_CLEAR                   (),
-   //MIPI Video input
-   .mipi_inst1_HSYNC                   (4'd0),
-   .mipi_inst1_VSYNC                   (4'd0),
-   .mipi_inst1_CNT                     (4'd0),
-   .mipi_inst1_VALID                   (1'b0),
-   .mipi_inst1_TYPE                    (6'd0),
-   .mipi_inst1_DATA                    (64'd0),
-   .mipi_inst1_VC                      (2'd0),  
-   .mipi_inst1_ERR                     (18'd0),
+
+   .i_soc_clk                          (i_systemClk),
+   .i_axi0_mem_clk                     (i_memoryClk),
+   .i_hdmi_sim                         (i_mipi_tx_pclk),
+   .i_pixel_clk                        (i_mipi_rx_pclk),
+
    //Simulation frame data
    .sim_cam_hsync                      (sim_cam_hsync),
    .sim_cam_vsync                      (sim_cam_vsync),
@@ -418,16 +400,7 @@ edge_vision_soc_wrapper #(
    .sim_cam_r_pix                      (sim_cam_r_pix),
    .sim_cam_g_pix                      (sim_cam_g_pix),
    .sim_cam_b_pix                      (sim_cam_b_pix),
-   //LVDS Video output
-   .lvds_1a_DATA                       (),
-   .lvds_1b_DATA                       (),
-   .lvds_1c_DATA                       (),
-   .lvds_1d_DATA                       (),
-   .lvds_2a_DATA                       (),
-   .lvds_2b_DATA                       (),
-   .lvds_2c_DATA                       (),
-   .lvds_2d_DATA                       (),
-   .lvds_clk                           (),
+
    //RiscV Soc Pinout
    .system_uart_0_io_txd               (),
    .system_uart_0_io_rxd               (1'b0),
@@ -487,6 +460,11 @@ edge_vision_soc_wrapper #(
    .system_spi_0_io_data_1             (),
    .system_spi_0_io_sclk_write         (),
    .system_spi_0_io_ss                 (),
+   .system_spi_1_io_data_0             (),
+   .system_spi_1_io_data_1             (),
+   .system_spi_1_io_sclk_write         (),
+   .system_spi_1_io_ss                 (),
+
    //SOC Debugger
    .jtag_inst1_TCK                     (1'b0),
    .jtag_inst1_TDI                     (1'b0),
@@ -499,6 +477,7 @@ edge_vision_soc_wrapper #(
    .jtag_inst1_DRCK                    (1'b0),
    .jtag_inst1_RUNTEST                 (1'b0),
    .jtag_inst1_TMS                     (1'b0),
+
    //DDR RESET
    .ddr_inst1_CFG_RST_N                (),
    .ddr_inst1_CFG_SEQ_RST              (),

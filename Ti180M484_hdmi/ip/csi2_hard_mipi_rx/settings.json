@@ -3,13 +3,13 @@
         "-o",
         "csi2_hard_mipi_rx",
         "--base_path",
-        "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip",
+        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_hdmi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx_top",
-            "version": "1.1"
+            "version": "5.1"
         }
     ],
     "conf": {
@@ -23,34 +23,17 @@
         "Pack_48": "1",
         "Pack_56": "1",
         "Pack_64": "1",
-        "FRAME_MODE": "0",
+        "FRAME_MODE": "\"GENERIC\"",
         "ENABLE_VCX": "0"
     },
     "output": {
-        "external_source": [
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx.sv",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_define.vh",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.vhd",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.v"
-        ],
-        "external_example": [
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\data_unpack.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\datatype_gen.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\dual_clock_fifo.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\pattern_gen.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\shift_reg.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\simple_dual_port_ram.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\vga_gen.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\reset.v",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\top_2_5g.sv",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\efx_csi2_tx_top.sv",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.sdc",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.xml",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.peri.xml",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\csi2_hard_mipi_rx.sv",
-            "C:\\efinix\\TI180\\design\\OOB_IMX477\\efx_TI180M484_oob_4lanes\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\csi2_hard_mipi_rx_define.vh"
+        "external_source_source": [
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.v",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_define.vh",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.vhd",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180M484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx.sv"
         ]
     },
-    "sw_version": "2022.1.226",
-    "generated_date": "2022-10-20T08:05:38.128868"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-09-10T06:43:55.088110"
 }

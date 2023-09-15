@@ -3,13 +3,13 @@
         "-o",
         "dsi_tx_display",
         "--base_path",
-        "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip",
+        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "2.1"
+            "version": "5.2"
         }
     ],
     "conf": {
@@ -18,7 +18,7 @@
         "NUM_DATA_LANE": "4",
         "HS_BYTECLK_MHZ": "125",
         "CLOCK_FREQ_MHZ": "100",
-        "DPHY_CLOCK_MODE": "0",
+        "DPHY_CLOCK_MODE": "\"Continuous\"",
         "PIXEL_FIFO_DEPTH": "2048",
         "tLP_EXIT_NS": "100",
         "tCLK_ZERO_NS": "280",
@@ -30,70 +30,32 @@
         "tHS_ZERO_NS": "200",
         "tHS_TRAIL_NS": "65",
         "tHS_EXIT_NS": "120",
-        "Pack_48": "1",
-        "Pack_64": "0",
+        "Pack_48": "1'b1",
+        "Pack_64": "1'b0",
         "tHS_PREPARE_NS": "50",
         "BTA_TIMEOUT_NS": "100000",
         "tD_TERM_EN_NS": "35",
         "tHS_PREPARE_ZERO_NS": "145",
-        "ENABLE_V_LPM_BTA": "0",
+        "ENABLE_V_LPM_BTA": "1'b0",
         "PACKET_SEQUENCES": "1",
         "HS_CMD_WDATAFIFO_DEPTH": "512",
         "LP_CMD_WDATAFIFO_DEPTH": "512",
         "LP_CMD_RDATAFIFO_DEPTH": "2048",
         "MAX_HRES": "1080",
-        "ENABLE_BIDIR": "1",
-        "ENABLE_EOTP": "0"
+        "ENABLE_BIDIR": "1'b1",
+        "ENABLE_EOTP": "1'b0"
     },
     "output": {
         "external_source_source": [
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display_tmpl.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display.sv",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display_tmpl.vhd",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\dsi_tx_display_define.vh"
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display_define.vh",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display_tmpl.vhd",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display.sv",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display_tmpl.v"
         ],
         "external_testbench_modelsim": [
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\modelsim\\dsi_tx_display.sv"
-        ],
-        "external_testbench_testbench": [
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\data_pack.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dual_clock_fifo.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\panel_config.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\shift_reg.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\simple_dual_port_ram.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\true_dual_port_ram.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\vga_gen.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_hs_cmd_tb.mem",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_tb.mem",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\TI60F225_MIPI_dsi_tb.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\modelsim.do",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_tx_display.sv",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\dsi_tx_display_define.vh"
-        ],
-        "external_example_example": [
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\data_pack.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\dual_clock_fifo.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\panel_config.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\reset.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\shift_reg.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\simple_dual_port_ram.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\TI60F225_MIPI_dsi.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\true_dual_port_ram.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\vga_gen.v",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\ti60f225_demo.peri.xml",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\Panel_1080p_reg.mem",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\ti60f225_demo.xml",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\ti60f225_demo.sdc",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\dsi_tx_display.sv",
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Ti60F225_devkit\\dsi_tx_display_define.vh"
-        ],
-        "external_testbench_ncsim": [
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\ncsim\\dsi_tx_display.sv"
-        ],
-        "external_testbench_synopsys": [
-            "C:\\my_projects\\51_coral\\2_ti60\\Ti60F225_dsi\\ip\\dsi_tx_display\\Testbench\\synopsys\\dsi_tx_display.sv"
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
         ]
     },
-    "sw_version": "2022.2.322",
-    "generated_date": "2023-02-21T03:24:19.117215"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-09-10T04:42:05.871687"
 }

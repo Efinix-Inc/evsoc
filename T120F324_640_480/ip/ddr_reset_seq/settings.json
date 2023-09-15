@@ -3,32 +3,26 @@
         "-o",
         "ddr_reset_seq",
         "--base_path",
-        "/tmp/tmpowwfyjol/ip",
+        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_640_480/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory_controller",
             "name": "efx_ddr_reset_controller",
-            "version": "1.1"
+            "version": "5.0"
         }
     ],
     "conf": {
         "FREQ": "100"
     },
     "output": {
-        "external_source": [
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq_tmpl.v",
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq.v",
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq_define.vh",
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/ddr_reset_seq_tmpl.vhd"
-        ],
-        "external_testbench": [
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/ddr_reset_sequencer_tb.v",
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/modelsim.do",
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/ddr_reset_seq.v",
-            "/tmp/tmpowwfyjol/ip/ddr_reset_seq/Testbench/ddr_reset_seq_define.vh"
+        "external_source_source": [
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_640_480/ip/ddr_reset_seq/ddr_reset_seq_tmpl.v",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_640_480/ip/ddr_reset_seq/ddr_reset_seq_define.vh",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_640_480/ip/ddr_reset_seq/ddr_reset_seq_tmpl.vhd",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_640_480/ip/ddr_reset_seq/ddr_reset_seq.v"
         ]
     },
-    "sw_version": "2022.1.226",
-    "generated_date": "2023-01-30T03:27:31.324613"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-09-10T04:02:10.462925"
 }
