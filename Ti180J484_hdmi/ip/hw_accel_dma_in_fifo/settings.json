@@ -1,0 +1,45 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dma_in_fifo",
+        "--base_path",
+        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "5.0"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH_2": "5",
+        "DATA_WIDTH": "8",
+        "MODE": "\"STANDARD\"",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "20",
+        "PROGRAMMABLE_FULL": "\"STATIC_SINGLE\"",
+        "PFN_INTERNAL": "20",
+        "PEA_INTERNAL": "2",
+        "PEN_INTERNAL": "3",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "FAMILY": "\"TITANIUM\"",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "0"
+    },
+    "output": {
+        "external_source_source": [
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
+            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v"
+        ]
+    },
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-09-10T04:40:42.263945"
+}
