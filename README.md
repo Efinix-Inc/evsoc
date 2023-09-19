@@ -73,7 +73,6 @@ The example designs are implemented on:
 - [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html)
 - [Trion® T120 BGA576 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga576.html)
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
-- [Titanium® Ti180 M484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180m484.html)
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
 
 Efinity® IDE is required for project compilation and bitstream generation, whereas Efinity® RISC-V Embedded Software IDE is used to manage RISC-V software projects and for debugging purposes.
@@ -98,7 +97,6 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F324-DK-UG)
 - [Trion T120 BGA576 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F576-DK-UG)
 - [Titanium Ti60 F225 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti60F225-DK-UG)
-- [Titanium Ti180 M484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180M484-DK-UG)
 - [Titanium Ti180 J484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180J484-DK-UG)
 
 ## Videos
@@ -123,7 +121,6 @@ List of development kits & switches for selecting demo mode:
 - [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html) - User DIP Switches 0 & 1
 - [Trion® T120 BGA576 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga576.html) - User DIP Switches 0 & 1
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html) - User DIP Switches SW2 (Shared for CBSEL setting, can only used as user input after configuration)
-- [Titanium® Ti180 M484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180m484.html) - User Push Button SW4
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html) - User Push Button SW4
 
 Bring up quick start demo design on Efinix development kit by following listed steps below:
@@ -131,12 +128,12 @@ Bring up quick start demo design on Efinix development kit by following listed s
    - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
    - For demo design that uses Google Coral Camera module (*\<device\>\_coral\_\<display\>\_\<application\>\_demo*),
       - Google Coral Camera and Google Coral Camera connector daughter card are required.
-      - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Kit, or P1 header on Titanium Ti180 M484 Development Kit and Titanium Ti180 J484 Development Kit.
+      - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Kit, or P1 header on Titanium Ti180 J484 Development Kit.
 2. Program hex file using Efinity Programmer
-   - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (T120 BGA324, T120 BGA576, Ti60 F225) or SPI Active using JTAG bridge mode (Ti180 M484, Ti180 J484).
+   - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (T120 BGA324, T120 BGA576, Ti60 F225) or SPI Active using JTAG bridge mode (Ti180 J484).
 3. Press CRESET button & Demo design is up and running
 
-As the quick start demo design is programmed through SPI active mode or SPI Active using JTAG bridge mode, the design is stored in flash memory. Since flash is non-volatile memory, the design is retained even after power off. Hence, before loading other design, which is with separate FPGA bitstream and RISC-V application binary (run with Eclipse OpenOCD Debugger), user should erase the flash memory (recommend to erase 16MB for T120 BGA324 and T120 BGA576; 8MB for Ti60 F225; 32MB for Ti180M484 and Ti180J484 development kits) using Efinity Programmer.
+As the quick start demo design is programmed through SPI active mode or SPI Active using JTAG bridge mode, the design is stored in flash memory. Since flash is non-volatile memory, the design is retained even after power off. Hence, before loading other design, which is with separate FPGA bitstream and RISC-V application binary (run with Eclipse OpenOCD Debugger), user should erase the flash memory (recommend to erase 16MB for T120 BGA324 and T120 BGA576; 8MB for Ti60 F225; 32MB for Ti180J484 development kits) using Efinity Programmer.
 
 ## Frequently Asked Questions
 1.  **Where are the HW/RTL and SW/firmware source files located?**
@@ -209,23 +206,6 @@ As the quick start demo design is programmed through SPI active mode or SPI Acti
     │   ├── sim
     │   └── source
     ├── Ti60F225_coral_dsi
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   └── source
-    ├── Ti180M484_hdmi
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   ├── sim
-    │   └── source
-    ├── Ti180M484_coral_hdmi
     │   ├── embedded_sw
     │   │   └── SapphireSoc
     │   │       └── software
