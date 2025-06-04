@@ -1,0 +1,37 @@
+--ramHex "/projects/SSE/jjho/efinity/2025.1/ipm/ip/efx_soc/efx_soc/generator/bootloader/bootloader_124K.hex"
+--axiAEnable true
+--axiASize 0x1000000
+--Linux false
+--softTap false
+--dCacheWays 1
+--FpuDouble false
+--ddrAIdWidth 8
+--dCacheSize 4096
+--axiAAddress 0xe1000000
+--withRiscvDebugPriv
+--ddrASize 0xe0000000
+--ddrADataWidth 512
+--interrupt name=userInterruptA,id=16
+--cpuCount 1
+--spi name=system_spi_0_io,address=0x014000,interruptId=4,width=8,ssCount=1,fifoDepth=256
+--peripheralFrequency 100000000
+--hardwareBreakpoints 0
+--uart name=system_uart_0_io,address=0x010000,interruptId=1,fifoDepth=128
+--Fpu false
+--iCacheSize 4096
+--ddrAAxi4
+--spi name=system_spi_1_io,address=0x015000,interruptId=5,width=8,ssCount=1,fifoDepth=256
+--iCacheWays 1
+--customInstruction false
+--L1I true
+--Atomic false
+--apbSlave name=io_apbSlave_1,address=0x110000,size=65536
+--L1D true
+--apbSlave name=io_apbSlave_0,address=0x100000,size=65536
+--onChipRamSize 0x1000
+--i2c name=system_i2c_0_io,address=0x016000,interruptId=8
+--onChipRamAddress 0xf9000000
+--systemFrequency 300000000
+--ddrAEnable true
+--apbBridgeAddress 0xf8000000
+--PeripheralClock true

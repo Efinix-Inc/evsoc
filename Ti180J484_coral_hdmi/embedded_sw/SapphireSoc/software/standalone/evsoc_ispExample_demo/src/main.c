@@ -1,6 +1,6 @@
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+
 #include <stdint.h>
 #include "io.h"
 #include "riscv.h"
@@ -18,6 +18,7 @@
 #include "dmasg_config.h"
 #include "axi4_hw_accel.h"
 #include "isp.h"
+#include "userDef.h"
 
 #define FRAME_WIDTH    1920
 #define FRAME_HEIGHT   1080

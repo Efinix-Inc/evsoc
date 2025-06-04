@@ -131,19 +131,19 @@ def main():
         shutil.copy(filename, dest_sim)
 
         
-    path_cam_dma_fifo=os.path.join("..","ip","cam_dma_fifo","cam_dma_fifo.v")
+    path_cam_dma_fifo=os.path.join("..","ip","cam_dma_fifo","cam_dma_fifo.sv")
     shutil.copy(path_cam_dma_fifo, dest_sim)
         
-    path_cam_pixel_remap_fifo=os.path.join("..","ip","cam_pixel_remap_fifo","cam_pixel_remap_fifo.v")
+    path_cam_pixel_remap_fifo=os.path.join("..","ip","cam_pixel_remap_fifo","cam_pixel_remap_fifo.sv")
     shutil.copy(path_cam_pixel_remap_fifo, dest_sim)
     
-    path_display_dma_fifo=os.path.join("..","ip","display_dma_fifo","display_dma_fifo.v")
+    path_display_dma_fifo=os.path.join("..","ip","display_dma_fifo","display_dma_fifo.sv")
     shutil.copy(path_display_dma_fifo, dest_sim)
 
-    path_hw_accel_dma_in_fifo=os.path.join("..","ip","hw_accel_dma_in_fifo","hw_accel_dma_in_fifo.v")
+    path_hw_accel_dma_in_fifo=os.path.join("..","ip","hw_accel_dma_in_fifo","hw_accel_dma_in_fifo.sv")
     shutil.copy(path_hw_accel_dma_in_fifo, dest_sim)
 
-    path_hw_accel_dma_out_fifo=os.path.join("..","ip","hw_accel_dma_out_fifo","hw_accel_dma_out_fifo.v")
+    path_hw_accel_dma_out_fifo=os.path.join("..","ip","hw_accel_dma_out_fifo","hw_accel_dma_out_fifo.sv")
     shutil.copy(path_hw_accel_dma_out_fifo, dest_sim)
 
     path_dma=os.path.join("..","ip","dma","dma.v")
@@ -152,7 +152,7 @@ def main():
     path_SapphireSoc=os.path.join("..","ip","SapphireSoc","Testbench","modelsim","SapphireSoc.v")
     shutil.copy(path_SapphireSoc, dest_sim)
 
-    path_csi2_rx_cam=os.path.join("..","ip","csi2_rx_cam","csi2_rx_cam_define.vh")
+    path_csi2_rx_cam=os.path.join("..","ip","csi2_rx_cam","csi2_rx_cam_define.svh")
     shutil.copy(path_csi2_rx_cam, dest_sim)
 
     path_csi2_rx_cam_msim=os.path.join("..","ip","csi2_rx_cam","Testbench","modelsim","csi2_rx_cam.sv")
@@ -161,13 +161,13 @@ def main():
     path_hbram_msim=os.path.join("..","ip","hbram","Testbench","modelsim","hbram.sv")
     shutil.copy(path_hbram_msim, dest_sim) 
 
-    path_hbram=os.path.join("..","ip","hbram","hbram_define.vh")
+    path_hbram=os.path.join("..","ip","hbram","hbram_define.svh")
     shutil.copy(path_hbram, dest_sim)
 
     path_efx_dsi_tx_msim=os.path.join("..","ip","dsi_tx_display","Testbench","modelsim","dsi_tx_display.sv")
     shutil.copy(path_efx_dsi_tx_msim, dest_sim)
 
-    path_efx_dsi_tx=os.path.join("..","ip","dsi_tx_display","dsi_tx_display_define.vh")
+    path_efx_dsi_tx=os.path.join("..","ip","dsi_tx_display","dsi_tx_display_define.svh")
     shutil.copy(path_efx_dsi_tx, dest_sim)    
          
     test=os.listdir(dest_sim)

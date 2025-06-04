@@ -3,13 +3,13 @@
         "-o",
         "cam_dma_fifo",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_1280_720/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F324_1280_720/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "5.0"
+            "version": "8.0"
         }
     ],
     "conf": {
@@ -27,19 +27,22 @@
         "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "FAMILY": "\"TRION\"",
         "ASYM_WIDTH_RATIO": "4",
         "BYPASS_RESET_SYNC": "0",
-        "ENDIANESS": "0"
+        "ENDIANESS": "0",
+        "RAM_STYLE": "\"block_ram\"",
+        "OVERFLOW_PROTECT": "1",
+        "UNDERFLOW_PROTECT": "1"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_1280_720/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_1280_720/ip/cam_dma_fifo/cam_dma_fifo_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_1280_720/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F324_1280_720/ip/cam_dma_fifo/cam_dma_fifo.v"
+            "cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
+            "cam_dma_fifo/cam_dma_fifo.sv",
+            "cam_dma_fifo/cam_dma_fifo_define.svh",
+            "cam_dma_fifo/cam_dma_fifo_tmpl.sv"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T03:11:04.444696"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T03:14:18.805723+00:00"
 }

@@ -1,6 +1,9 @@
+//Define the picam version. By default is set to Picam V2.
+//#define PICAM_VERSION 3
+
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+
 #include <stdint.h>
 #include "io.h"
 #include "riscv.h"
@@ -10,7 +13,11 @@
 
 #include "clint.h"
 #include "common.h"
+#if PICAM_VERSION == 3
+   #include "PiCamV3Driver.h"
+#else
 #include "PiCamDriver.h"
+#endif
 #include "apb3_cam.h"
 #include "hdmi_config.h"
 #include "hdmi_driver.h"
@@ -18,6 +25,7 @@
 #include "dmasg_config.h"
 #include "axi4_hw_accel.h"
 #include "isp.h"
+#include "userDef.h"
 
 #define FRAME_WIDTH    1280
 #define FRAME_HEIGHT   720
@@ -48,13 +56,22 @@ void main() {
    uart_writeStr(BSP_UART_TERMINAL, "Init MIPI I2C.....");
    cam1_i2c_init();
    cam2_i2c_init();
-   PiCam1_init();
-   PiCam2_init();
-   uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\r");
+#if PICAM_VERSION == 3
+   PiCamV3_Init(I2C_CTRL_CAM1);
+   PiCamV3_Init(I2C_CTRL_CAM2);
+   
+   Set_RGBGain1(1,5,3,7); //SET camera pre-processing RGB gain value (cam1)
+   Set_RGBGain2(1,5,3,7); //SET camera pre-processing RGB gain value (cam2)
+#else
+   PiCam1_init(); 
+   PiCam2_init(); 
 
    Set_RGBGain1(1,5,3,4); //SET camera pre-processing RGB gain value (cam1)
    Set_RGBGain2(1,5,3,4); //SET camera pre-processing RGB gain value (cam2)
-   
+#endif 
+
+   uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\r");
+
    /**********************************************************SETUP DMA***********************************************************/
    
    uart_writeStr(BSP_UART_TERMINAL, "Init DMA.....");
@@ -149,6 +166,11 @@ void main() {
    uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\n\r");
    
    msDelay(5000); //Display test content for 5 seconds
+
+#if PICAM_VERSION == 3
+   PiCamV3_StartStreaming(I2C_CTRL_CAM1);
+   PiCamV3_StartStreaming(I2C_CTRL_CAM2);
+#endif
 
    while (1) {
       

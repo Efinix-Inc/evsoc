@@ -3,13 +3,13 @@
         "-o",
         "csi2_hard_mipi_rx",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti180J484_hdmi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx_top",
-            "version": "5.1"
+            "version": "5.12"
         }
     ],
     "conf": {
@@ -24,16 +24,18 @@
         "Pack_56": "1",
         "Pack_64": "1",
         "FRAME_MODE": "\"GENERIC\"",
-        "ENABLE_VCX": "0"
+        "ENABLE_VCX": "0",
+        "MIPI_CSI2_RX_DEBUG": "1'b0"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx.sv",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.v"
+            "csi2_hard_mipi_rx/csi2_hard_mipi_rx.sv",
+            "csi2_hard_mipi_rx/csi2_hard_mipi_rx_define.svh",
+            "csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.sv",
+            "csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.vhd"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T04:40:30.496814"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T05:42:53.056635+00:00"
 }

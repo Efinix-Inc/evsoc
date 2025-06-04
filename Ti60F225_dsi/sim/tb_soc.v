@@ -26,7 +26,7 @@
 
 module tb_soc ();
 
-`include "hbram_define.vh"
+`include "hbram_define.svh"
 `include "image_64_48.vh"
 
 localparam FRAME_WIDTH        = 64;

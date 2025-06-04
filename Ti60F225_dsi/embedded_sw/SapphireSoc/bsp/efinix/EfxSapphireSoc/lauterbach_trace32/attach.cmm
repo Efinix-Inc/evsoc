@@ -1,0 +1,40 @@
+; -------------------------------------------------------------------------------
+; SapphireSoC Debug (Attach mode)
+; --------------------------------------------------------------------------------
+; initialize and start the debugger
+RESet
+SYStem.RESet
+SYStem.CPU RV32
+SYStem.Option.ResetMode NDMRST
+SYStem.Option.IMASKASM on
+SETUP.DIS AbiNames
+SYStem.Mode Attach
+Break
+
+; --------------------------------------------------------------------------------
+; load demo program 
+Data.LOAD.Elf ./build/demo.elf /NoCODE
+ 
+; --------------------------------------------------------------------------------
+; start program execution
+; Go.direct main
+; WAIT !STATE.RUN()
+
+; --------------------------------------------------------------------------------
+; open some windows
+WinCLEAR
+Mode.Hll
+WinPOS 0. 0. 116. 26.
+List.auto
+WinPOS 120. 0. 100. 8.
+Frame.view
+WinPOS 120. 14.
+Register.view
+WinPOS 0. 32.
+AREA
+
+TERM.GATE
+TERM.METHOD RISCVSWI
+
+ENDDO
+

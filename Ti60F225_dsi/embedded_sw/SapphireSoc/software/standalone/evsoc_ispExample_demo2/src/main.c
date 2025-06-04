@@ -1,6 +1,9 @@
+//Define the picam version. By default is set to Picam V2.
+//#define PICAM_VERSION 3
+
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+
 #include <stdint.h>
 #include "io.h"
 #include "riscv.h"
@@ -10,12 +13,17 @@
 #include "clint.h"
 
 #include "common.h"
-#include "PiCamDriver.h"
+#if PICAM_VERSION == 3
+   #include "PiCamV3Driver.h"
+#else
+   #include "PiCamDriver.h"
+#endif
 #include "apb3_cam.h"
 #include "dmasg.h"
 #include "dmasg_config.h"
 #include "axi4_hw_accel.h"
 #include "isp.h"
+#include "userDef.h"
 
 #define FRAME_WIDTH     540
 #define FRAME_HEIGHT    540
@@ -127,16 +135,33 @@ void main() {
 
    uart_writeStr(BSP_UART_TERMINAL, "Camera Setting...");
    
+   //Assert camera reset
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);
+   bsp_uDelay(100);
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000002);
+   bsp_uDelay(1000*10);
+
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);
+   bsp_uDelay(100);
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000002);
+   bsp_uDelay(1000*10);
+   
    //Camera I2C configuration
    mipi_i2c_init();
+#if PICAM_VERSION == 3
+  PiCamV3_Init();
+
+  //SET camera pre-processing RGB gain value
+  Set_RGBGain(1,5,3,7);
+#else
    PiCam_init();
-   
-   //Indicate camera configuration done
-   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000001);
    
    //SET camera pre-processing RGB gain value
    Set_RGBGain(1,5,3,4); 
+#endif
    
+  //Indicate camera configuration done
+  EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000003);
    uart_writeStr(BSP_UART_TERMINAL, "Done\n\r");
    
    /******************************************************SETUP DMA********************************************************/
@@ -225,6 +250,9 @@ void main() {
    uart_writeStr(BSP_UART_TERMINAL, "\n\r");
 
    ispExample_menu();
+#if PICAM_VERSION == 3
+   PiCamV3_StartStreaming();
+#endif
 
    while (1) {
       select_demo_mode = example_register_read(EXAMPLE_APB3_SLV_REG13_OFFSET);

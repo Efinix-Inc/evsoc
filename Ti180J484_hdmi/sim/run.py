@@ -131,19 +131,19 @@ def main():
     #for filename in glob.iglob(path_base , recursive=True):
     #    shutil.copy(filename, dest_sim)
     
-    path_cam_dma_fifo=os.path.join("..","ip","cam_dma_fifo","cam_dma_fifo.v")
+    path_cam_dma_fifo=os.path.join("..","ip","cam_dma_fifo","cam_dma_fifo.sv")
     shutil.copy(path_cam_dma_fifo, dest_sim)
         
-    path_cam_pixel_remap_fifo=os.path.join("..","ip","cam_pixel_remap_fifo","cam_pixel_remap_fifo.v")
+    path_cam_pixel_remap_fifo=os.path.join("..","ip","cam_pixel_remap_fifo","cam_pixel_remap_fifo.sv")
     shutil.copy(path_cam_pixel_remap_fifo, dest_sim)
     
-    path_display_dma_fifo=os.path.join("..","ip","display_dma_fifo","display_dma_fifo.v")
+    path_display_dma_fifo=os.path.join("..","ip","display_dma_fifo","display_dma_fifo.sv")
     shutil.copy(path_display_dma_fifo, dest_sim)
 
-    path_hw_accel_dma_in_fifo=os.path.join("..","ip","hw_accel_dma_in_fifo","hw_accel_dma_in_fifo.v")
+    path_hw_accel_dma_in_fifo=os.path.join("..","ip","hw_accel_dma_in_fifo","hw_accel_dma_in_fifo.sv")
     shutil.copy(path_hw_accel_dma_in_fifo, dest_sim)
 
-    path_hw_accel_dma_out_fifo=os.path.join("..","ip","hw_accel_dma_out_fifo","hw_accel_dma_out_fifo.v")
+    path_hw_accel_dma_out_fifo=os.path.join("..","ip","hw_accel_dma_out_fifo","hw_accel_dma_out_fifo.sv")
     shutil.copy(path_hw_accel_dma_out_fifo, dest_sim)
 
     path_dma=os.path.join("..","ip","dma","dma.v")

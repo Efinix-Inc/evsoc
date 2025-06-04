@@ -1,7 +1,7 @@
 
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+
 #include "riscv.h"
 #include "CoralCam.h"
 #include "common.h"

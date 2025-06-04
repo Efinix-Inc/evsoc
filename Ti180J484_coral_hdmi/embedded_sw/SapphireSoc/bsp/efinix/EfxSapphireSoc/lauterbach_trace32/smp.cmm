@@ -1,0 +1,41 @@
+; --------------------------------------------------------------------------------
+; SapphireSoC 2-core SMP Debug
+; --------------------------------------------------------------------------------
+; initialize and start the debugger
+RESet
+SYStem.RESet
+SYStem.CPU RV32
+SYStem.CONFIG CORE 1. 1.
+SYStem.CONFIG CoreNumber 2.
+SYStem.CONFIG HARTINDEX 0. 1.
+CORE.ASSIGN 1. 2.
+SYStem.Option.ResetMode NDMRST
+SYStem.Option.IMASKASM on
+SYStem.Up
+
+; --------------------------------------------------------------------------------
+; load demo program 
+Data.LOAD.Elf ./build/smpDemo.elf /Verify
+
+; --------------------------------------------------------------------------------
+; start program execution
+;Go.direct main
+;WAIT !STATE.RUN()
+
+Register.Set PC 0x1000 /CORE 0.
+Register.Set PC 0x1000 /CORE 1.
+
+; --------------------------------------------------------------------------------
+; open some windows
+WinCLEAR
+Mode.Hll
+List.auto /CORE 0.
+List.auto /CORE 1.
+Register.view /CORE 0.
+Register.view /CORE 1.
+PERF.ListFunc /CORE 0.
+PERF.ListFunc /CORE 1.
+AREA
+
+ENDDO
+

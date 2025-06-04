@@ -1,6 +1,6 @@
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+
 #include <stdint.h>
 #include "io.h"
 #include "riscv.h"
@@ -17,7 +17,7 @@
 #include "dmasg_config.h"
 
 #include "spi.h"
-#include "spiDemo.h"
+#include "userDef.h"
 
 #define FRAME_WIDTH    640
 #define FRAME_HEIGHT   480

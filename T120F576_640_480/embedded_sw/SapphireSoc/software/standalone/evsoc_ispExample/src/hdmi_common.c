@@ -2,7 +2,7 @@
 #include "typedef.h"
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h" //From BSP
+
 #include "common.h"
 #include "hdmi_common.h"
 #include "hdmi_driver.h"

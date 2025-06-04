@@ -3,13 +3,13 @@
         "-o",
         "dsi_tx_display",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti60F225_coral_dsi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "5.2"
+            "version": "5.14"
         }
     ],
     "conf": {
@@ -43,19 +43,23 @@
         "LP_CMD_RDATAFIFO_DEPTH": "2048",
         "MAX_HRES": "1080",
         "ENABLE_BIDIR": "1'b1",
-        "ENABLE_EOTP": "1'b0"
+        "ENABLE_EOTP": "1'b0",
+        "Pack_60": "1'b0",
+        "Pack_36": "1'b0",
+        "MIPI_DSI_TX_DEBUG": "1'b0"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display.sv",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/dsi_tx_display_tmpl.v"
+            "dsi_tx_display/dsi_tx_display_tmpl.vhd",
+            "dsi_tx_display/dsi_tx_display.sv",
+            "dsi_tx_display/dsi_tx_display_define.svh",
+            "dsi_tx_display/dsi_tx_display_tmpl.sv"
         ],
         "external_testbench_modelsim": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
+            "dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T04:42:05.871687"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T06:05:52.708445+00:00"
 }

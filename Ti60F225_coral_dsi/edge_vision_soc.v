@@ -202,9 +202,9 @@ module edge_vision_soc #(
 );
 
 `ifndef SIM
-   `include "./ip/hbram/hbram_define.vh"
+   `include "./ip/hbram/hbram_define.svh"
 `else
-   `include "hbram_define.vh"
+   `include "hbram_define.svh"
 `endif
 
 ////////////////////////////////////////////////////////////////
@@ -255,6 +255,9 @@ wire                    rgb_gray;
 wire                    cam_dma_init_done;
 wire  [31:0]            frames_per_second;
 wire                    cam_confdone;
+wire                    enable_cam;
+
+
 
 wire                    mipi_i2c_0_io_sda_write;
 wire                    mipi_i2c_0_io_scl_write;
@@ -650,7 +653,7 @@ assign   o_lcd_rstn           = r_lcd_rstn;
 assign   o_led                = dp_frame_cnt[4];
 assign   o_pll_rstn           = i_arstn;
 assign   o_mipi_pll_rstn      = i_arstn;
-assign   o_cam_rstn           = i_arstn;
+assign   o_cam_rstn           = ~io_systemReset & enable_cam;
 
 ////////////////////////////////////////////////////////////////
 // MIPI CSI RX Channel - Camera
@@ -1011,9 +1014,10 @@ assign debug_cam_display_fifo_status = {26'd0, debug_cam_pixel_remap_fifo_underf
 apb3_cam #(
    .ADDR_WIDTH (16),
    .DATA_WIDTH (32),
-   .NUM_REG    (5)
+   .NUM_REG    (7)
 ) u_apb3_cam_display (
    .select_demo_mode              ({user_dip1,user_dip0}),
+   .enable_cam                    (enable_cam),
    .cam_confdone                  (cam_confdone),
    .rgb_control                   (rgb_control),
    .trigger_capture_frame         (trigger_capture_frame),

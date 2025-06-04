@@ -3,13 +3,13 @@
         "-o",
         "cam_pixel_remap_fifo",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti60F225_coral_dsi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "5.0"
+            "version": "8.0"
         }
     ],
     "conf": {
@@ -27,19 +27,22 @@
         "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "FAMILY": "\"TITANIUM\"",
         "ASYM_WIDTH_RATIO": "4",
         "BYPASS_RESET_SYNC": "0",
-        "ENDIANESS": "0"
+        "ENDIANESS": "0",
+        "RAM_STYLE": "\"block_ram\"",
+        "OVERFLOW_PROTECT": "1",
+        "UNDERFLOW_PROTECT": "1"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.v"
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo.sv",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.svh",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.sv"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T04:41:51.458224"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T06:04:13.581264+00:00"
 }

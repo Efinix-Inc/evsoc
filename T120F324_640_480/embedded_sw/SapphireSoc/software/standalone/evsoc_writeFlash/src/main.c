@@ -1,9 +1,13 @@
+// NOTE: To allocate enough RAM for the full image, you must manually modify `default.ld`
+// located at `embedded_sw/SapphireSoc/bsp/efinix/EfxSapphireSoC/linker/`.
+// Specifically, increase the `RAM` region size from the default 128 KB to 1600 KB (1.6 MB).
+
 #include <stdint.h>
 #include <stdio.h>
 
 #include "bsp.h"
 #include "spi.h"
-#include "spiDemo.h"
+#include "userDef.h"
 
 #include "img_data.h"
 

@@ -1,0 +1,199 @@
+--------------------------------------------------------------------------------
+-- Copyright (C) 2013-2025 Efinix Inc. All rights reserved.              
+--
+-- This   document  contains  proprietary information  which   is        
+-- protected by  copyright. All rights  are reserved.  This notice       
+-- refers to original work by Efinix, Inc. which may be derivitive       
+-- of other work distributed under license of the authors.  In the       
+-- case of derivative work, nothing in this notice overrides the         
+-- original author's license agreement.  Where applicable, the           
+-- original license agreement is included in it's original               
+-- unmodified form immediately below this header.                        
+--                                                                       
+-- WARRANTY DISCLAIMER.                                                  
+--     THE  DESIGN, CODE, OR INFORMATION ARE PROVIDED “AS IS” AND        
+--     EFINIX MAKES NO WARRANTIES, EXPRESS OR IMPLIED WITH               
+--     RESPECT THERETO, AND EXPRESSLY DISCLAIMS ANY IMPLIED WARRANTIES,  
+--     INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF          
+--     MERCHANTABILITY, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR    
+--     PURPOSE.  SOME STATES DO NOT ALLOW EXCLUSIONS OF AN IMPLIED       
+--     WARRANTY, SO THIS DISCLAIMER MAY NOT APPLY TO LICENSEE.           
+--                                                                       
+-- LIMITATION OF LIABILITY.                                              
+--     NOTWITHSTANDING ANYTHING TO THE CONTRARY, EXCEPT FOR BODILY       
+--     INJURY, EFINIX SHALL NOT BE LIABLE WITH RESPECT TO ANY SUBJECT    
+--     MATTER OF THIS AGREEMENT UNDER TORT, CONTRACT, STRICT LIABILITY   
+--     OR ANY OTHER LEGAL OR EQUITABLE THEORY (I) FOR ANY INDIRECT,      
+--     SPECIAL, INCIDENTAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES OF ANY    
+--     CHARACTER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF      
+--     GOODWILL, DATA OR PROFIT, WORK STOPPAGE, OR COMPUTER FAILURE OR   
+--     MALFUNCTION, OR IN ANY EVENT (II) FOR ANY AMOUNT IN EXCESS, IN    
+--     THE AGGREGATE, OF THE FEE PAID BY LICENSEE TO EFINIX HEREUNDER    
+--     (OR, IF THE FEE HAS BEEN WAIVED, $100), EVEN IF EFINIX SHALL HAVE 
+--     BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGES.  SOME STATES DO 
+--     NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR            
+--     CONSEQUENTIAL DAMAGES, SO THIS LIMITATION AND EXCLUSION MAY NOT   
+--     APPLY TO LICENSEE.                                                
+--
+--------------------------------------------------------------------------------
+------------- Begin Cut here for COMPONENT Declaration ------
+component dma is
+port (
+    clk : in std_logic;
+    ctrl_reset : in std_logic;
+    reset : in std_logic;
+    ctrl_clk : in std_logic;
+    ctrl_PADDR : in std_logic_vector(13 downto 0);
+    ctrl_PREADY : out std_logic;
+    ctrl_PENABLE : in std_logic;
+    ctrl_PSEL : in std_logic;
+    ctrl_PWRITE : in std_logic;
+    ctrl_PWDATA : in std_logic_vector(31 downto 0);
+    ctrl_PRDATA : out std_logic_vector(31 downto 0);
+    ctrl_PSLVERROR : out std_logic;
+    ctrl_interrupts : out std_logic_vector(3 downto 0);
+    axi_arwvalid : out std_logic;
+    axi_arwready : in std_logic;
+    axi_arwaddr : out std_logic_vector(31 downto 0);
+    axi_arwregion : out std_logic_vector(3 downto 0);
+    axi_arwlen : out std_logic_vector(7 downto 0);
+    axi_arwsize : out std_logic_vector(2 downto 0);
+    axi_arwburst : out std_logic_vector(1 downto 0);
+    axi_arwlock : out std_logic;
+    axi_arwcache : out std_logic_vector(3 downto 0);
+    axi_arwqos : out std_logic_vector(3 downto 0);
+    axi_arwprot : out std_logic_vector(2 downto 0);
+    axi_arwwrite : out std_logic;
+    axi_wvalid : out std_logic;
+    axi_wready : in std_logic;
+    axi_wdata : out std_logic_vector(255 downto 0);
+    axi_wstrb : out std_logic_vector(31 downto 0);
+    axi_wlast : out std_logic;
+    axi_bvalid : in std_logic;
+    axi_bready : out std_logic;
+    axi_bresp : in std_logic_vector(1 downto 0);
+    axi_rvalid : in std_logic;
+    axi_rready : out std_logic;
+    axi_rdata : in std_logic_vector(255 downto 0);
+    axi_rresp : in std_logic_vector(1 downto 0);
+    axi_rlast : in std_logic;
+    dat3_o_tvalid : out std_logic;
+    dat3_o_tready : in std_logic;
+    dat3_o_tdata : out std_logic_vector(31 downto 0);
+    dat3_o_tkeep : out std_logic_vector(3 downto 0);
+    dat3_o_tdest : out std_logic_vector(3 downto 0);
+    dat3_o_tlast : out std_logic;
+    dat1_o_tvalid : out std_logic;
+    dat1_o_tready : in std_logic;
+    dat1_o_tdata : out std_logic_vector(63 downto 0);
+    dat1_o_tkeep : out std_logic_vector(7 downto 0);
+    dat1_o_tdest : out std_logic_vector(3 downto 0);
+    dat1_o_tlast : out std_logic;
+    io_0_descriptorUpdate : out std_logic;
+    dat3_o_clk : in std_logic;
+    dat3_o_reset : in std_logic;
+    dat2_i_clk : in std_logic;
+    dat2_i_reset : in std_logic;
+    dat1_o_clk : in std_logic;
+    dat1_o_reset : in std_logic;
+    dat0_i_clk : in std_logic;
+    dat0_i_reset : in std_logic;
+    dat2_i_tvalid : in std_logic;
+    dat2_i_tready : out std_logic;
+    dat2_i_tdata : in std_logic_vector(31 downto 0);
+    dat2_i_tkeep : in std_logic_vector(3 downto 0);
+    dat2_i_tdest : in std_logic_vector(3 downto 0);
+    dat2_i_tlast : in std_logic;
+    dat0_i_tvalid : in std_logic;
+    dat0_i_tready : out std_logic;
+    dat0_i_tdata : in std_logic_vector(63 downto 0);
+    dat0_i_tkeep : in std_logic_vector(7 downto 0);
+    dat0_i_tdest : in std_logic_vector(3 downto 0);
+    dat0_i_tlast : in std_logic;
+    io_1_descriptorUpdate : out std_logic;
+    io_2_descriptorUpdate : out std_logic;
+    io_3_descriptorUpdate : out std_logic
+);
+end component dma;
+
+---------------------- End COMPONENT Declaration ------------
+------------- Begin Cut here for INSTANTIATION Template -----
+u_dma : dma
+port map (
+    clk => clk,
+    ctrl_reset => ctrl_reset,
+    reset => reset,
+    ctrl_clk => ctrl_clk,
+    ctrl_PADDR => ctrl_PADDR,
+    ctrl_PREADY => ctrl_PREADY,
+    ctrl_PENABLE => ctrl_PENABLE,
+    ctrl_PSEL => ctrl_PSEL,
+    ctrl_PWRITE => ctrl_PWRITE,
+    ctrl_PWDATA => ctrl_PWDATA,
+    ctrl_PRDATA => ctrl_PRDATA,
+    ctrl_PSLVERROR => ctrl_PSLVERROR,
+    ctrl_interrupts => ctrl_interrupts,
+    axi_arwvalid => axi_arwvalid,
+    axi_arwready => axi_arwready,
+    axi_arwaddr => axi_arwaddr,
+    axi_arwregion => axi_arwregion,
+    axi_arwlen => axi_arwlen,
+    axi_arwsize => axi_arwsize,
+    axi_arwburst => axi_arwburst,
+    axi_arwlock => axi_arwlock,
+    axi_arwcache => axi_arwcache,
+    axi_arwqos => axi_arwqos,
+    axi_arwprot => axi_arwprot,
+    axi_arwwrite => axi_arwwrite,
+    axi_wvalid => axi_wvalid,
+    axi_wready => axi_wready,
+    axi_wdata => axi_wdata,
+    axi_wstrb => axi_wstrb,
+    axi_wlast => axi_wlast,
+    axi_bvalid => axi_bvalid,
+    axi_bready => axi_bready,
+    axi_bresp => axi_bresp,
+    axi_rvalid => axi_rvalid,
+    axi_rready => axi_rready,
+    axi_rdata => axi_rdata,
+    axi_rresp => axi_rresp,
+    axi_rlast => axi_rlast,
+    dat3_o_tvalid => dat3_o_tvalid,
+    dat3_o_tready => dat3_o_tready,
+    dat3_o_tdata => dat3_o_tdata,
+    dat3_o_tkeep => dat3_o_tkeep,
+    dat3_o_tdest => dat3_o_tdest,
+    dat3_o_tlast => dat3_o_tlast,
+    dat1_o_tvalid => dat1_o_tvalid,
+    dat1_o_tready => dat1_o_tready,
+    dat1_o_tdata => dat1_o_tdata,
+    dat1_o_tkeep => dat1_o_tkeep,
+    dat1_o_tdest => dat1_o_tdest,
+    dat1_o_tlast => dat1_o_tlast,
+    io_0_descriptorUpdate => io_0_descriptorUpdate,
+    dat3_o_clk => dat3_o_clk,
+    dat3_o_reset => dat3_o_reset,
+    dat2_i_clk => dat2_i_clk,
+    dat2_i_reset => dat2_i_reset,
+    dat1_o_clk => dat1_o_clk,
+    dat1_o_reset => dat1_o_reset,
+    dat0_i_clk => dat0_i_clk,
+    dat0_i_reset => dat0_i_reset,
+    dat2_i_tvalid => dat2_i_tvalid,
+    dat2_i_tready => dat2_i_tready,
+    dat2_i_tdata => dat2_i_tdata,
+    dat2_i_tkeep => dat2_i_tkeep,
+    dat2_i_tdest => dat2_i_tdest,
+    dat2_i_tlast => dat2_i_tlast,
+    dat0_i_tvalid => dat0_i_tvalid,
+    dat0_i_tready => dat0_i_tready,
+    dat0_i_tdata => dat0_i_tdata,
+    dat0_i_tkeep => dat0_i_tkeep,
+    dat0_i_tdest => dat0_i_tdest,
+    dat0_i_tlast => dat0_i_tlast,
+    io_1_descriptorUpdate => io_1_descriptorUpdate,
+    io_2_descriptorUpdate => io_2_descriptorUpdate,
+    io_3_descriptorUpdate => io_3_descriptorUpdate
+);
+
+------------------------ End INSTANTIATION Template ---------

@@ -1,0 +1,40 @@
+; -------------------------------------------------------------------------------
+; SapphireSoC FreeRTOS Debug 
+; --------------------------------------------------------------------------------
+; initialize and start the debugger
+RESet
+SYStem.RESet
+SYStem.CPU RV32
+SYStem.Option.ResetMode NDMRST
+SYStem.Option.IMASKASM on
+SYStem.Up
+
+; Disable the CLINT timer when the CPU is in debug mode
+per.Set.Field CSR:0x7B0 0x600 0x3 
+
+; --------------------------------------------------------------------------------
+; load demo program 
+Data.LOAD.Elf ./build/freertos.elf /Verify
+
+; https://www2.lauterbach.com/pdf/rtos_freertos.pdf
+task.config ~~/demo/riscv/kernel/freertos/freertos.t32
+
+; --------------------------------------------------------------------------------
+; start program execution
+Go.direct main
+WAIT !STATE.RUN()
+
+; --------------------------------------------------------------------------------
+; open some windows
+WinCLEAR
+Mode.Hll
+WinPOS 0. 0. 116. 26.
+List.auto
+WinPOS 120. 0. 100. 8.
+Frame.view
+WinPOS 120. 14.
+AREA
+TASK.TaskList
+
+ENDDO
+

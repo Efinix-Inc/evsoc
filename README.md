@@ -81,18 +81,25 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 
 ### List of supported cameras:
 1. Raspberry PI Camera Module v2
-   - Sony IMX219 image sensor
+   - Sony IMX219 image sensor (Default)
+2. Raspberry PI Camera Module v3
+   - Sony IMX708 image sensor 
 2. Google Coral Camera Module
    - Omnivision OV5645 SoC with build-in image signal processor
    - Auto focus, auto exposure control, auto white balance, and more.
 
-### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.150.4.10
-- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.3
+> **Note:** All designs default to **PiCAM v2**.  
+> To use **PiCAM v3**, uncomment the line `#define PICAM_VERSION 3` in `main.cc` of the relevant application.
 
-## Documentation
+
+### Software Tools Version
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2025.1.110.1.5
+- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2025.1.0.10
+
+## Documentations
 - [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC)
-- [Sapphire RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=DS-SAPPHIREUG)
+- [Sapphire RISC-V SoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=SAPPHIREUG)
+- [Sapphire RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=SAPPHIREDS)
 - [Ruby Vision RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=DS-RUBYV)
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F324-DK-UG)
 - [Trion T120 BGA576 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F576-DK-UG)
@@ -109,7 +116,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [Ti60 F225 Demonstration](https://vimeo.com/715811780)
 
 ## Quick Start
-For a quick start on Edge Vision SoC framework, combined hex file (FPGA bitstream + RISC-V application binary) for demo design is provided in quick_start directory.
+For a quick start on Edge Vision SoC framework, combined hex file (FPGA bitstream + RISC-V application binary) for demo design is provided in the release package.
 
 Quick start design demo modes:
 - Camera Capture + Display
@@ -131,9 +138,20 @@ Bring up quick start demo design on Efinix development kit by following listed s
       - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Kit, or P1 header on Titanium Ti180 J484 Development Kit.
 2. Program hex file using Efinity Programmer
    - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (T120 BGA324, T120 BGA576, Ti60 F225) or SPI Active using JTAG bridge mode (Ti180 J484).
-3. Press CRESET button & Demo design is up and running
+3. Press CRESET button and the demo design shall be up and running. 
 
-As the quick start demo design is programmed through SPI active mode or SPI Active using JTAG bridge mode, the design is stored in flash memory. Since flash is non-volatile memory, the design is retained even after power off. Hence, before loading other design, which is with separate FPGA bitstream and RISC-V application binary (run with Eclipse OpenOCD Debugger), user should erase the flash memory (recommend to erase 16MB for T120 BGA324 and T120 BGA576; 8MB for Ti60 F225; 32MB for Ti180J484 development kits) using Efinity Programmer.
+As the quick start demo design is programmed through SPI active mode or SPI Active using JTAG bridge mode, the design is stored in flash memory. Since flash is non-volatile memory, the design is retained even after power off. Hence, before loading other design, which is with separate FPGA bitstream and RISC-V application binary (build and run with Efinity RISC-V Embedded Software IDE), user should erase the flash memory (recommend to erase 16MB for T120 BGA324 and T120 BGA576; 8MB for Ti60 F225; 32MB for Ti180J484 development kits) using Efinity Programmer.
+
+### Flash Erase Requirement Before Loading a New Design
+
+The **Quick Start** demo design is programmed using either **SPI Active** mode or **SPI Active via JTAG Bridge** mode. In both cases, the design is stored in **non-volatile flash memory**, meaning it remains intact even after powering off the board.
+
+Before loading a new design — which includes a separate **FPGA bitstream** and **RISC-V application binary** (built and run using the **Efinity RISC-V Embedded Software IDE**) — it is important to **erase the flash memory** to avoid conflicts with the existing image.
+
+> #### Recommended Flash Erase Size (using Efinity Programmer)
+> - **T120 BGA324 / T120 BGA576**: Erase at least **16 MB**
+> - **Ti60 F225**: Erase at least **8 MB**
+> - **Ti180 J484**: Erase at least **32 MB**
 
 ## Frequently Asked Questions
 1.  **Where are the HW/RTL and SW/firmware source files located?**
@@ -232,59 +250,68 @@ As the quick start demo design is programmed through SPI active mode or SPI Acti
         └── source
     ```
     
-    ***Note:*** Source files for Efinix soft-IP(s) are to be generated using IP Manager in Efinity® IDE, where IP settings files are provided in *ip* directory in respective project folder. Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for more detail.
+    > 💡 **Note:**  
+    > All soft IPs are pre-generated and included in the design. You do **not** need to regenerate them unless you intend to upgrade to a newer IP version.  
+    > 
+    > These IPs are integrated as *static IPs*, meaning their top-level modules are already included in the design—except for the Sapphire SoC, which remains dynamic.  
+    > 
+    > If you wish to upgrade or downgrade a specific IP based on your Efinity version:
+    > - First, **remove the IP’s top-level module** from your design file list in Efinity.
+    > - Then, **re-import the IP** using its corresponding `.json` file.
+    > 
+    > ⚠️ However, Efinix **strongly recommends** using the included IP versions, as they are the latest validated and tested releases.
     
 2.  **How much is the resource consumption for EVSoC framework?**
 
-    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2023.1.
+    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2025.1.
     
     **Resource utilization for ISP example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 35527 | 17196 | 3600 | 24219 | 203       | 4    |
-    | RISC-V SoC              |   -   | 7727  | 790  | 6930  | 54        | 4    |
-    | DMA Controller          |   -   | 7785  | 1300 | 15966 | 91        | 0    |
-    | Camera                  |   -   | 767   | 968  | 666   | 22        | 0    |
-    | Display                 |   -   | 173   | 113  | 90    | 10        | 0    |
-    | Hardware Accelerator    |   -   | 631   | 413  | 412   | 26        | 0    |
+    | Edge Vision SoC (Total) | 34608 | 17282 | 3469 | 23092 | 433       | 4    |
+    | RISC-V SoC              |   -   | 7613  | 802  | 6498  | 54        | 4    |
+    | DMA Controller          |   -   | 7897  | 1197 | 15256 | 321       | 0    |
+    | Camera                  |   -   | 799   | 941  | 652   | 22        | 0    |
+    | Display                 |   -   | 222   | 112  | 125   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 639   | 405  | 412   | 26        | 0    |
     
     **Resource utilization for dual-camera example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 40024 | 19833 | 4944 | 26469 | 257       | 4    |
-    | RISC-V SoC              |   -   | 7730  | 790  | 6915  | 54        | 4    |
-    | DMA Controller          |   -   | 9426  | 1534 | 17364 | 108       | 0    |
-    | Camera (x2)             |   -   | 1534  | 1936 | 1345  | 44        | 0    |
-    | Display                 |   -   | 173   | 113  | 102   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 843   | 555  | 535   | 41        | 0    |
+    | Edge Vision SoC (Total) | 40174 | 20045 | 4796 | 26309 | 487       | 4    |
+    | RISC-V SoC              |   -   | 7617  | 802  | 6532  | 54        | 4    |
+    | DMA Controller          |   -   | 9565  | 1440 | 17625 | 338       | 0    |
+    | Camera (x2)             |   -   | 1598  | 1882 | 1342  | 44        | 0    |
+    | Display                 |   -   | 222   | 112  | 110   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 917   | 548  | 526   | 41        | 0    |
     
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2023.1.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2025.1.
     
     **Resource utilization for ISP example design:**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 34832 | 18539 | 3956 | 22402 | 187        | 4   |
-    | RISC-V SoC               |   -   | 7257  | 691  | 6122  | 49         | 4   |
-    | DMA Controller           |   -   | 4794  | 824  | 6077  | 51         | 0   |
-    | CSI-2 RX Controller Core |   -   | 871   | 194  | 1957  | 15         | 0   |
-    | DSI TX Controller Core   |   -   | 1776  | 415  | 3674  | 19         | 0   |
-    | HyperRAM Controller Core |   -   | 1186  | 305  | 2096  | 22         | 0   |
-    | Camera                   |   -   | 778   | 919  | 657   | 11         | 0   |
-    | Display                  |   -   | 338   | 174  | 361   | 0          | 0   |
-    | Hardware Accelerator     |   -   | 622   | 403  | 393   | 8          | 0   |
+    | Edge Vision SoC (Total)  | 33440 | 18510 | 3889 | 20643 | 255        | 4   |
+    | RISC-V SoC               |   -   | 7154  | 703  | 5846  | 49         | 4   |
+    | DMA Controller           |   -   | 4904  | 856  | 6161  | 107        | 0   |
+    | CSI-2 RX Controller Core |   -   | 930   | 161  | 1872  | 15         | 0   |
+    | DSI TX Controller Core   |   -   | 1954  | 488  | 3420  | 25         | 0   |
+    | HyperRAM Controller Core |   -   | 915   | 170  | 1013  | 28         | 0   |
+    | Camera                   |   -   | 778   | 903  | 648   | 11         | 0   |
+    | Display                  |   -   | 338   | 173  | 359   | 8          | 0   |
+    | Hardware Accelerator     |   -   | 621   | 395  | 371   | 8          | 0   |
 
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2023.1.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2025.1.
     
     **Resource utilization for ISP example design (1920x1080 resolution):**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 42388 | 23782 | 3706 | 26342 | 245        | 4   |
-    | RISC-V SoC               |   -   | 12472 | 762  | 8109  | 93         | 4   |
-    | DMA Controller           |   -   | 8507  | 1105 | 15064 | 64         | 0   |
-    | CSI-2 RX Controller Core |   -   | 646   | 204  | 1408  | 17         | 0   |
-    | Camera                   |   -   | 740   | 946  | 695   | 11         | 0   |
-    | Display                  |   -   | 611   | 223  | 339   | 45         | 0   |
-    | Hardware Accelerator     |   -   | 565   | 426  | 334   | 14         | 0   |
+    | Edge Vision SoC (Total)  | 42414 | 23773 | 3487 | 26529 | 359        | 4   |
+    | RISC-V SoC               |   -   | 12371 | 768  | 7902  | 93         | 4   |
+    | DMA Controller           |   -   | 8573  | 1068 | 15537 | 178        | 0   |
+    | CSI-2 RX Controller Core |   -   | 716   | 126  | 1416  | 17         | 0   |
+    | Camera                   |   -   | 739   | 924  | 676   | 11         | 0   |
+    | Display                  |   -   | 620   | 221  | 360   | 45         | 0   |
+    | Hardware Accelerator     |   -   | 547   | 342  | 296   | 14         | 0   |
     
     ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are served as reference purposes.
 

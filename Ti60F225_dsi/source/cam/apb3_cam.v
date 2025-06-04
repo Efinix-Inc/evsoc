@@ -28,6 +28,7 @@ module apb3_cam #(
    parameter   NUM_REG     = 10
 ) (
    input    [1:0]          select_demo_mode,
+   output                  enable_cam,
    output                  cam_confdone,
    output   [15:0]         rgb_control,
    output                  trigger_capture_frame,
@@ -167,5 +168,6 @@ integer              byteIndex;
    assign continuous_capture_frame = slaveReg[2][1];
    assign rgb_gray                 = slaveReg[3][0];
    assign cam_dma_init_done        = slaveReg[4][0];
+   assign enable_cam               = slaveReg[1][1];
    
 endmodule

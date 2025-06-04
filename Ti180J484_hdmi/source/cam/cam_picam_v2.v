@@ -32,7 +32,7 @@ module cam_picam_v2 #(
    //Should match with firmware DMA transfer length
    parameter DMA_TRANSFER_LENGTH  = 1920,
    //Should match with mipi_pclk clock rate
-   parameter MIPI_PCLK_CLK_RATE   = 75000000
+   parameter MIPI_PCLK_CLK_RATE   = 100000000
 ) (
    input  wire        mipi_pclk,
    input  wire        rst_n,

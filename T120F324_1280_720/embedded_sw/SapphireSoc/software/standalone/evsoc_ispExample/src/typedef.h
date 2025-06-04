@@ -37,7 +37,10 @@ typedef unsigned long ULONG, *PULONG ;
 typedef unsigned long dword, *pdword ;
 typedef unsigned long DWORD, *PDWORD ;
 
-#define NULL 0
+#ifdef NULL
+    #undef NULL
+    #define NULL 0
+#endif
 
 #define FALSE 0
 #define TRUE 1

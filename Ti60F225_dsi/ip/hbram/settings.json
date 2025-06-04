@@ -3,13 +3,13 @@
         "-o",
         "hbram",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_dsi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti60F225_dsi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory_controller",
             "name": "efx_hyper_ram",
-            "version": "5.0"
+            "version": "6.11"
         }
     ],
     "conf": {
@@ -28,26 +28,44 @@
         "AXI_AWR_DEPTH": "16",
         "AXI_R_DEPTH_2": "256",
         "AXI_W_DEPTH_2": "256",
-        "RDO_DELAY": "3",
         "CAL_CLK_CH": "4",
-        "CAL_MODE": "2",
         "MHZ": "200",
         "AXI_IF": "1'b1",
         "NATIVE_DBW": "32",
         "NATIVE_R_DEPTH": "256",
-        "NATIVE_W_DEPTH": "256"
+        "NATIVE_W_DEPTH": "256",
+        "DUAL_RAM": "0",
+        "INDIVI_DUAL_CAL": "0",
+        "CAL_CLK_CH_LO": "4",
+        "CAL_CLK_CH_HI": "8",
+        "DUAL_RAM_enable": "0",
+        "DUAL_RAM_disable": "0",
+        "INDIVI_DUAL_CAL_enable": "0",
+        "INDIVI_DUAL_CAL_disable": "0",
+        "INDIVI_DUAL_CAL_placeholder": "0",
+        "PERIODIC_CAL": "0",
+        "PERIODIC_CAL_enable": "0",
+        "PERIODIC_CAL_disable": "0",
+        "RECAL_DAYS": "7",
+        "RECAL_HOURS": "23",
+        "PRD_CAL_USER_SIGNAL": "0",
+        "PRD_CAL_USER_SIGNAL_INTER": "0",
+        "RWDS_OUT_MODE": "0",
+        "CAL_MODE": "2",
+        "DQ_FILTER_ENABLE": "0"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_dsi/ip/hbram/hbram_tmpl.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_dsi/ip/hbram/hbram_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_dsi/ip/hbram/hbram_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_dsi/ip/hbram/hbram.v"
+            "hbram/hbram_define.svh",
+            "hbram/hbram_tmpl.sv",
+            "hbram/hbram_tmpl.vhd",
+            "hbram/hbram.sv"
         ],
         "external_testbench_modelsim": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_dsi/ip/hbram/Testbench/modelsim/hbram.sv"
+            "hbram/Testbench/modelsim/hbram.sv"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T04:41:52.707924"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T06:15:52.621901+00:00"
 }

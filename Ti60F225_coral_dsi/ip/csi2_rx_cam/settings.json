@@ -3,13 +3,13 @@
         "-o",
         "csi2_rx_cam",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti60F225_coral_dsi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx",
-            "version": "5.0"
+            "version": "5.11"
         }
     ],
     "conf": {
@@ -32,43 +32,40 @@
         "Pack_56": "1'b1",
         "Pack_64": "1'b1",
         "FRAME_MODE": "\"GENERIC\"",
-        "ENABLE_VCX": "1'b0"
+        "ENABLE_VCX": "1'b0",
+        "MIPI_CSI2_RX_DEBUG": "1'b0"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/csi2_rx_cam_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/csi2_rx_cam_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/csi2_rx_cam.sv",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/csi2_rx_cam_tmpl.v"
-        ],
-        "external_testbench_testbench": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/data_unpack.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/datatype_gen.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/dual_clock_fifo.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/pattern_gen.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/shift_reg.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/simple_dual_port_ram.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/vga_gen.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/reset.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_tb.sv",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_rx_modelsim.do",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/rx_filelist.f",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/top.sv",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/efx_csi2_tx_modelsim.sv",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/pattern_gen2.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/lfsr.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/csi2_rx_cam_define.vh"
+            "csi2_rx_cam/csi2_rx_cam_tmpl.vhd",
+            "csi2_rx_cam/csi2_rx_cam.sv",
+            "csi2_rx_cam/csi2_rx_cam_define.svh",
+            "csi2_rx_cam/csi2_rx_cam_tmpl.sv"
         ],
         "external_testbench_modelsim": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/modelsim/csi2_rx_cam.sv"
+            "csi2_rx_cam/Testbench/modelsim/csi2_rx_cam.sv"
         ],
         "external_testbench_ncsim": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/ncsim/csi2_rx_cam.sv"
+            "csi2_rx_cam/Testbench/ncsim/csi2_rx_cam.sv"
         ],
         "external_testbench_synopsys": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti60F225_coral_dsi/ip/csi2_rx_cam/Testbench/synopsys/csi2_rx_cam.sv"
+            "csi2_rx_cam/Testbench/synopsys/csi2_rx_cam.sv"
+        ],
+        "external_testbench_testbench": [
+            "csi2_rx_cam/Testbench/TI60_MIPI_csi_tb.sv",
+            "csi2_rx_cam/Testbench/TI60_MIPI_csi_rx_modelsim.do",
+            "csi2_rx_cam/Testbench/rx_filelist.f",
+            "csi2_rx_cam/Testbench/top.sv",
+            "csi2_rx_cam/Testbench/efx_csi2_tx_modelsim.sv",
+            "csi2_rx_cam/Testbench/csichk.v",
+            "csi2_rx_cam/Testbench/reset_ctrl.v",
+            "csi2_rx_cam/Testbench/vga_chk.v",
+            "csi2_rx_cam/Testbench/vga_gen.v",
+            "csi2_rx_cam/Testbench/csi2_rx_cam.sv",
+            "csi2_rx_cam/Testbench/csi2_rx_cam_define.svh"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T04:41:42.120911"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T06:04:16.633809+00:00"
 }

@@ -3,13 +3,13 @@
         "-o",
         "ddr_reset_seq",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_640_480/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F576_640_480/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory_controller",
             "name": "efx_ddr_reset_controller",
-            "version": "5.0"
+            "version": "5.2"
         }
     ],
     "conf": {
@@ -17,12 +17,13 @@
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_640_480/ip/ddr_reset_seq/ddr_reset_seq_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_640_480/ip/ddr_reset_seq/ddr_reset_seq_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_640_480/ip/ddr_reset_seq/ddr_reset_seq.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_640_480/ip/ddr_reset_seq/ddr_reset_seq_tmpl.v"
+            "ddr_reset_seq/ddr_reset_seq.v",
+            "ddr_reset_seq/ddr_reset_seq_define.vh",
+            "ddr_reset_seq/ddr_reset_seq_tmpl.vhd",
+            "ddr_reset_seq/ddr_reset_seq_tmpl.v"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T04:02:16.624927"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T05:03:38.812065+00:00"
 }

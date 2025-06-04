@@ -3,13 +3,13 @@
         "-o",
         "cam_dma_fifo",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720_dualCam/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F576_1280_720_dualCam/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "5.0"
+            "version": "8.0"
         }
     ],
     "conf": {
@@ -27,19 +27,22 @@
         "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "FAMILY": "\"TRION\"",
         "ASYM_WIDTH_RATIO": "4",
         "BYPASS_RESET_SYNC": "0",
-        "ENDIANESS": "0"
+        "ENDIANESS": "0",
+        "RAM_STYLE": "\"block_ram\"",
+        "OVERFLOW_PROTECT": "1",
+        "UNDERFLOW_PROTECT": "1"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720_dualCam/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720_dualCam/ip/cam_dma_fifo/cam_dma_fifo_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720_dualCam/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/T120F576_1280_720_dualCam/ip/cam_dma_fifo/cam_dma_fifo.v"
+            "cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
+            "cam_dma_fifo/cam_dma_fifo.sv",
+            "cam_dma_fifo/cam_dma_fifo_define.svh",
+            "cam_dma_fifo/cam_dma_fifo_tmpl.sv"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T03:11:29.076153"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T04:38:01.454597+00:00"
 }

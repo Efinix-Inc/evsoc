@@ -9,7 +9,7 @@
 #define SRC_PICAMDRIVER_H_
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h" //BSP
+
 
 //Status Registers – [0x0000-0x001B]   (Read Only Dynamic Registers)
 #define MODEL_ID1                               0x0000   //[15:8]

@@ -1,6 +1,9 @@
+//Define the picam version. By default is set to Picam V2.
+//#define PICAM_VERSION 3
+
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+
 #include <stdint.h>
 #include "io.h"
 #include "riscv.h"
@@ -10,12 +13,17 @@
 
 #include "clint.h"
 #include "common.h"
+#if PICAM_VERSION == 3
+   #include "PiCamV3Driver.h"
+#else
 #include "PiCamDriver.h"
+#endif
 #include "apb3_cam.h"
 #include "dmasg.h"
 #include "dmasg_config.h"
 #include "axi4_hw_accel.h"
 #include "isp.h"
+#include "userDef.h"
 
 #define FRAME_WIDTH    1920
 #define FRAME_HEIGHT   1080
@@ -131,10 +139,19 @@ void main() {
 
 	uart_writeStr(BSP_UART_TERMINAL, "Init MIPI I2C.....");
 	mipi_i2c_init();
-	PiCam_init();
-	uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\n\r");
+#if PICAM_VERSION == 3
+  PiCamV3_Init();
 
-	Set_RGBGain(1,5,3,4); //SET camera pre-processing RGB gain value
+  //SET camera pre-processing RGB gain value
+  Set_RGBGain(1,5,3,7);
+#else
+	PiCam_init();
+
+	//SET camera pre-processing RGB gain value
+   Set_RGBGain(1,5,3,4); 
+#endif
+
+	uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\n\r");
    
    /**********************************************************SETUP DMA***********************************************************/
    
@@ -197,6 +214,10 @@ void main() {
    ispExample_menu();
    
    uart_writeStr(BSP_UART_TERMINAL, "Press SW4 switch for demo mode selection.\n\n\r");
+
+#if PICAM_VERSION == 3
+   PiCamV3_StartStreaming();
+#endif
 
    while (1) {
       

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" location="/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.1-wip/Ti60F225_dsi" version="2023.1.150.3.11" db_version="20231999" last_change_date="Wed Aug 16 16:17:56 2023" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" version="2025.1.110.1.5" db_version="20251999" last_change_date="Sun Jun  1 23:34:11 2025" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="1A_MODE_SEL"/>
@@ -10,10 +10,10 @@
             <efxpt:iobank name="3B" iostd="1.2 V LVCMOS" is_dyn_voltage="false" mode_sel_name="3B_MODE_SEL"/>
             <efxpt:iobank name="4A" iostd="1.2 V LVCMOS" is_dyn_voltage="false" mode_sel_name="4A_MODE_SEL"/>
             <efxpt:iobank name="4B" iostd="1.2 V LVCMOS" is_dyn_voltage="false" mode_sel_name="4B_MODE_SEL"/>
-            <efxpt:iobank name="BL" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BL_MODE_SEL"/>
+            <efxpt:iobank name="BL" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BL_MODE_SEL"/>
             <efxpt:iobank name="BR" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BR_MODE_SEL"/>
             <efxpt:iobank name="TL" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TL_MODE_SEL"/>
-            <efxpt:iobank name="TR" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR_MODE_SEL"/>
+            <efxpt:iobank name="TR" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR_MODE_SEL"/>
         </efxpt:iobank_info>
         <efxpt:ctrl_info>
             <efxpt:ctrl name="cfg" ctrl_def="CONFIG_CTRL0" clock_name="" is_clk_invert="false" cbsel_bus_name="cfg_CBSEL" config_ctrl_name="cfg_CONFIG" ena_capture_name="cfg_ENA" error_status_name="cfg_ERROR" um_signal_status_name="cfg_USR_STATUS" is_remote_update_enable="false" is_user_mode_enable="false"/>
@@ -249,10 +249,10 @@
         <efxpt:comp_gpio name="system_spi_0_io_ss" gpio_def="GPIOL_P_01" mode="output" bus_name="" io_standard="1.8 V LVCMOS">
             <efxpt:output_config name="system_spi_0_io_ss" name_ddio_lo="" register_option="register" clock_name="i_mipi_rx_pclk" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="4" fastclk_name=""/>
         </efxpt:comp_gpio>
-        <efxpt:comp_gpio name="system_uart_0_io_rxd" gpio_def="GPIOL_01" mode="input" bus_name="" io_standard="1.8 V LVCMOS">
+        <efxpt:comp_gpio name="system_uart_0_io_rxd" gpio_def="GPIOL_01" mode="input" bus_name="" io_standard="3.3 V LVCMOS">
             <efxpt:input_config name="system_uart_0_io_rxd" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pullup" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="system_uart_0_io_rxd_PULL_UP_ENA" dyn_delay_en_name="system_uart_0_io_rxd_DLY_ENA" dyn_delay_reset_name="system_uart_0_io_rxd_DLY_RST" dyn_delay_ctrl_name="system_uart_0_io_rxd_DLY_CTRL" clkmux_buf_name=""/>
         </efxpt:comp_gpio>
-        <efxpt:comp_gpio name="system_uart_0_io_txd" gpio_def="GPIOL_02" mode="output" bus_name="" io_standard="1.8 V LVCMOS">
+        <efxpt:comp_gpio name="system_uart_0_io_txd" gpio_def="GPIOL_02" mode="output" bus_name="" io_standard="3.3 V LVCMOS">
             <efxpt:output_config name="system_uart_0_io_txd" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="4" fastclk_name=""/>
         </efxpt:comp_gpio>
         <efxpt:comp_gpio name="user_dip0" gpio_def="GPIOL_P_13" mode="input" bus_name="" io_standard="1.8 V LVCMOS">
@@ -274,16 +274,16 @@
                 <efxpt:pin name="" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="60" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="60" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="5" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="5" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_sysclk_div_2" number="2" out_divider="24" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_sysclk_div_2" number="2" out_divider="24" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_rx_pclk" number="3" out_divider="15" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_mipi_rx_pclk" number="3" out_divider="15" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
             <efxpt:comp_prop/>
@@ -296,16 +296,16 @@
                 <efxpt:pin name="" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_mipi_clk" number="0" out_divider="20" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_mipi_clk" number="0" out_divider="20" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_txc_sclk" number="1" out_divider="4" is_dyn_phase="false" phase_setting="3" is_inverted="false">
+            <efxpt:comp_output_clock name="i_mipi_txc_sclk" number="1" out_divider="4" is_dyn_phase="false" phase_setting="4" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_txd_sclk" number="2" out_divider="4" is_dyn_phase="false" phase_setting="1" is_inverted="false">
+            <efxpt:comp_output_clock name="i_mipi_txd_sclk" number="2" out_divider="4" is_dyn_phase="false" phase_setting="2" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_tx_pclk" number="3" out_divider="16" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_mipi_tx_pclk" number="3" out_divider="16" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
             <efxpt:comp_prop/>
@@ -318,16 +318,16 @@
                 <efxpt:pin name="o_hbc_cal_SHIFT" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="o_hbc_cal_SHIFT_SEL" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="24" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="24" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="12" is_dyn_phase="false" phase_setting="6" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="12" is_dyn_phase="false" phase_setting="6" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="12" is_dyn_phase="true" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="12" is_dyn_phase="true" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="12" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="12" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
             <efxpt:comp_prop/>
@@ -432,7 +432,7 @@
                     <efxpt:pin name="mipi_dp_clk_LP_P_OE" type_name="LP_P_OE" is_bus="false"/>
                     <efxpt:pin name="mipi_dp_clk_LP_N_OE" type_name="LP_N_OE" is_bus="false"/>
                     <efxpt:pin name="i_mipi_txc_sclk" type_name="FASTCLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
-                    <efxpt:pin name="i_mipi_tx_pclk" type_name="SLOWCLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
+                    <efxpt:pin name="i_mipi_txd_sclk" type_name="SLOWCLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
                 </efxpt:gen_pin>
             </efxpt:tx_info>
         </efxpt:mipi_dphy>

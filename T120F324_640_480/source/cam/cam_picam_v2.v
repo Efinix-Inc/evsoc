@@ -32,7 +32,7 @@ module cam_picam_v2 #(
    //Should match with firmware DMA transfer length
    parameter DMA_TRANSFER_LENGTH  = 1920,
    //Should match with mipi_pclk clock rate
-   parameter MIPI_PCLK_CLK_RATE   = 75000000
+   parameter MIPI_PCLK_CLK_RATE   = 100000000
 ) (
    input  wire        mipi_pclk,
    input  wire        rst_n,
@@ -189,7 +189,7 @@ begin
       blue_gain_r         <= 3'd6;
    end else begin
       cam_data            <= mipi_cam_data[39:0];   //Keep valid least significant 4 x 10 bits data (RAW10, 4PPC)
-      cam_valid           <= mipi_cam_valid;
+      cam_valid           <= mipi_cam_valid  && (mipi_cam_type == 6'h2B);  //For RAW10 data type
       cam_vs              <= mipi_cam_vs;
       cam_vs_r            <= cam_vs;
       cam_hs              <= mipi_cam_hs;

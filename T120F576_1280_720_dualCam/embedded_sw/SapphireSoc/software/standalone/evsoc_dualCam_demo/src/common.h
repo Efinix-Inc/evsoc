@@ -11,7 +11,7 @@
 #include "soc.h"
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h" //From BSP
+#include "userDef.h"
 
 #define I2C_CTRL_CAM1   SYSTEM_I2C_0_IO_CTRL
 #define I2C_CTRL_CAM2   SYSTEM_I2C_2_IO_CTRL

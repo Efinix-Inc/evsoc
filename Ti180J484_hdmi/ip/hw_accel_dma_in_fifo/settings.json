@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_in_fifo",
         "--base_path",
-        "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti180J484_hdmi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "5.0"
+            "version": "8.0"
         }
     ],
     "conf": {
@@ -27,19 +27,22 @@
         "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "FAMILY": "\"TITANIUM\"",
         "ASYM_WIDTH_RATIO": "4",
         "BYPASS_RESET_SYNC": "0",
-        "ENDIANESS": "0"
+        "ENDIANESS": "0",
+        "RAM_STYLE": "\"block_ram\"",
+        "OVERFLOW_PROTECT": "1",
+        "UNDERFLOW_PROTECT": "1"
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
-            "/projects/SSE/yhlee/efx_SOLUTION/edge_vision_soc/efx_evsoc/efx_evsoc-v2.2-wip/Ti180J484_hdmi/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v"
+            "hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.sv",
+            "hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.svh",
+            "hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.sv",
+            "hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-09-10T04:40:42.263945"
+    "ooc_synthesis": {},
+    "sw_version": "2025.1.110",
+    "generated_date": "2025-06-03T05:44:27.006754+00:00"
 }

@@ -35,7 +35,7 @@ void dma_init(){
 
 //Used on unexpected trap/interrupt codes
 void crash(){
-   bsp_putString("\n*** CRASH ***\n");
+   bsp_printf("\n*** CRASH ***\n");
    while(1);
 }
 
