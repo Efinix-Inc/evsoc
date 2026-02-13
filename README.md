@@ -1,43 +1,73 @@
-# Edge Vision SoC Framework
+# Edge Vision SoC (EVSoC) Framework
 
-Welcome to the Edge Vision SoC GitHub repo. Efinix offers an RISC-V SoC framework targeted for edge vision applications, namely Edge Vision SoC (EVSoC) framework. This site provides source codes, example designs, and supporting materials of the EVSoC framework.
+![Efinity Version](https://img.shields.io/badge/Efinity-v2025.2-blue)
+![Devices](https://img.shields.io/badge/Devices-Trion%20%7C%20Titanium-green)
+
+Welcome to the **Edge Vision SoC (EVSoC)** framework repository.
+
+EVSoC is an FPGA-based RISC-V SoC reference platform from Efinix, designed for rapid development of edge vision and AI applications. It provides modular hardware building blocks, ready-to-use software drivers, and complete example designs to accelerate HW/SW co-design workflows.
+
+---
+
+## 📌 Repository Structure
+
 - [Overview](#overview)
-- [Image Signal Processing Example Design](#image-signal-processing-example-design)
-- [Dual-Camera Example Design](#dual-camera-example-design)
+- [Example Designs](#example-designs)
+    - [Image Signal Processing (ISP) Example](#image-signal-processing-isp-example)
+    - [Dual-Camera Example](#dual-camera-example)
 - [Hardware and Software Setup](#hardware-and-software-setup)
 - [Documentation](#documentation)
 - [Videos](#videos)
 - [Quick Start](#quick-start)
 - [Frequently Asked Questions](#frequently-asked-questions)
 
-**Note:**
-- The *main* branch contains new version of EVSoC, which is based on user configurable Efinix Sapphire RISC-V SoC.
-- A branch named *evsoc_ruby* is created for the older version of EVSoC, which is based on Efinix Ruby Vision RISC-V SoC.
 
-## Overview
+---
 
-Key features:
+## 🔀 Branch Information
+
+- **`main` branch**  
+  Latest EVSoC version based on the configurable **Efinix Sapphire RISC-V SoC**.
+
+- **`evsoc_ruby` branch**  
+  Legacy EVSoC version based on the **Efinix Ruby Vision RISC-V SoC**.
+
+<br />
+
+---
+
+<br />
+
+# Overview
+
+## Key Features
+
 - **Modular building blocks** to facilitate different combinations of system design architecture
 - **Established data transfer flow** between main memory and different building blocks through Direct Memory Access (DMA)
 - **Ready-to-deploy** domain-specific **I/O peripherals and interfaces** (SW drivers, HW controllers, pre- and post-processing blocks are provided)
 - Highly **flexible HW/SW co-design** is feasible (RISC-V performs control & compute, HW accelerator for time-critical computations)
 - Enable **quick porting** of users' design for **edge AI and vision solutions**
+
 <br />
 
 ![](docs/evsoc_top_level.png "EVSoC Top-Level Block Diagram")
 
-Building blocks to facilitate ease of modification to suit for various system architecture requirements:
-- **RISC-V SoC**
-- **DMA Controller**
-- **Camera**
-- **Display**
-- **Hardware Accelerator**
+## Core Building Blocks
 
-## Image Signal Processing Example Design
+- RISC-V SoC
+- DMA Controller
+- Camera Subsystem
+- Display Subsystem
+- Hardware Accelerator Interface
 
-ISP example design demonstrates a use case on the EVSoC framework, specifically, **hardware/software co-design for video processing**. Additionally, the design shows how user can **control the FPGA hardware using software**, that is, user can enable different hardware acceleration functions by changing firmware in the RISC-V processor. 
 
-This example presents these concepts in the context of video filtering functions; however, user can use the same design with **own hardware accelerator block** instead of the
+# Example Designs
+
+## Image Signal Processing (ISP) Example
+
+ISP example design demonstrates a use case on the EVSoC framework, specifically, **hardware/software co-design for video processing**. Additionally, the design demonstrates how users can **control the FPGA hardware through software**, that is, user can enable different hardware acceleration functions by changing firmware in the RISC-V processor. 
+
+This example presents these concepts in the context of video filtering functions; however, users can replace the provided accelerator with their **own custom hardware accelerator block** instead of the
 provided filtering functions. The design helps user explore **accelerating computationally intensive functions** in **hardware** and using **RISC-V software** to **control that acceleration** as well as to **perform computations** that are **inherently sequential or require flexibility**.
 
 List of implemented ISP algorithms (available for both SW functions and HW modules):
@@ -46,9 +76,9 @@ List of implemented ISP algorithms (available for both SW functions and HW modul
 - Binary dilation
 - Binary erosion
 
-## Dual-Camera Example Design
+## Dual-Camera Example
 
-Multi-camera vision systems are vital for a wide-range of applications such as video surveillance, security system, robotics, automotive and drone. The benefits of multi-camera vision system over single-camera setup include:
+Multi-camera vision systems are widely used in applications such as surveillance, robotics, automotive, and drones. The benefits of multi-camera vision system over single-camera setup include:
 - Resolve occlusion problem
 - Provide wider area coverage
 - Produce more accurate geometric understanding
@@ -67,36 +97,51 @@ List of implemented HW accelerator mode - Processing:
 - Cam source 1 – Processed   (Sobel);            Cam source 2 – Passthrough (RGB or Grayscale)
 - Cam source 1 – Processed   (Sobel);            Cam source 2 – Processed   (Sobel)
 
-## Hardware and Software Setup
+<br />
 
-The example designs are implemented on:
+# Hardware & Software Requirements
+
+## Supported Development Kits
+
 - [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html)
 - [Trion® T120 BGA576 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga576.html)
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
 
-Efinity® IDE is required for project compilation and bitstream generation, whereas Efinity® RISC-V Embedded Software IDE is used to manage RISC-V software projects and for debugging purposes.
+## Required Tools & Version
+
+[**Efinity® IDE**](https://www.efinixinc.com/support/efinity.php) – FPGA synthesis & implementation - v2025.2.288.3.8
+[**Efinity® RISC-V Embedded Software IDE**](https://www.efinixinc.com/support/efinity.php) – Firmware development & debugging - v2025.2.0.4
 
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
-### List of supported cameras:
+
+## Supported Cameras
+
 1. Raspberry PI Camera Module v2
    - Sony IMX219 image sensor (Default)
 2. Raspberry PI Camera Module v3
    - Sony IMX708 image sensor 
-2. Google Coral Camera Module
-   - Omnivision OV5645 SoC with build-in image signal processor
-   - Auto focus, auto exposure control, auto white balance, and more.
 
-> **Note:** All designs default to **PiCAM v2**.  
-> To use **PiCAM v3**, uncomment the line `#define PICAM_VERSION 3` in `main.cc` of the relevant application.
+> 💡 **Camera Detection (v2025.2 and later)**
+>
+> Starting from **v2025.2**, the system automatically detects whether PiCAM v2 or v3 is connected.
+>
+> For older versions, enable PiCAM v3 manually in `main.c`:
+>
+> ```c
+> #define PICAM_VERSION 3
+> ```
+>
+> If assertion errors occur:
+> - Verify camera connection
+> - Check ribbon cable orientation
+> - Confirm stable power supply
 
 
-### Software Tools Version
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2025.1.110.1.5
-- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2025.1.0.10
+<br />
 
-## Documentations
+# Documentation
 - [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC)
 - [Sapphire RISC-V SoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=SAPPHIREUG)
 - [Sapphire RISC-V SoC Datasheet](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=SAPPHIREDS)
@@ -106,7 +151,9 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [Titanium Ti60 F225 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti60F225-DK-UG)
 - [Titanium Ti180 J484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180J484-DK-UG)
 
-## Videos
+<br />
+
+# Videos
 - [Edge Vision SoC Solution](https://vimeo.com/492359014)
 - [ISP Example Design Tutorial - Demonstration](https://vimeo.com/500651950)
 - [ISP Example Design Tutorial - Firmware](https://vimeo.com/500660740)
@@ -115,7 +162,9 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [Dual-Camera Example Design Tutorial](https://vimeo.com/516963010)
 - [Ti60 F225 Demonstration](https://vimeo.com/715811780)
 
-## Quick Start
+<br />
+
+# Quick Start
 For a quick start on Edge Vision SoC framework, combined hex file (FPGA bitstream + RISC-V application binary) for demo design is provided in the release package.
 
 Quick start design demo modes:
@@ -133,16 +182,13 @@ List of development kits & switches for selecting demo mode:
 Bring up quick start demo design on Efinix development kit by following listed steps below:
 1. Set up hardware
    - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
-   - For demo design that uses Google Coral Camera module (*\<device\>\_coral\_\<display\>\_\<application\>\_demo*),
-      - Google Coral Camera and Google Coral Camera connector daughter card are required.
-      - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Kit, or P1 header on Titanium Ti180 J484 Development Kit.
 2. Program hex file using Efinity Programmer
    - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (T120 BGA324, T120 BGA576, Ti60 F225) or SPI Active using JTAG bridge mode (Ti180 J484).
 3. Press CRESET button and the demo design shall be up and running. 
 
-As the quick start demo design is programmed through SPI active mode or SPI Active using JTAG bridge mode, the design is stored in flash memory. Since flash is non-volatile memory, the design is retained even after power off. Hence, before loading other design, which is with separate FPGA bitstream and RISC-V application binary (build and run with Efinity RISC-V Embedded Software IDE), user should erase the flash memory (recommend to erase 16MB for T120 BGA324 and T120 BGA576; 8MB for Ti60 F225; 32MB for Ti180J484 development kits) using Efinity Programmer.
+Since the demo is stored in non-volatile flash memory, it must be erased before loading a different design. See the section below for recommended erase sizes.
 
-### Flash Erase Requirement Before Loading a New Design
+## Flash Erase Requirement Before Loading a New Design
 
 The **Quick Start** demo design is programmed using either **SPI Active** mode or **SPI Active via JTAG Bridge** mode. In both cases, the design is stored in **non-volatile flash memory**, meaning it remains intact even after powering off the board.
 
@@ -153,7 +199,9 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
 > - **Ti60 F225**: Erase at least **8 MB**
 > - **Ti180 J484**: Erase at least **32 MB**
 
-## Frequently Asked Questions
+<br />
+
+# Frequently Asked Questions
 1.  **Where are the HW/RTL and SW/firmware source files located?**
 
     The top-level RTL file is named *edge_vision_soc.v*, located in individual project folder. The rest of the RTL files are placed in *source* directory, which are organized according to respective building block. On the other hand, the main firmware file is named *main.c*, located in *embedded_sw/SapphireSoc/software/standalone/evsoc_\*/src* directory, where other related drivers are provided in the same folder as well.
@@ -161,7 +209,6 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     Below depicts the directory structure of EVSoC framework:
     
     ```
-    ├── quick_start
     ├── T120F324_1280_720
     │   ├── embedded_sw
     │   │   └── SapphireSoc
@@ -223,31 +270,16 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     │   ├── ip
     │   ├── sim
     │   └── source
-    ├── Ti60F225_coral_dsi
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   └── source
     ├── Ti180J484_hdmi
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   ├── sim
-    │   └── source
-    └── Ti180J484_coral_hdmi
-        ├── embedded_sw
-        │   └── SapphireSoc
-        │       └── software
-        │           └── standalone
-        │               └── evsoc_*
-        ├── ip
-        └── source
+        ├── embedded_sw
+        │   └── SapphireSoc
+        │       └── software
+        │           └── standalone
+        │               └── evsoc_*
+        ├── ip
+        ├── sim
+        └── source
+
     ```
     
     > 💡 **Note:**  
@@ -313,7 +345,7 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     | Display                  |   -   | 620   | 221  | 360   | 45         | 0   |
     | Hardware Accelerator     |   -   | 547   | 342  | 296   | 14         | 0   |
     
-    ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are served as reference purposes.
+    ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are provided for reference purposes only.
 
 3.  **How to check if the hardware and software setup for ISP example design is done correctly?**
     
@@ -416,3 +448,7 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
 12. **How to obtain processing frame rate of a specific scenario in the ISP example design?**
     
     Software app *evsoc_ispExample_timestamp* is provided in *embedded_sw/SapphireSoc/software/standalone* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c*. 
+
+<br />
+
+----
