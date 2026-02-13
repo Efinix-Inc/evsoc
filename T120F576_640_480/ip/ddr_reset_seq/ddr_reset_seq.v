@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _677299dba0da4257b85db5c12a864584
+`define IP_UUID _d4a29f16695f489d83ad65bb6194974c
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module ddr_reset_seq

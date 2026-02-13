@@ -10,7 +10,7 @@
     "buffer": {
         "bank_count": 2,
         "bank_width": 128,
-        "bank_words": 4096
+        "bank_words": 1024
     },
     "read": {
         "address_width": 32,

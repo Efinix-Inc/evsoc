@@ -10,6 +10,7 @@
 
 #include "clint.h"
 #include "common.h"
+#include "PiCamV3Driver.h"
 #include "PiCamDriver.h"
 #include "apb3_cam.h"
 #include "hdmi_config.h"
@@ -37,6 +38,77 @@
 //For high frame rate scenario, loop count could be set higher to obtain better average frame counts.
 #define PROFILING_LOOP  100
 
+// Global variable to detect picamv2/v3
+static int g_picam_version = 0;  // 0 = not detected, 3 = v3, 2 = v2
+
+// Function to detect picamv2/v3 automatically
+int detect_picam_version(void) {
+    uart_writeStr(BSP_UART_TERMINAL, "\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "=========================================\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "     AUTOMATIC CAMERA DETECTION\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "=========================================\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "Attempting to detect PiCam version...\n\r");
+
+    // ========== STEP 1: Initialize I2C ==========
+    uart_writeStr(BSP_UART_TERMINAL, "Initializing MIPI I2C...\n\r");
+    mipi_i2c_init();
+    uart_writeStr(BSP_UART_TERMINAL, "I2C initialized\n\r");
+
+    // ========== STEP 2: Try PiCamV3 ==========
+    uart_writeStr(BSP_UART_TERMINAL, "\nAttempting PiCamV3 initialization...\n\r");
+    int checkcam = PiCamV3_Init();
+    bsp_uDelay(500); 
+
+    if (checkcam) {
+        uart_writeStr(BSP_UART_TERMINAL, "\n\rSUCCESS: PiCamV3 detected!\n\r");
+        uart_writeStr(BSP_UART_TERMINAL, "=========================================\n\r");
+        uart_writeStr(BSP_UART_TERMINAL, "         CAMERA: PiCamV3 (IMX708)\n\r");
+        uart_writeStr(BSP_UART_TERMINAL, "=========================================\n\r");
+
+        g_picam_version = 3;
+        return 3;
+    }
+
+    // ========== STEP 4: V3 failed, try PiCamV2 ==========
+    uart_writeStr(BSP_UART_TERMINAL, "\nV3 verification failed\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "Falling back to PiCamV2...\n\r");
+
+    // Reset and re-initialize I2C for V2
+    mipi_i2c_init();
+
+    uart_writeStr(BSP_UART_TERMINAL, "Initializing PiCamV2...\n\r");
+    PiCam_init();  // Void function, don't check return
+    bsp_uDelay(500);  
+
+    uart_writeStr(BSP_UART_TERMINAL, "\n\rSUCCESS: PiCamV2 detected!\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "=========================================\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "         CAMERA: PiCamV2\n\r");
+    uart_writeStr(BSP_UART_TERMINAL, "=========================================\n\r");
+
+    g_picam_version = 2;
+    return 2;
+}
+
+// Function to set rgb gain
+void set_camera_rgb_gain() {
+    if (g_picam_version == 3) {
+    // PiCamV3 RGB gain values
+       Set_RGBGain(1, 5, 3, 7);
+       uart_writeStr(BSP_UART_TERMINAL, "Set RGB gain for PiCamV3\n\r");
+    } else if (g_picam_version == 2) {
+       // PiCamV2 RGB gain values
+       Set_RGBGain(1, 5, 3, 4);
+       uart_writeStr(BSP_UART_TERMINAL, "Set RGB gain for PiCamV2\n\r");
+    }
+}
+
+// Camera stream
+void start_camera_streaming() {
+    if (g_picam_version == 3) {
+       PiCamV3_StartStreaming();
+    }
+}
+
 void main() {
 
    //For system profiling
@@ -54,13 +126,9 @@ void main() {
    hdmi_init();
    uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\r");
 
-   uart_writeStr(BSP_UART_TERMINAL, "Init MIPI I2C.....");
-   mipi_i2c_init();
-   PiCam_init();
-   uart_writeStr(BSP_UART_TERMINAL, "Done !!\n\n\r");
+   detect_picam_version();
+   set_camera_rgb_gain();
 
-   Set_RGBGain(1,5,3,4); //SET camera pre-processing RGB gain value
-   
    /**********************************************************SETUP DMA***********************************************************/
    
    uart_writeStr(BSP_UART_TERMINAL, "Init DMA.....");
@@ -149,6 +217,8 @@ void main() {
    //Trigger continuous frame capture via APB3 slave
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG2_OFFSET, 0x00000002);
 */
+
+   start_camera_streaming();
    
    timerCmp0 = clint_getTime(BSP_CLINT);
 

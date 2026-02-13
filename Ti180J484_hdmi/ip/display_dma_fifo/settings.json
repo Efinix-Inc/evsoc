@@ -3,7 +3,7 @@
         "-o",
         "display_dma_fifo",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti180J484_hdmi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/Ti180J484_hdmi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -36,13 +36,13 @@
     },
     "output": {
         "external_source_source": [
-            "display_dma_fifo/display_dma_fifo.sv",
-            "display_dma_fifo/display_dma_fifo_define.svh",
             "display_dma_fifo/display_dma_fifo_tmpl.sv",
-            "display_dma_fifo/display_dma_fifo_tmpl.vhd"
+            "display_dma_fifo/display_dma_fifo_tmpl.vhd",
+            "display_dma_fifo/display_dma_fifo.sv",
+            "display_dma_fifo/display_dma_fifo_define.svh"
         ]
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T05:43:00.344928+00:00"
+    "generated_date": "2025-05-21T04:47:31.328969+00:00"
 }

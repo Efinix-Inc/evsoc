@@ -3,7 +3,7 @@
         "-o",
         "dma",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F576_640_480/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/T120F576_640_480/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -113,14 +113,14 @@
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "dma/dma.v",
-            "dma/dma_define.vh",
             "dma/dma_tmpl.vhd",
-            "dma/dma_tmpl.v"
+            "dma/dma_tmpl.v",
+            "dma/dma.v",
+            "dma/dma_define.vh"
         ],
         "external_script_script": []
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T05:05:04.846505+00:00"
+    "generated_date": "2025-05-21T04:41:28.428687+00:00"
 }

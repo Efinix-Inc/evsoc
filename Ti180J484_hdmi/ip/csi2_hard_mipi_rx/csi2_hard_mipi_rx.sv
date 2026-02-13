@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _7ea4d221b0104678816cb00bf648cba1
+`define IP_UUID _12effb0a19f4422bb49e3ef4ba7b6ab0
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module csi2_hard_mipi_rx

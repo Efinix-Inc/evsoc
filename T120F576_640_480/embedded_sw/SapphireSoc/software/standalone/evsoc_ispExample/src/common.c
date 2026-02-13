@@ -35,6 +35,17 @@ void assert(int cond){
     }
 }
 
+int assert_unblock(int cond){
+    if(!cond) {
+        uart_writeStr(BSP_UART_TERMINAL, "Assert failure, returning \r\n");
+//        while(1);
+        return 0; //false
+    } else {
+    	return 1; //true
+    }
+}
+
+
 void print_hex_digit(u8 digit){
     uart_write(BSP_UART_TERMINAL, digit < 10 ? '0' + digit : 'A' + digit - 10);
 }

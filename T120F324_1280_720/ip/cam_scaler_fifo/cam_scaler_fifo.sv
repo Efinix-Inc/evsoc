@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _9e16907af28745e89863fee042bf622f
+`define IP_UUID _682bbd47aa1f430396b0262d71eeb623
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module cam_scaler_fifo

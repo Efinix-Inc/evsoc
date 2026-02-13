@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _2bb72b752b544d61a61d2c013c8f1c68
+`define IP_UUID _b614f5774be74134ad62c28ca185b155
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module hw_accel_dma_in_fifo

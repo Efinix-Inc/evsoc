@@ -3,7 +3,7 @@
         "-o",
         "dma",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti180J484_hdmi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/Ti180J484_hdmi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -122,5 +122,5 @@
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T05:44:19.055878+00:00"
+    "generated_date": "2025-05-21T04:48:50.467715+00:00"
 }

@@ -3,7 +3,7 @@
         "-o",
         "ddr_reset_seq",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F324_640_480/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/T120F324_640_480/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -17,13 +17,13 @@
     },
     "output": {
         "external_source_source": [
+            "ddr_reset_seq/ddr_reset_seq_tmpl.v",
             "ddr_reset_seq/ddr_reset_seq.v",
             "ddr_reset_seq/ddr_reset_seq_define.vh",
-            "ddr_reset_seq/ddr_reset_seq_tmpl.vhd",
-            "ddr_reset_seq/ddr_reset_seq_tmpl.v"
+            "ddr_reset_seq/ddr_reset_seq_tmpl.vhd"
         ]
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T03:54:56.331978+00:00"
+    "generated_date": "2025-05-21T04:28:25.555996+00:00"
 }

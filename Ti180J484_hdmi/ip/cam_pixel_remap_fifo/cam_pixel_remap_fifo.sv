@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _b7aa0da2be6740ef816f73d8e0702eb8
+`define IP_UUID _a62443db8975473d96fc2a8b6a5fb672
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module cam_pixel_remap_fifo

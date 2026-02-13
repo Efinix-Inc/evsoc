@@ -10,7 +10,7 @@
     "buffer": {
         "bank_count": 2,
         "bank_width": 128,
-        "bank_words": 4096
+        "bank_words": 1024
     },
     "read": {
         "address_width": 32,
@@ -35,7 +35,7 @@
             "self_restart_capable": true,
             "bytes_per_burst": 512,
             "buffer_address": 0,
-            "buffer_size": 2048
+            "buffer_size": 1024
         },
         "c1": {
             "progress_probe": true,
@@ -48,8 +48,8 @@
             "half_completion_interrupt": false,
             "self_restart_capable": true,
             "bytes_per_burst": 512,
-            "buffer_address": 2048,
-            "buffer_size": 2048
+            "buffer_address": 1024,
+            "buffer_size": 1024
         },
         "c2": {
             "progress_probe": true,
@@ -62,8 +62,8 @@
             "half_completion_interrupt": false,
             "self_restart_capable": true,
             "bytes_per_burst": 512,
-            "buffer_address": 4096,
-            "buffer_size": 2048
+            "buffer_address": 2048,
+            "buffer_size": 1024
         },
         "c3": {
             "progress_probe": true,
@@ -76,8 +76,8 @@
             "half_completion_interrupt": false,
             "self_restart_capable": true,
             "bytes_per_burst": 256,
-            "buffer_address": 6144,
-            "buffer_size": 2048
+            "buffer_address": 3072,
+            "buffer_size": 1024
         },
         "c4": {
             "progress_probe": true,
@@ -90,8 +90,8 @@
             "half_completion_interrupt": false,
             "self_restart_capable": false,
             "bytes_per_burst": 256,
-            "buffer_address": 8192,
-            "buffer_size": 2048
+            "buffer_address": 4096,
+            "buffer_size": 1024
         },
         "c5": {
             "progress_probe": true,
@@ -104,8 +104,8 @@
             "half_completion_interrupt": false,
             "self_restart_capable": false,
             "bytes_per_burst": 256,
-            "buffer_address": 10240,
-            "buffer_size": 2048
+            "buffer_address": 5120,
+            "buffer_size": 1024
         }
     },
     "inputs": {

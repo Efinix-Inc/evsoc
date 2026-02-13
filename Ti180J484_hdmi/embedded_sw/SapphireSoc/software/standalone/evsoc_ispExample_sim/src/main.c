@@ -10,6 +10,7 @@
 
 #include "clint.h"
 #include "common.h"
+#include "PiCamV3Driver.h"
 #include "PiCamDriver.h"
 #include "apb3_cam.h"
 #include "dmasg.h"

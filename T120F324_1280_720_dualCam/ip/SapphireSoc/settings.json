@@ -3,13 +3,13 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F324_1280_720_dualCam/ip",
+        "/projects/SSE/izzat/izzat_gitgud/git_clone_solution/2025/ai_evsoc/git_release/evsoc/efx_evsoc/test_release/T120F324_1280_720_dualCam/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "3.2.1"
+            "version": "3.3.0"
         }
     ],
     "conf": {
@@ -24,6 +24,7 @@
         "IDE_SEL": "1'b0",
         "RISCV_DEBUG_PRIV": "1'b1",
         "HARD_BREAKPOINT": "0",
+        "CO_DEBUG": "1'b0",
         "SOFT_TAP": "1'b0",
         "TAP_MODE": "1'b0",
         "TAP_COUNT": "1",
@@ -170,8 +171,8 @@
         "external_source_source": [
             "SapphireSoc/SapphireSoc.v",
             "SapphireSoc/SapphireSoc_define.vh",
-            "SapphireSoc/SapphireSoc_tmpl.vhd",
-            "SapphireSoc/SapphireSoc_tmpl.v"
+            "SapphireSoc/SapphireSoc_tmpl.v",
+            "SapphireSoc/SapphireSoc_tmpl.vhd"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": [],
@@ -180,6 +181,6 @@
         ]
     },
     "ooc_synthesis": {},
-    "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T03:37:05.606092+00:00"
+    "sw_version": "2025.2.288.3.8",
+    "generated_date": "2026-02-11T19:17:35.262477+00:00"
 }

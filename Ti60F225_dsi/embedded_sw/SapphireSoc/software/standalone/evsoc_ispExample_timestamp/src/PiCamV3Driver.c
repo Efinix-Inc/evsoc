@@ -4,6 +4,39 @@
 #include "riscv.h"
 #include "PiCamV3Driver.h"
 #include "common.h"
+#include <stdbool.h>
+
+
+int PiCamV3_WriteRegDataReturn (u16 reg,u8 data)
+{
+	u8 outdata;
+
+    i2c_masterStartBlocking(I2C_CTRL_MIPI);
+
+    i2c_txByte(I2C_CTRL_MIPI, IMX708_I2C_ADDRESS<<1);
+	i2c_txNackBlocking(I2C_CTRL_MIPI);
+	bool result = assert_unblock(i2c_rxAck(I2C_CTRL_MIPI)); // Optional check
+
+	if (!result) {
+		return 0; // PiCamV3 detected
+	}
+
+	i2c_txByte(I2C_CTRL_MIPI, (reg>>8) & 0xFF);
+	i2c_txNackBlocking(I2C_CTRL_MIPI);
+	assert(i2c_rxAck(I2C_CTRL_MIPI)); // Optional check
+
+	i2c_txByte(I2C_CTRL_MIPI, (reg) & 0xFF);
+	i2c_txNackBlocking(I2C_CTRL_MIPI);
+	assert(i2c_rxAck(I2C_CTRL_MIPI)); // Optional check
+
+	i2c_txByte(I2C_CTRL_MIPI, data & 0xFF);
+	i2c_txNackBlocking(I2C_CTRL_MIPI);
+	assert(i2c_rxAck(I2C_CTRL_MIPI)); // Optional check
+
+	i2c_masterStopBlocking(I2C_CTRL_MIPI);
+
+	return 1;
+}
 
 void PiCamV3_WriteRegData(u16 reg,u8 data)
 {
@@ -70,9 +103,10 @@ void PiCamV3_StartStreaming()
 	PiCamV3_WriteRegData(IMX708_MODE_SELECT, IMX708_ACTIVE);
 }
 
-void PiCamV3_StopStreaming()
+int PiCamV3_StopStreaming()
 {
-	PiCamV3_WriteRegData(IMX708_MODE_SELECT, IMX708_SLEEP);
+//	PiCamV3_WriteRegData(IMX708_MODE_SELECT, IMX708_SLEEP);
+	return PiCamV3_WriteRegDataReturn(IMX708_MODE_SELECT, IMX708_SLEEP);
 }
 
 void PiCamV3_ConfigCommon()
@@ -253,10 +287,14 @@ void PiCamV3_SetTestPattern(void)
 }
 */
 
-void PiCamV3_Init()
+int PiCamV3_Init()
 {
+	bool returnStatus = PiCamV3_StopStreaming();
 
-	PiCamV3_StopStreaming();
+	// Check PiCamV3 Status
+	if (!returnStatus){
+		return 0;	// PiCamV3 not detected
+	}
 
 	PiCamV3_ConfigCommon();
 
@@ -277,4 +315,8 @@ void PiCamV3_Init()
 //	PiCamV3_StartStreaming();
 
 	uart_writeStr(BSP_UART_TERMINAL, "\n\rDone Camera Init");
+
+	return 1;
 }
+
+

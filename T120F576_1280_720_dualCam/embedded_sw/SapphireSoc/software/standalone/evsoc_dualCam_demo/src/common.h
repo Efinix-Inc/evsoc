@@ -23,7 +23,7 @@ void print_hex_64(uint64_t val, uint32_t digits);
 u32 axi_slave_read32(u32 address);
 
 void assert(int cond);
-
+int assert_unblock(int cond);
 void print_hex_digit(u8 digit);
 void print_hex_byte(u8 byte);
 void print_hex(u32 val, u32 digits);

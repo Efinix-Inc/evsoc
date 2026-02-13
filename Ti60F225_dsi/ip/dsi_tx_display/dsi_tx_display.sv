@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _b570f9ae69ac45f1bc582e5bd0731b1b
+`define IP_UUID _10c698a217e041739459dc45ca7558b8
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module dsi_tx_display

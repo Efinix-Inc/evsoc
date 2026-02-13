@@ -3,7 +3,7 @@
         "-o",
         "display_dma_fifo",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F324_640_480/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/T120F324_640_480/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -36,13 +36,13 @@
     },
     "output": {
         "external_source_source": [
-            "display_dma_fifo/display_dma_fifo_tmpl.vhd",
             "display_dma_fifo/display_dma_fifo.sv",
             "display_dma_fifo/display_dma_fifo_define.svh",
-            "display_dma_fifo/display_dma_fifo_tmpl.sv"
+            "display_dma_fifo/display_dma_fifo_tmpl.sv",
+            "display_dma_fifo/display_dma_fifo_tmpl.vhd"
         ]
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T03:55:03.436350+00:00"
+    "generated_date": "2025-05-21T04:28:33.764572+00:00"
 }

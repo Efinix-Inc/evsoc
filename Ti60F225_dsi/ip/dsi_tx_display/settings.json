@@ -3,7 +3,7 @@
         "-o",
         "dsi_tx_display",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti60F225_dsi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/Ti60F225_dsi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -50,10 +50,10 @@
     },
     "output": {
         "external_source_source": [
-            "dsi_tx_display/dsi_tx_display_define.svh",
             "dsi_tx_display/dsi_tx_display_tmpl.sv",
             "dsi_tx_display/dsi_tx_display_tmpl.vhd",
-            "dsi_tx_display/dsi_tx_display.sv"
+            "dsi_tx_display/dsi_tx_display.sv",
+            "dsi_tx_display/dsi_tx_display_define.svh"
         ],
         "external_testbench_modelsim": [
             "dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
@@ -61,5 +61,5 @@
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T06:15:32.545638+00:00"
+    "generated_date": "2025-05-21T04:56:35.563783+00:00"
 }

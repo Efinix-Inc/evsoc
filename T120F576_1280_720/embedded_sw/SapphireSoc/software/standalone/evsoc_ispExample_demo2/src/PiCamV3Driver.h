@@ -499,16 +499,17 @@ static const struct imx708_reg link_453Mhz_regs[] = {
 extern "C" {
 #endif
 
+int PiCamV3_WriteRegDataReturn (u16 reg,u8 data);
 void PiCam_WriteRegData(u16 reg,u8 data);
 u8 PiCam_ReadRegData(u16 reg);
 void PiCam_init(void);
 void PiCam_Output_activePixelX(u16 XStart,u16 XEnd);
 void PiCam_Output_activePixelY(u16 YStart,u16 YEnd);
 void PiCam_TestPattern(u8 Enable,u8 mode,u16 X,u16 Y);
-void PiCamV3_Init(void);
+int PiCamV3_Init(void);
 void PiCamV3_SetPdafGain(void);
 void PiCamV3_StartStreaming(void);
-void PiCamV3_StopStreaming(void);
+int PiCamV3_StopStreaming(void);
 void PiCamV3_ConfigCommon(void);
 void PiCamV3_ConfigFormat(u8 mode);
 void PiCamV3_ConfigLinkFreq(void);

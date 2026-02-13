@@ -3,7 +3,7 @@
         "-o",
         "cam_pixel_remap_fifo",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/Ti180J484_hdmi/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/Ti180J484_hdmi/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -36,13 +36,13 @@
     },
     "output": {
         "external_source_source": [
-            "cam_pixel_remap_fifo/cam_pixel_remap_fifo.sv",
-            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.svh",
             "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.sv",
-            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd"
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo.sv",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.svh"
         ]
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T05:42:50.152992+00:00"
+    "generated_date": "2025-05-21T04:47:19.887862+00:00"
 }

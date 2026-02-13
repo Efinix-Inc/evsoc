@@ -3,7 +3,7 @@
         "-o",
         "cam_pixel_remap_fifo",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F576_1280_720/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/T120F576_1280_720/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -36,13 +36,13 @@
     },
     "output": {
         "external_source_source": [
-            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.sv",
             "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd",
             "cam_pixel_remap_fifo/cam_pixel_remap_fifo.sv",
-            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.svh"
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.svh",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.sv"
         ]
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T04:18:13.931550+00:00"
+    "generated_date": "2025-05-21T04:32:05.559125+00:00"
 }

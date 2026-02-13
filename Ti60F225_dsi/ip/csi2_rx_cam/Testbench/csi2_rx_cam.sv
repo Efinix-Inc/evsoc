@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _18d3e5b0e9c0481281ec35219ca6ba1c
+`define IP_UUID _a0099b51a00e4ae3b0e6c91bb873ee4a
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module csi2_rx_cam

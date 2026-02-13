@@ -3,7 +3,7 @@
         "-o",
         "hw_accel_dual_cam_fifo",
         "--base_path",
-        "/projects/SSE/jjho/efx_SOLUTION_push/edge_vision_soc/efx_evsoc/test_release/T120F324_1280_720_dualCam/ip",
+        "/projects/SSE/jjho/efx_SOLUTION/edge_vision_soc/efx_evsoc/test_release2/T120F324_1280_720_dualCam/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -36,13 +36,13 @@
     },
     "output": {
         "external_source_source": [
-            "hw_accel_dual_cam_fifo/hw_accel_dual_cam_fifo.sv",
-            "hw_accel_dual_cam_fifo/hw_accel_dual_cam_fifo_define.svh",
             "hw_accel_dual_cam_fifo/hw_accel_dual_cam_fifo_tmpl.sv",
-            "hw_accel_dual_cam_fifo/hw_accel_dual_cam_fifo_tmpl.vhd"
+            "hw_accel_dual_cam_fifo/hw_accel_dual_cam_fifo_tmpl.vhd",
+            "hw_accel_dual_cam_fifo/hw_accel_dual_cam_fifo.sv",
+            "hw_accel_dual_cam_fifo/hw_accel_dual_cam_fifo_define.svh"
         ]
     },
     "ooc_synthesis": {},
     "sw_version": "2025.1.110",
-    "generated_date": "2025-06-03T03:35:41.164200+00:00"
+    "generated_date": "2025-05-21T04:26:20.694847+00:00"
 }

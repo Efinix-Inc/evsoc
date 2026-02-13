@@ -4,6 +4,38 @@
 #include "riscv.h"
 #include "PiCamV3Driver.h"
 #include "common.h"
+#include <stdbool.h>
+
+int PiCamV3_WriteRegDataReturn(u32 i2c_addr, u16 reg,u8 data)
+{
+	u8 outdata;
+
+    i2c_masterStartBlocking(i2c_addr);
+
+    i2c_txByte(i2c_addr, IMX708_I2C_ADDRESS<<1);
+	i2c_txNackBlocking(i2c_addr);
+
+	bool result = assert_unblock(i2c_rxAck(i2c_addr)); // Optional check
+	if (!result) { //it is passing
+		return 0;
+	}
+
+	i2c_txByte(i2c_addr, (reg>>8) & 0xFF);
+	i2c_txNackBlocking(i2c_addr);
+	assert(i2c_rxAck(i2c_addr)); // Optional check
+
+	i2c_txByte(i2c_addr, (reg) & 0xFF);
+	i2c_txNackBlocking(i2c_addr);
+	assert(i2c_rxAck(i2c_addr)); // Optional check
+
+	i2c_txByte(i2c_addr, data & 0xFF);
+	i2c_txNackBlocking(i2c_addr);
+	assert(i2c_rxAck(i2c_addr)); // Optional check
+
+	i2c_masterStopBlocking(i2c_addr);
+
+	return 1;
+}
 
 void PiCamV3_WriteRegData(u32 i2c_addr, u16 reg,u8 data)
 {
@@ -67,12 +99,12 @@ u8 PiCamV3_ReadRegData(u32 i2c_addr, u16 reg)
 
 void PiCamV3_StartStreaming(u32 i2c_addr)
 {
-	PiCamV3_WriteRegData(i2c_addr, IMX708_MODE_SELECT, IMX708_ACTIVE);
+	 PiCamV3_WriteRegData(i2c_addr, IMX708_MODE_SELECT, IMX708_ACTIVE);
 }
 
-void PiCamV3_StopStreaming(u32 i2c_addr)
+int PiCamV3_StopStreaming(u32 i2c_addr)
 {
-	PiCamV3_WriteRegData(i2c_addr, IMX708_MODE_SELECT, IMX708_SLEEP);
+	return 	PiCamV3_WriteRegDataReturn(i2c_addr, IMX708_MODE_SELECT, IMX708_SLEEP);
 }
 
 void PiCamV3_ConfigCommon(u32 i2c_addr)
@@ -253,10 +285,13 @@ void PiCamV3_SetTestPattern(void)
 }
 */
 
-void PiCamV3_Init(u32 i2c_addr)
+int PiCamV3_Init(u32 i2c_addr)
 {
 
-	PiCamV3_StopStreaming(i2c_addr);
+	bool returnStatus = PiCamV3_StopStreaming(i2c_addr);
+	if (!returnStatus){
+		return 0;
+	}
 
 	PiCamV3_ConfigCommon(i2c_addr);
 
@@ -277,4 +312,6 @@ void PiCamV3_Init(u32 i2c_addr)
 //	PiCamV3_StartStreaming();
 
 	uart_writeStr(BSP_UART_TERMINAL, "\n\rDone Camera Init");
+
+	return 1;
 }

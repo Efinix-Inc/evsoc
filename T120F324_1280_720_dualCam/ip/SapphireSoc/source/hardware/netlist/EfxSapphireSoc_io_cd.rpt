@@ -76,14 +76,14 @@ axiA_bresp sampled by io_systemClk
 axiAInterrupt sampled by io_systemClk
 system_uart_0_io_txd clocked by io_systemClk
 system_uart_0_io_rxd sampled by 
-system_i2c_0_io_sda_write clocked by io_systemClk
-system_i2c_0_io_sda_read sampled by 
-system_i2c_0_io_scl_write clocked by io_systemClk
-system_i2c_0_io_scl_read sampled by 
 system_i2c_1_io_sda_write clocked by io_systemClk
 system_i2c_1_io_sda_read sampled by 
 system_i2c_1_io_scl_write clocked by io_systemClk
 system_i2c_1_io_scl_read sampled by 
+system_i2c_0_io_sda_write clocked by io_systemClk
+system_i2c_0_io_sda_read sampled by 
+system_i2c_0_io_scl_write clocked by io_systemClk
+system_i2c_0_io_scl_read sampled by 
 system_i2c_2_io_sda_write clocked by io_systemClk
 system_i2c_2_io_sda_read sampled by 
 system_i2c_2_io_scl_write clocked by io_systemClk

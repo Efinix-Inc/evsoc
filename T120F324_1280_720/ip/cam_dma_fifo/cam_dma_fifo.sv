@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _2ef3f0c3125b46cdb52c8ce1096aa720
+`define IP_UUID _a7fdbb47e2084eafa01d5baf088ad9c7
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module cam_dma_fifo

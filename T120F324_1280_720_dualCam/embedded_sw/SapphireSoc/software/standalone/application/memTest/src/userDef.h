@@ -1,8 +1,0 @@
-///////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 2025 SaxonSoc contributors
-//  SPDX license identifier: MIT
-//  Full license header bsp/efinix/EfxSapphireSoc/include/LICENSE.MD
-///////////////////////////////////////////////////////////////////////////////////
-
-#define MEM_LOC             ((volatile uint32_t*)0x00010000) 
-#define MAX_WORDS           (4 * 1024 * 1024)

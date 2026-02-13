@@ -43,7 +43,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-`define IP_UUID _40d6c9d5882d4eb1844ef6de88da407d
+`define IP_UUID _2818f2bba4254d59b2ec88d9adfa97ad
 `define IP_NAME_CONCAT(a,b) a``b
 `define IP_MODULE_NAME(name) `IP_NAME_CONCAT(name,`IP_UUID)
 module hw_accel_dual_cam_fifo
