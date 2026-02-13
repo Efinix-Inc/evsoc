@@ -283,9 +283,9 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     ```
     
     > 💡 **Note:**  
-    > All soft IPs are pre-generated and included in the design. You do **not** need to regenerate them unless you intend to upgrade to a newer IP version.  
+    > All soft IPs are pre-generated and included in the design except Sapphire SoC. You do **not** need to regenerate them unless you intend to upgrade to a newer IP version. For Sapphire SoC, please regenerate the IP with the latest Efinity version. 
     > 
-    > These IPs are integrated as *static IPs*, meaning their top-level modules are already included in the design—except for the Sapphire SoC, which remains dynamic.  
+    > These IPs are integrated as *static IPs*, meaning their top-level modules are already included in the design except for the Sapphire SoC, which remains dynamic.  
     > 
     > If you wish to upgrade or downgrade a specific IP based on your Efinity version:
     > - First, **remove the IP’s top-level module** from your design file list in Efinity.
@@ -295,55 +295,55 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     
 2.  **How much is the resource consumption for EVSoC framework?**
 
-    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2025.1.
+    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2025.2.
     
     **Resource utilization for ISP example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 34608 | 17282 | 3469 | 23092 | 433       | 4    |
-    | RISC-V SoC              |   -   | 7613  | 802  | 6498  | 54        | 4    |
-    | DMA Controller          |   -   | 7897  | 1197 | 15256 | 321       | 0    |
-    | Camera                  |   -   | 799   | 941  | 652   | 22        | 0    |
-    | Display                 |   -   | 222   | 112  | 125   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 639   | 405  | 412   | 26        | 0    |
+    | Edge Vision SoC (Total) | 35569 | 17280 | 3466 | 24057 | 433       | 4    |
+    | RISC-V SoC              |   -   | 7611  | 802  | 6471  | 54        | 4    |
+    | DMA Controller          |   -   | 7897  | 1194 | 16186 | 321       | 0    |
+    | Camera                  |   -   | 799   | 941  | 602   | 22        | 0    |
+    | Display                 |   -   | 222   | 112  | 107   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 639   | 405  | 422   | 26        | 0    |
     
     **Resource utilization for dual-camera example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 40174 | 20045 | 4796 | 26309 | 487       | 4    |
-    | RISC-V SoC              |   -   | 7617  | 802  | 6532  | 54        | 4    |
-    | DMA Controller          |   -   | 9565  | 1440 | 17625 | 338       | 0    |
-    | Camera (x2)             |   -   | 1598  | 1882 | 1342  | 44        | 0    |
-    | Display                 |   -   | 222   | 112  | 110   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 917   | 548  | 526   | 41        | 0    |
+    | Edge Vision SoC (Total) | 40093 | 20045 | 4793 | 26231 | 487       | 4    |
+    | RISC-V SoC              |   -   | 7615  | 802  | 6416  | 54        | 4    |
+    | DMA Controller          |   -   | 9567  | 1437 | 17610 | 338       | 0    |
+    | Camera (x2)             |   -   | 1598  | 1882 | 1206  | 44        | 0    |
+    | Display                 |   -   | 222   | 112  | 106   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 917   | 548  | 547   | 41        | 0    |
     
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2025.1.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2025.2.
     
     **Resource utilization for ISP example design:**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 33440 | 18510 | 3889 | 20643 | 255        | 4   |
-    | RISC-V SoC               |   -   | 7154  | 703  | 5846  | 49         | 4   |
-    | DMA Controller           |   -   | 4904  | 856  | 6161  | 107        | 0   |
-    | CSI-2 RX Controller Core |   -   | 930   | 161  | 1872  | 15         | 0   |
-    | DSI TX Controller Core   |   -   | 1954  | 488  | 3420  | 25         | 0   |
-    | HyperRAM Controller Core |   -   | 915   | 170  | 1013  | 28         | 0   |
-    | Camera                   |   -   | 778   | 903  | 648   | 11         | 0   |
-    | Display                  |   -   | 338   | 173  | 359   | 8          | 0   |
-    | Hardware Accelerator     |   -   | 621   | 395  | 371   | 8          | 0   |
+    | Edge Vision SoC (Total)  | 33618 | 18551 | 3940 | 20761 | 255        | 4   |
+    | RISC-V SoC               |   -   | 7154  | 703  | 5745  | 49         | 4   |
+    | DMA Controller           |   -   | 4904  | 856  | 6232  | 107        | 0   |
+    | CSI-2 RX Controller Core |   -   | 957   | 187  | 1932  | 15         | 0   |
+    | DSI TX Controller Core   |   -   | 1954  | 488  | 3413  | 25         | 0   |
+    | HyperRAM Controller Core |   -   | 929   | 174  | 1088  | 28         | 0   |
+    | Camera                   |   -   | 778   | 903  | 571   | 11         | 0   |
+    | Display                  |   -   | 338   | 173  | 287   | 8          | 0   |
+    | Hardware Accelerator     |   -   | 621   | 395  | 397   | 8          | 0   |
 
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2025.1.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2025.2.
     
     **Resource utilization for ISP example design (1920x1080 resolution):**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 42414 | 23773 | 3487 | 26529 | 359        | 4   |
-    | RISC-V SoC               |   -   | 12371 | 768  | 7902  | 93         | 4   |
-    | DMA Controller           |   -   | 8573  | 1068 | 15537 | 178        | 0   |
-    | CSI-2 RX Controller Core |   -   | 716   | 126  | 1416  | 17         | 0   |
-    | Camera                   |   -   | 739   | 924  | 676   | 11         | 0   |
-    | Display                  |   -   | 620   | 221  | 360   | 45         | 0   |
-    | Hardware Accelerator     |   -   | 547   | 342  | 296   | 14         | 0   |
+    | Edge Vision SoC (Total)  | 43372 | 23780 | 3519 | 26486 | 359        | 4   |
+    | RISC-V SoC               |   -   | 12371 | 768  | 7923  | 93         | 4   |
+    | DMA Controller           |   -   | 8559  | 1065 | 15375 | 178        | 0   |
+    | CSI-2 RX Controller Core |   -   | 733   | 152  | 1505  | 17         | 0   |
+    | Camera                   |   -   | 739   | 924  | 600   | 11         | 0   |
+    | Display                  |   -   | 618   | 221  | 322   | 45         | 0   |
+    | Hardware Accelerator     |   -   | 553   | 351  | 318   | 14         | 0   |
     
     ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are provided for reference purposes only.
 
