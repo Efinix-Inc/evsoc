@@ -1,6 +1,6 @@
 # Edge Vision SoC (EVSoC) Framework
 
-![Efinity Version](https://img.shields.io/badge/Efinity-v2025.2-blue)
+![Efinity Version](https://img.shields.io/badge/Efinity-v2026.1-blue)
 ![Devices](https://img.shields.io/badge/Devices-Trion%20%7C%20Titanium-green)
 
 Welcome to the **Edge Vision SoC (EVSoC)** framework repository.
@@ -110,8 +110,8 @@ List of implemented HW accelerator mode - Processing:
 
 ## Required Tools & Version
 
-[**Efinity® IDE**](https://www.efinixinc.com/support/efinity.php) – FPGA synthesis & implementation - v2025.2.288.3.8
-[**Efinity® RISC-V Embedded Software IDE**](https://www.efinixinc.com/support/efinity.php) – Firmware development & debugging - v2025.2.0.4
+[**Efinity® IDE**](https://www.efinixinc.com/support/efinity.php) – FPGA synthesis & implementation - v2026.1.132
+[**Efinity® RISC-V Embedded Software IDE**](https://www.efinixinc.com/support/efinity.php) – Firmware development & debugging - v2026.1.0.7
 
 Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) to get started.
 
@@ -119,7 +119,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 ## Supported Cameras
 
 1. Raspberry PI Camera Module v2
-   - Sony IMX219 image sensor (Default)
+   - Sony IMX219 image sensor 
 2. Raspberry PI Camera Module v3
    - Sony IMX708 image sensor 
 
@@ -167,17 +167,23 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 # Quick Start
 For a quick start on Edge Vision SoC framework, combined hex file (FPGA bitstream + RISC-V application binary) for demo design is provided in the release package.
 
-Quick start design demo modes:
-- Camera Capture + Display
-- Camera Capture + RGB2Grayscale (SW) + Sobel (HW) + Display
-- Camera Capture + RGB2Grayscale & Sobel (HW) + Display
-- Camera Capture + RGB2Grayscale & Sobel & Dilation (HW) + Display
+Quick start demo modes for single camera designs & keyboard input to choose:
+- ("a") Camera Capture + HDMI Display                                        
+- ("b") Camera Capture + RGB2Grayscale (SW) + HDMI Display                   
+- ("c") Camera Capture + RGB2Grayscale (SW) + Sobel (HW) + HDMI Display      
+- ("d") Camera Capture + RGB2Grayscale (HW) + HDMI Display                   
+- ("e") Camera Capture + RGB2Grayscale & Sobel (HW) + HDMI Display           
+- ("f") Camera Capture + RGB2Grayscale & Sobel & Dilation (HW) + HDMI Display
+- ("g") Camera Capture + RGB2Grayscale & Sobel & Erosion  (HW) + HDMI Display
 
-List of development kits & switches for selecting demo mode:
-- [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html) - User DIP Switches 0 & 1
-- [Trion® T120 BGA576 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga576.html) - User DIP Switches 0 & 1
-- [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html) - User DIP Switches SW2 (Shared for CBSEL setting, can only used as user input after configuration)
-- [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html) - User Push Button SW4
+
+Quick start demo modes for dual camera designs:
+- ("a") Merge Left + Right   - RGB Colour (cam 1) + RGB Colour (cam 2)
+- ("b") Merge Main + Overlay - RGB Colour (cam 1) + RGB Colour (cam 2)
+- ("c") Merge Main + Overlay - RGB Colour (cam 2) + RGB Colour (cam 1)
+- ("d") Merge Main + Overlay - Grayscale  (cam 1) + Sobel      (cam 2)
+- ("e") Merge Main + Overlay - Sobel      (cam 1) + Sobel      (cam 2)
+
 
 Bring up quick start demo design on Efinix development kit by following listed steps below:
 1. Set up hardware
@@ -209,77 +215,36 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     Below depicts the directory structure of EVSoC framework:
     
     ```
-    ├── T120F324_1280_720
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   ├── sim
-    │   └── source
-    ├── T120F324_1280_720_dualCam
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   └── source
-    ├── T120F324_640_480
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   ├── sim
-    │   └── source
-    ├── T120F576_1280_720
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   ├── sim
-    │   └── source
-    ├── T120F576_1280_720_dualCam
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   └── source
-    ├── T120F576_640_480
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   ├── sim
-    │   └── source
-    ├── Ti60F225_dsi
-    │   ├── embedded_sw
-    │   │   └── SapphireSoc
-    │   │       └── software
-    │   │           └── standalone
-    │   │               └── evsoc_*
-    │   ├── ip
-    │   ├── sim
-    │   └── source
-    ├── Ti180J484_hdmi
-        ├── embedded_sw
-        │   └── SapphireSoc
-        │       └── software
-        │           └── standalone
-        │               └── evsoc_*
-        ├── ip
-        ├── sim
-        └── source
-
+    ├── cam_single/
+    │   ├── T120F324_640_480/
+    │   │   ├── embedded_sw/      # Software projects
+    │   │   │   └── SapphireSoc
+    │   │   │       └── software
+    │   │   │           └── standalone
+    │   │   │               └── evsoc_*
+    │   │   ├── ip
+    │   │   └── source
+    │   ├── T120F324_1280_720/
+    │   |   └── ...
+    │   ├── T120F576_640_480/
+    │   |   └── ...
+    │   ├── T120F576_1280_720/
+    │   |   └── ...
+    │   ├── Ti60F225_dsi/
+    │   |   └── ...
+    │   └── Ti180J484_hdmi/
+    │       └── ...
+    └──cam_dual/
+       ├── T120F324_1280_720_dualCam/
+       │   ├── embedded_sw/      # Software projects
+       │   │   └── SapphireSoc
+       │   │       └── software
+       │   │           └── standalone
+       │   │               └── evsoc_*
+       │   ├── ip
+       │   └── source
+       └── T120F576_1280_720_dualCam/
+           └── ...
     ```
     
     > 💡 **Note:**  
@@ -295,55 +260,55 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     
 2.  **How much is the resource consumption for EVSoC framework?**
 
-    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2025.2.
+    Below are the resource utilization tables compiled for Efinix Trion® T120F324 device using Efinity® IDE v2026.1.132.
     
     **Resource utilization for ISP example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 35569 | 17280 | 3466 | 24057 | 433       | 4    |
-    | RISC-V SoC              |   -   | 7611  | 802  | 6471  | 54        | 4    |
-    | DMA Controller          |   -   | 7897  | 1194 | 16186 | 321       | 0    |
-    | Camera                  |   -   | 799   | 941  | 602   | 22        | 0    |
-    | Display                 |   -   | 222   | 112  | 107   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 639   | 405  | 422   | 26        | 0    |
+    | Edge Vision SoC (Total) | 36414 | 17946 | 3690 | 24551 | 433       | 4    |
+    | RISC-V SoC              |   -   | 7615  | 802  | 6473  | 54        | 4    |
+    | DMA Controller          |   -   | 8557  | 1418 | 16608 | 321       | 0    |
+    | Camera                  |   -   | 801   | 941  | 684   | 22        | 0    |
+    | Display                 |   -   | 222   | 112  | 108   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 639   | 405  | 419   | 26        | 0    |
     
     **Resource utilization for dual-camera example design (1280x720 resolution):**
     | Building Block          | LE    | FF    | ADD  | LUT   | MEM (M5K) | MULT |
     |-------------------------|:-----:|:-----:|:----:|:-----:|:---------:|:----:|
-    | Edge Vision SoC (Total) | 40093 | 20045 | 4793 | 26231 | 487       | 4    |
-    | RISC-V SoC              |   -   | 7615  | 802  | 6416  | 54        | 4    |
-    | DMA Controller          |   -   | 9567  | 1437 | 17610 | 338       | 0    |
-    | Camera (x2)             |   -   | 1598  | 1882 | 1206  | 44        | 0    |
-    | Display                 |   -   | 222   | 112  | 106   | 10        | 0    |
-    | Hardware Accelerator    |   -   | 917   | 548  | 547   | 41        | 0    |
+    | Edge Vision SoC (Total) | 40161 | 20046 | 4793 | 26459 | 487       | 4    |
+    | RISC-V SoC              |   -   | 7615  | 802  | 6216  | 54        | 4    |
+    | DMA Controller          |   -   | 9564  | 1437 | 17663 | 338       | 0    |
+    | Camera (x2)             |   -   | 1602  | 1882 | 1367  | 44        | 0    |
+    | Display                 |   -   | 222   | 112  | 107   | 10        | 0    |
+    | Hardware Accelerator    |   -   | 917   | 548  | 549   | 41        | 0    |
     
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2025.2.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2026.1.132.
     
     **Resource utilization for ISP example design:**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 33618 | 18551 | 3940 | 20761 | 255        | 4   |
-    | RISC-V SoC               |   -   | 7154  | 703  | 5745  | 49         | 4   |
-    | DMA Controller           |   -   | 4904  | 856  | 6232  | 107        | 0   |
-    | CSI-2 RX Controller Core |   -   | 957   | 187  | 1932  | 15         | 0   |
-    | DSI TX Controller Core   |   -   | 1954  | 488  | 3413  | 25         | 0   |
-    | HyperRAM Controller Core |   -   | 929   | 174  | 1088  | 28         | 0   |
-    | Camera                   |   -   | 778   | 903  | 571   | 11         | 0   |
-    | Display                  |   -   | 338   | 173  | 287   | 8          | 0   |
-    | Hardware Accelerator     |   -   | 621   | 395  | 397   | 8          | 0   |
+    | Edge Vision SoC (Total)  | 34216 | 18739 | 4074 | 21233 | 253        | 4   |
+    | RISC-V SoC               |   -   | 7154  | 703  | 5785  | 48         | 4   |
+    | DMA Controller           |   -   | 5107  | 990  | 6422  | 107        | 0   |
+    | CSI-2 RX Controller Core |   -   | 941   | 187  | 2093  | 15         | 0   |
+    | DSI TX Controller Core   |   -   | 1954  | 488  | 3426  | 25         | 0   |
+    | HyperRAM Controller Core |   -   | 929   | 174  | 1076  | 27         | 0   |
+    | Camera                   |   -   | 779   | 903  | 656   | 11         | 0   |
+    | Display                  |   -   | 338   | 173  | 285   | 8          | 0   |
+    | Hardware Accelerator     |   -   | 621   | 395  | 385   | 8          | 0   |
 
-    Below are the resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2025.2.
+    Below are the resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2026.1.132.
     
     **Resource utilization for ISP example design (1920x1080 resolution):**
     | Building Block           | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
     |--------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
-    | Edge Vision SoC (Total)  | 43372 | 23780 | 3519 | 26486 | 359        | 4   |
-    | RISC-V SoC               |   -   | 12371 | 768  | 7923  | 93         | 4   |
-    | DMA Controller           |   -   | 8559  | 1065 | 15375 | 178        | 0   |
-    | CSI-2 RX Controller Core |   -   | 733   | 152  | 1505  | 17         | 0   |
-    | Camera                   |   -   | 739   | 924  | 600   | 11         | 0   |
-    | Display                  |   -   | 618   | 221  | 322   | 45         | 0   |
-    | Hardware Accelerator     |   -   | 553   | 351  | 318   | 14         | 0   |
+    | Edge Vision SoC (Total)  | 42878 | 24025 | 3650 | 26865 | 358        | 4   |
+    | RISC-V SoC               |   -   | 12371 | 768  | 7947  | 92         | 4   |
+    | DMA Controller           |   -   | 8759  | 1201 | 15671 | 178        | 0   |
+    | CSI-2 RX Controller Core |   -   | 766   | 152  | 1475  | 17         | 0   |
+    | Camera                   |   -   | 741   | 924  | 681   | 11         | 0   |
+    | Display                  |   -   | 618   | 221  | 325   | 45         | 0   |
+    | Hardware Accelerator     |   -   | 554   | 346  | 315   | 14         | 0   |
     
     ***Note:*** Resource values may vary from compile-to-compile due to PnR and updates in RTL. The presented tables are provided for reference purposes only.
 
@@ -410,7 +375,7 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     display_mm2s_active = 1;
     ```
     
-    In *dmasg_config.h*, go to the *externalInterrupt()* function and set up the interrupt service subroutine accordingly.
+    In *main.c*, go to the *externalInterrupt()* function and set up the interrupt service subroutine accordingly.
 
     ```
     void trigger_next_display_dma () {
@@ -449,6 +414,9 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     
     Software app *evsoc_ispExample_timestamp* is provided in *embedded_sw/SapphireSoc/software/standalone* directory for this purpose. MIPI camera input frame rate is determined by a hardware counter in camera building block, whereas software timestamp method is used for the processing frame rate profiling purposes. Formulae used to compute frames/second and seconds/frame are provided in the *main.c*. 
 
+13. **How to create combined bitstream for the FPGA and firmware?**
+
+    The default bootloader of soft RISC-V SoC points to *0x0038_0000*. The bitstream file should be located at *0x0000_0000* and the RISC-V firmware should be located at *0x0038_0000* when combining bitstreams.
 <br />
 
 ----

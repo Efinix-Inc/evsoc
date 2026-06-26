@@ -1,0 +1,61 @@
+{
+    "args": [
+        "-o",
+        "hbram",
+        "--base_path",
+        "ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory_controller",
+            "name": "efx_hyper_ram",
+            "version": "6.13"
+        }
+    ],
+    "conf": {
+        "RAM_DBW": "16",
+        "RAM_ABW": "25",
+        "CR0_DPD": "1'b1",
+        "CR0_ILC": "2",
+        "CR0_ODS": "0",
+        "CR0_HBE": "1'b1",
+        "CR0_WBL": "3",
+        "CR1_MCT": "1'b1",
+        "CR1_PAR": "0",
+        "CR1_HSE": "1'b0",
+        "AXI_DBW_2": "128",
+        "DDIN_MODE": "1'b0",
+        "AXI_AWR_DEPTH": "16",
+        "AXI_R_DEPTH_2": "256",
+        "AXI_W_DEPTH_2": "256",
+        "CAL_CLK_CH": "4",
+        "MHZ": "200",
+        "AXI_IF": "1'b1",
+        "NATIVE_DBW": "32",
+        "NATIVE_R_DEPTH": "256",
+        "NATIVE_W_DEPTH": "256",
+        "DUAL_RAM": "0",
+        "INDIVI_DUAL_CAL": "0",
+        "CAL_CLK_CH_LO": "4",
+        "CAL_CLK_CH_HI": "8",
+        "DUAL_RAM_enable": "0",
+        "PERIODIC_CAL": "0",
+        "RECAL_DAYS": "7",
+        "RECAL_HOURS": "23",
+        "PRD_CAL_USER_SIGNAL": "0",
+        "RWDS_OUT_MODE": "0",
+        "CAL_MODE": "2",
+        "DQ_FILTER": "1",
+        "CAL_SCHEME": "2",
+        "TIMER_RESET": "1",
+        "CFG_REG_RW": "0",
+        "ON_DEMAND_CAL": "0"
+    },
+    "output": {
+        "external_source_source": [],
+        "external_testbench_modelsim": []
+    },
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
+}

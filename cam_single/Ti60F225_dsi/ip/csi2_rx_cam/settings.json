@@ -1,0 +1,49 @@
+{
+    "args": [
+        "-o",
+        "csi2_rx_cam",
+        "--base_path",
+        "ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "mipi",
+            "name": "efx_csi2_rx",
+            "version": "5.15"
+        }
+    ],
+    "conf": {
+        "tLPX_NS": "50",
+        "tINIT_NS": "100000",
+        "tCLK_TERM_EN_NS": "38",
+        "tD_TERM_EN_NS": "35",
+        "tHS_SETTLE_NS": "85",
+        "tHS_PREPARE_ZERO_NS": "145",
+        "NUM_DATA_LANE": "2",
+        "ASYNC_STAGE": "2",
+        "HS_BYTECLK_MHZ": "113",
+        "CLOCK_FREQ_MHZ": "100",
+        "DPHY_CLOCK_MODE": "\"Discontinuous\"",
+        "PIXEL_FIFO_DEPTH": "2048",
+        "AREGISTER": "8",
+        "ENABLE_USER_DESKEWCAL": "1'b0",
+        "Pack_40": "1'b1",
+        "Pack_48": "1'b1",
+        "Pack_56": "1'b1",
+        "Pack_64": "1'b1",
+        "FRAME_MODE": "\"GENERIC\"",
+        "ENABLE_VCX": "1'b0",
+        "MIPI_CSI2_RX_DEBUG": "1'b0",
+        "MIPI_CSI2_RX_PIXEL_SIDEBAND": "1'b0"
+    },
+    "output": {
+        "external_source_source": [],
+        "external_testbench_modelsim": [],
+        "external_testbench_ncsim": [],
+        "external_testbench_synopsys": [],
+        "external_testbench_testbench": []
+    },
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
+}
