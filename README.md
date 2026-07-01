@@ -223,6 +223,7 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     │   │   │           └── standalone
     │   │   │               └── evsoc_*
     │   │   ├── ip
+    |   |   ├── sim
     │   │   └── source
     │   ├── T120F324_1280_720/
     │   |   └── ...
@@ -242,6 +243,7 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
        │   │           └── standalone
        │   │               └── evsoc_*
        │   ├── ip
+       |   ├── sim
        │   └── source
        └── T120F576_1280_720_dualCam/
            └── ...
@@ -416,7 +418,10 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
 
 13. **How to create combined bitstream for the FPGA and firmware?**
 
-    The default bootloader of soft RISC-V SoC points to *0x0038_0000*. The bitstream file should be located at *0x0000_0000* and the RISC-V firmware should be located at *0x0038_0000* when combining bitstreams.
+    The default soft RISC-V SoC bootloader loads firmware from 0x0038_0000. When creating a combined image, ensure that:
+    - The FPGA bitstream is located at 0x0000_0000
+    - The RISC-V firmware is located at 0x0038_0000
+
 <br />
 
 ----
