@@ -1,0 +1,53 @@
+{
+    "args": [
+        "-o",
+        "efx_ddr3_controller_v2",
+        "--base_path",
+        "ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory_controller",
+            "name": "efx_ddr3_soft_controller",
+            "version": "5.17"
+        }
+    ],
+    "conf": {
+        "data_width": "1",
+        "freq": "400",
+        "col": "10",
+        "row": "16",
+        "bank": "3",
+        "burst_length": "8",
+        "read_burst_type": "1'b0",
+        "cas_latency": "5",
+        "dll_reset": "1",
+        "precharge_pd": "1'b1",
+        "dll_enable": "1'b1",
+        "output_drive_strength": "1'b0",
+        "al": "0",
+        "qoff": "1'b1",
+        "rtt": "3",
+        "asr": "1'b0",
+        "srt": "1'b0",
+        "dynamic_odt": "0",
+        "mpr_rf": "0",
+        "mpr": "1'b0",
+        "tREFI": "7800",
+        "arbiter_init": "1",
+        "arbiter_count": "16",
+        "write_leveling": "1'b0",
+        "tdqs": "1'b0",
+        "DDR3_DATA_RATE": "1",
+        "DDR3_MODE": "2",
+        "READ_ENABLE_PIPELINE": "8",
+        "PLL_OUT_SEL": "4"
+    },
+    "output": {
+        "external_source_source": [],
+        "external_script_generator": []
+    },
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132.4.5",
+    "external_path_option": "RELATIVE_PATH"
+}
