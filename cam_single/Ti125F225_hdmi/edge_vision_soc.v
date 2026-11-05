@@ -1,34 +1,7 @@
-//=============================================================================
-// edge_vision_soc.v -- Ti125F225 Edge Vision SoC
-//
-// Ported from the Efinix Ti180J484 evsoc reference (edge_vision_soc.v).
-// Same file, module, IP and top-level port names as Ti180. Everything below
-// follows edge_vision_soc.v line for line (same sources, register map, DMA
-// channel map, hw_accel, resets), EXCEPT the parts this device/board forces
-// to be different. Each of those is marked "Ti125 DEVICE:" and listed here:
-//
-//   1. DDR      : Ti180 hard LPDDR4 (2 x 512-bit ports) -> Ti125 soft DDR3L
-//                 controller (efx_ddr3_controller_v2) behind
-//                 axi_full_to_half_duplex (MAX_OUTSTANDING_RD = 1), with the
-//                 POR / calibration-retry FSM. The SoC reaches it on io_ddrA
-//                 (128-bit); the DMA through the SoC's io_ddrMasters_0 (128-bit).
-//   2. MIPI     : Ti180 hard D-PHY + csi2_hard_mipi_rx (inside
-//                 cam_csi_rx_controllers) -> Ti125 MIPI RX lanes +
-//                 soft csi2_rx_cam. The receiver output is sliced exactly as
-//                 cam_csi_rx_controllers does, so cam_picam_v2 sees the
-//                 same bus.
-//   3. SoC      : SapphireSoc generated for Ti125 (no SPI1; 128-bit DDR port).
-//   4. Clocks   : i_sys_clk (peripheral clock) is 200 MHz instead of 100 MHz
-//                 and also clocks the DMA memory side (io_ddrMasters_0);
-//                 i_axi0_mem_clk is the DDR3L controller AXI clock. No
-//                 25.25 MHz pixel clock: 640x480 uses i_sys_clk_25mhz (25.2 MHz).
-//                 No pll_*_RSTN outputs (Ti125 PLLs have no reset pins here).
-//   5. Board    : 2 LEDs (DDR3 status / heartbeat) instead of 6.
-//                 i_sw[0] = reset (board BTN2, GPIOR_N_00),
-//                 i_sw[1] = demo2 mode button (board BTN1, GPIOR_P_02_CSI;
-//                 do not hold it while the FPGA is configuring).
-//                 DDR3L and MIPI-lane pins are Ti125-only.
-//=============================================================================
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/evsoc/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 `include "evsoc_defines.v"
 `include "ip/efx_ddr3_controller_v2/ddr3_controller.vh"
@@ -89,7 +62,7 @@ module edge_vision_soc #(
     input  wire                     jtag_inst1_TMS,     jtag_inst1_UPDATE,
     output wire                     jtag_inst1_TDO,
 
-    // ---- SoC peripherals (Ti180 names) ----
+    // ---- SoC peripherals ----
     output wire                     system_spi_0_io_sclk_write,
     output wire                     system_spi_0_io_data_0_writeEnable,
     input  wire                     system_spi_0_io_data_0_read,
@@ -111,7 +84,7 @@ module edge_vision_soc #(
     input  wire                     i_hdmi_clk_74p25MHz,
     input  wire                     pll_osc2_LOCKED,
 
-    // ---- camera: MIPI RX Lanes on QSE2 (names match the peri.xml blocks ----
+    // ---- camera: MIPI RX Lanes on QSE2 ----
     // ---- cam_ck / cam_d0 / cam_d1, SERIAL_WIDTH 8) ---------------------------
     // Clock lane
     input  wire                     cam_ck_LP_P_IN,
@@ -155,14 +128,14 @@ module edge_vision_soc #(
     output wire                     cam_d1_LP_P_OE,  cam_d1_LP_N_OE,
     output wire                     cam_d1_DLY_RST,  cam_d1_DLY_INC, cam_d1_DLY_ENA,
 
-    // ---- camera I2C and reset (Ti180 names) ---------------------------------
+    // ---- camera I2C and reset ---------------------------------
     input  wire                     i_cam_sda,
     output wire                     o_cam_sda_oe,
     input  wire                     i_cam_scl,
     output wire                     o_cam_scl_oe,
     output wire                     o_cam_rstn,
 
-    // ---- HDMI: ADV7511 on the QSE daughter card (Ti180 names) ---------------
+    // ---- HDMI: ADV7511 on the QSE daughter card ---------------
     input  wire                     i_hdmi_sda,
     output wire                     o_hdmi_sda_oe,
     input  wire                     i_hdmi_scl,
@@ -179,11 +152,6 @@ module edge_vision_soc #(
 // Resolution Parameter (Vesa Standard)
 ///////////////////////////////////////
 wire w_hdmi_clk;
-
-// Ti125 DEVICE: Ti180 has a 25.25 MHz pixel clock (i_hdmi_clk_25p25MHz); the
-// Ti125 PLLs have no such output, so 640x480 uses i_sys_clk_25mhz (25.2 MHz,
-// the ADV7511 configuration clock). As on Ti180, the hdmi_yuv_* output pins'
-// clock must also be changed in the Interface Designer (see evsoc_defines.v).
 
 `ifdef Full_HD_1920x1080_60Hz
 
@@ -241,11 +209,9 @@ wire w_hdmi_clk;
     // Ti125 DEVICE: power-on reset, DDR3L calibration retry, SoC reset,
     // AXI bridge and DDR3L soft controller (unchanged from the Ti125 design).
     //=========================================================================
-    // (DDR3-side AXI nets renamed axi_* -> ddr_axi_*: Ti180 uses axi_* for axiA.)
 
     //=========================================================================
-    // Power-on reset. pll_ddr_LOCKED is not trustworthy here (is_bypass_lock=true),
-    // so this counter is the only thing gating DDR3 initialisation.
+    // Power-on reset.
     //=========================================================================
     localparam int POR_DIV = (CLK_FREQ_HZ / 1000) * POR_MS;
     localparam int POR_W   = $clog2(POR_DIV + 1);
@@ -320,8 +286,7 @@ wire w_hdmi_clk;
     end
 
     //=========================================================================
-    // SoC reset, with a TIMEOUT (~2.7 s) so a memory failure can never lock
-    // the debugger out permanently.
+    // SoC reset, so a memory failure can never lock the debugger out permanently.
     //=========================================================================
     reg [27:0] soc_to_cnt;
     reg        soc_to;
@@ -402,13 +367,7 @@ wire w_hdmi_clk;
     //=========================================================================
     axi_full_to_half_duplex #(
         .DATA_WIDTH (128), .ADDR_WIDTH (32), .ID_WIDTH (8),
-        // MUST be 1 (was 16 in the Ti125 design). Captured on hardware: when a
-        // short read (e.g. the 1-beat tail of the hw_accel input transfer) is
-        // accepted while a 32-beat read is still returning data, the DDR3L
-        // controller returns its beat WITHOUT RLAST; that read never completes
-        // and the whole SoC locks up (modes c/e/f/g). With 1, no read reaches
-        // the controller until the previous RLAST is back. Raise only after
-        // the controller read-return path is fixed.
+        // MUST be 1 due to DDR3 controller RLAST issue
         .MAX_OUTSTANDING_RD (1)
     ) u_axi_bridge (
         .clk (i_axi0_mem_clk), .rst (~sys_rst_n),                 // rst is active HIGH
@@ -554,9 +513,7 @@ wire                       io_asyncResetn;
 wire                       i_arstn;
 wire                       mipi_rstn;
 
-// Ti125 DEVICE: Ti180 builds io_asyncResetn from SW0 and the PLL locks. Here
-// SW0 is i_sw[0], already folded into soc_async_reset together with the POR and
-// the DDR3L calibration result; the two video PLL locks are added as on Ti180.
+\\\\
 assign   io_asyncResetn   = ~soc_async_reset & pll_osc3_LOCKED & pll_osc2_LOCKED;
 assign   w_sysclk_arst    = ~( io_asyncResetn );
 assign   w_sysclk_arstn   = ~w_sysclk_arst;
@@ -567,7 +524,7 @@ assign   o_cam_rstn       = i_arstn;
 wire    peripheralClk;
 wire    peripheralReset;
 
-assign peripheralClk   = i_sys_clk;           // Ti125 DEVICE: 200 MHz (Ti180: 100 MHz)
+assign peripheralClk   = i_sys_clk;          
 assign peripheralReset = soc_prp_reset;     // SoC peripheral reset, synchronised to i_sys_clk
 
 
@@ -587,12 +544,6 @@ wire [CAM_PIXEL_RX_MEM_DATAWIDTH-1:0] w_rx_out_data_10;
 wire [CAM_PIXEL_RX_MEM_DATAWIDTH-1:0] w_rx_out_data_11;
 wire [5:0] rx_out_dt;
 
-//-----------------------------------------------------------------------------
-// Ti125 DEVICE: replaces cam_csi_rx_controllers (hard D-PHY + csi2_hard_mipi_rx).
-// Same resets as cam_csi_rx_controllers (common_reset, 3 cycles, on the pixel
-// and byte clocks, from i_arstn), same receiver core family, and the output is
-// sliced with exactly the same formula, so cam_picam_v2 gets the same bus.
-//-----------------------------------------------------------------------------
 wire w_reset_pixel_n;
 wire w_reset_byte_HS_n;
 
@@ -710,7 +661,7 @@ csi2_rx_cam inst_efx_csi2_rx0 (
     .pixel_data_valid (w_rx_valid)
 );
 
-// Same as cam_csi_rx_controllers: output = top 8 bits of each RAW10 pixel.
+// output = top 8 bits of each RAW10 pixel.
 assign w_rx_out_de      = w_rx_valid;
 assign w_rx_out_vs      = w_rx_vs;
 assign w_rx_out_hs      = w_rx_hs;
@@ -974,9 +925,8 @@ wire            hw_accel_axi_rvalid;
 
 
 
-// Ti125 DEVICE: DMA memory side, into the SoC's io_ddrMasters_0 (128-bit),
+// DMA memory side, into the SoC's io_ddrMasters_0 (128-bit),
 // which arbitrates it with the CPU onto the single DDR3L controller port.
-// (Ti180: DMA on the second hard-DDR AXI port, 512-bit.)
 wire [31:0]  dma_ARADDR,  dma_AWADDR;
 wire [7:0]   dma_ARLEN,   dma_AWLEN;
 wire [2:0]   dma_ARSIZE,  dma_AWSIZE,  dma_ARPROT, dma_AWPROT;
@@ -996,7 +946,7 @@ SapphireSoc SapphireSoc_inst (
     //Soc Clock and Reset
     .io_systemClk                       (i_soc_clk),
     .io_asyncReset                      (soc_async_reset),      // Ti125 DEVICE: POR + DDR3L ready
-    .io_memoryClk                       (i_axi0_mem_clk),                  // Ti125 DEVICE: DDR3L AXI clock
+    .io_memoryClk                       (i_axi0_mem_clk),       // Ti125 DEVICE: DDR3L AXI clock
     .io_memoryReset                     (),
     .io_systemReset                     (),
     .io_peripheralClk                   (peripheralClk),
@@ -1059,7 +1009,7 @@ SapphireSoc SapphireSoc_inst (
     .io_ddrA_r_payload_resp             (soc_r_resp),
     .io_ddrA_r_payload_last             (soc_r_last),
 
-    // Ti125 DEVICE: DMA path into DDR (Ti180: DMA on hard-DDR AXI port 1)
+    // Ti125 DEVICE: DMA path into DDR
     .io_ddrMasters_0_clk               (i_sys_clk),
     .io_ddrMasters_0_reset             (),
     .io_ddrMasters_0_aw_valid          (dma_AWVALID),
@@ -1463,7 +1413,7 @@ hw_accel_wrapper #(
 
 
     //=========================================================================
-    // Ti125 DEVICE: status LEDs (2 on this board; Ti180 drives 6, LED5 = DDR ok)
+    // Ti125 DEVICE: status LEDs (2 on this board)
     //   o_led[1]: DDR3L status (solid = calibrated OK, else blink code)
     //   o_led[0]: heartbeat once the ADV7511 is configured
     //=========================================================================
