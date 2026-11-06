@@ -513,7 +513,6 @@ wire                       io_asyncResetn;
 wire                       i_arstn;
 wire                       mipi_rstn;
 
-\\\\
 assign   io_asyncResetn   = ~soc_async_reset & pll_osc3_LOCKED & pll_osc2_LOCKED;
 assign   w_sysclk_arst    = ~( io_asyncResetn );
 assign   w_sysclk_arstn   = ~w_sysclk_arst;
