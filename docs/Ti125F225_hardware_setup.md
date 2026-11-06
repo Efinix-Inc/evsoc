@@ -101,7 +101,7 @@ pll_osc2  PLL_BL0  74.25 MHz  X4   i_hdmi_clk_148p5MHz / i_hdmi_clk_74p25MHz (HD
 
 ### Hardware setup photo
 
-![Ti125F225 EVSoC hardware setup](docs/hardware_setup.jpg)
+![Ti125F225 EVSoC hardware setup](./hardware_setup.jpg)
 
 *1 12 V jack J1 · 2 camera card on QSE2 · 3 ribbon in FPC1 · 4 HDMI adapter card on QSE1 ·
 5 USB1 JTAG/UART · 6 VCCIO jumper block (PH5–PH13) · 7 PH1 and PH28 open · 8 PH20 set to UART*
