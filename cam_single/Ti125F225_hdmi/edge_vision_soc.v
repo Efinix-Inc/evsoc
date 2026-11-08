@@ -1,8 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
-// See https://github.com/Efinix-Inc/evsoc/blob/main/LICENSE.txt for details.
-////////////////////////////////////////////////////////////////////////////////
-
 `include "evsoc_defines.v"
 `include "ip/efx_ddr3_controller_v2/ddr3_controller.vh"
 
@@ -518,7 +513,7 @@ assign   w_sysclk_arst    = ~( io_asyncResetn );
 assign   w_sysclk_arstn   = ~w_sysclk_arst;
 
 assign   i_arstn          = (w_sysclk_arstn & (!mipi_rstn)) ;
-assign   o_cam_rstn       = i_arstn;
+assign   o_cam_rstn       = w_sysclk_arstn;
 
 wire    peripheralClk;
 wire    peripheralReset;
