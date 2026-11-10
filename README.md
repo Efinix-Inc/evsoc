@@ -106,6 +106,7 @@ List of implemented HW accelerator mode - Processing:
 - [Trion® T120 BGA324 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga324.html)
 - [Trion® T120 BGA576 Development Kit](https://www.efinixinc.com/products-devkits-triont120bga576.html)
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
+- [Titanium® Ti125 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti125f225.html)
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
 
 ## Required Tools & Version
@@ -149,6 +150,7 @@ Please refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?
 - [Trion T120 BGA324 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F324-DK-UG)
 - [Trion T120 BGA576 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=T120F576-DK-UG)
 - [Titanium Ti60 F225 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti60F225-DK-UG)
+- [Titanium Ti125 F225 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti125F225-DK-UG)
 - [Titanium Ti180 J484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180J484-DK-UG)
 
 <br />
@@ -188,6 +190,7 @@ Quick start demo modes for dual camera designs:
 Bring up quick start demo design on Efinix development kit by following listed steps below:
 1. Set up hardware
    - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
+   - For Ti125F225_hdmi design, please refer to [Ti125F225_hardware_setup](docs/Ti125F225_hardware_setup.md) read me file instead.
 2. Program hex file using Efinity Programmer
    - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (T120 BGA324, T120 BGA576, Ti60 F225) or SPI Active using JTAG bridge mode (Ti180 J484).
 3. Press CRESET button and the demo design shall be up and running. 
@@ -421,7 +424,6 @@ Before loading a new design — which includes a separate **FPGA bitstream** and
     The default soft RISC-V SoC bootloader loads firmware from 0x0038_0000. When creating a combined image, ensure that:
     - The FPGA bitstream is located at 0x0000_0000
     - The RISC-V firmware is located at 0x0038_0000
-
 <br />
 
 ----
